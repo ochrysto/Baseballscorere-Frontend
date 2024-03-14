@@ -1,0 +1,71 @@
+.line-up-container {
+  background-color: black;
+  color: #777777;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+.line-up-container h1 {
+  text-align: center;
+  color: #78cf4c;
+}
+.teams-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.team h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.team p {
+  margin: 0;
+  padding: 0;
+  color: limegreen;
+}
+.line-up-table input {
+  background-color: #555;
+  border: 1px solid #777;
+  color: white;
+  padding: 5px;
+  width: 90%;
+}
+
+.line-up-table td {
+  padding: 8px;
+}
+
+.line-up-table select {
+  background-color: #555;
+  border: 1px solid #777;
+  color: #777;
+  padding: 5px;
+  width: 98%;
+}
+
+.line-up-table table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #222;
+}
+
+.line-up-table th, .line-up-table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid white;
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+}
+
+.action-button button {
+  background-color: limegreen;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
