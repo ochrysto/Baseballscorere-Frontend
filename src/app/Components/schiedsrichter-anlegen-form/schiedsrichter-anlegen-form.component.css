@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This makes sure the container is at least as tall as the viewport */
+  background-color: #111; /* Match the background color to your design */
+}
+
+.schiedsrichter-form {
+  background-color: #2d2d2d;
+  padding: 30px;
+  border-radius: 5px;
+  color: #73f80d;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 400px; /* Adjust the width as needed to make the form smaller */
+  box-sizing: border-box;
+}
+
+.schiedsrichter-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.schiedsrichter-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.schiedsrichter-form button {
+  padding: 10px 20px;
+  background-color: #73f80d;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.schiedsrichter-form button:hover {
+  background-color: #60d309;
+}
+
+.schiedsrichter-form input::placeholder {
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}
