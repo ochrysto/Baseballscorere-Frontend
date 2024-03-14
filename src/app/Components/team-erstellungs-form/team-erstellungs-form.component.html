@@ -1,0 +1,25 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" class="team-anlegen-form">
+    <div>
+      <label for="Verbands_name">Name des Verbands</label>
+      <input type="text" id="Verbands_name" name="Verbands_name" [(ngModel)]="Verbands_name" required>
+    </div>
+    <div>
+      <label for="Stadt_name">Name der Stadt</label>
+      <input type="text" id="Stadt_name" name="Stadt_name" [(ngModel)]="Stadt_name" required>
+    </div>
+    <div>
+      <label for="Teams_name">Name des Teams</label>
+      <input type="text" id="Teams_name" name="Teams_name" [(ngModel)]="Teams_name" required>
+    </div>
+    <div>
+      <label for="Logo">Logo hochladen</label>
+      <input type="file" id="Logo" name="Logo" (change)="onFileChange($event)" required>
+    </div>
+    <div>
+      <label for="email">Kontakt-E-Mail</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <button type="submit">Team anlegen</button>
+  </form>
+</div>
