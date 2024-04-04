@@ -14,7 +14,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080/',  // URL of the Keycloak server
+        url: 'http://localhost:8070/',  // URL of the Keycloak server
         realm: 'BaseballScoresheet',
         clientId: 'login-app'
       },
