@@ -1,6 +1,6 @@
 # Baseball-Scoresheet-Frontend
 
-#### How to keycloak this Angular project:
+## How to keycloak this Angular project:
 
 ### Step 1: start KeyCloak docker container
 
