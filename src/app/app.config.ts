@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 /**
  * Reference from doc: https://github.com/mauriciovigolo/keycloak-angular?tab=readme-ov-file#setup
@@ -59,6 +60,7 @@ export const appConfig: ApplicationConfig = {
     KeycloakInitializerProvider, // Initializes Keycloak
     KeycloakBearerInterceptorProvider, // Provides Keycloak Bearer Interceptor
     KeycloakService, // Service for Keycloak
-    provideRouter(routes) // Provides routing for the application
+    provideRouter(routes), // Provides routing for the application
+    provideAnimationsAsync()
   ]
 };

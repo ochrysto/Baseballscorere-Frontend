@@ -1,0 +1,52 @@
+.baseball-scorer-home {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: #B4FF00;
+  background-image: url("Hitter.png");
+  background-size: cover;
+}
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.team-action, .logout {
+  margin-left: 20px;
+  background-color: #323D2B;
+  color: #78cf4c;
+  border-radius: 30px;
+  padding: 15px 30px;
+}
+.main-content{
+  padding-left: 300px;
+  margin: 30px;
+}
+.main-content h1 {
+  font-size: 70px;
+  font-family: 'Kanit';
+  margin-bottom: 50px;
+  color: #38433e;
+  text-align: center;
+}
+
+.main-content p {
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
+  color: #38433e;
+}
+
+.start-game {
+  text-align: center;
+  background-color: #38433e;
+  color: #78cf4c;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+  margin-left: 450px;
+}
+
+.start-game:hover, .team-action:hover, .logout:hover {
+  background-color:  #111110;
+}
