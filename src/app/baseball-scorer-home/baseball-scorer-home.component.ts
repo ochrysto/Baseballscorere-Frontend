@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-baseball-scorer-home',
   standalone: true,
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './baseball-scorer-home.component.html',
   styleUrl: './baseball-scorer-home.component.css'
 })
