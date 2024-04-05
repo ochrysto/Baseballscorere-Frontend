@@ -1,52 +1,67 @@
-.baseball-scorer-home {
+.main {
   display: flex;
-  align-items: center;
+}
+.container {
+  font-family: Kanit, sans-serif;
+  width: 60vw;
   height: 100vh;
-  background-color: #B4FF00;
-  background-image: url("Hitter.png");
-  background-size: cover;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 .header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}
+.header p {
+  font-family: inherit;
+  margin-right: 50px;
+  font-size: 2vh;
+  font-weight: 500;
+}
+.header button {
+  font-family: inherit;
+  background-color: var(--card-darkbrown);
+  color: var(--actiongreen);
+  font-size: 2vh;
+  padding: 20px 30px;
+  border-radius: 20px;
+}
+.hitter {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  height: 120vh;
 }
-.team-action, .logout {
-  margin-left: 20px;
-  background-color: #323D2B;
-  color: #78cf4c;
-  border-radius: 30px;
-  padding: 15px 30px;
+.content {
+  font-family: inherit;
+  padding: 9vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.main-content{
-  padding-left: 300px;
-  margin: 30px;
+.content h1 {
+  font-family: inherit;
+  color: var(--darkgray);
+  font-weight: 800;
+  font-size: 4.9vw;
+  letter-spacing: -1px;
 }
-.main-content h1 {
-  font-size: 70px;
-  font-family: 'Kanit';
-  margin-bottom: 50px;
-  color: #38433e;
-  text-align: center;
+.content p {
+  color: var(--card-darkbrown);
+  font-weight: 400;
+  font-size: 2vh;
+  width: 50%;
+  padding: 40px;
+  line-height: 1.5;
 }
-
-.main-content p {
-  margin-bottom: 20px;
-  font-size: 20px;
-  text-align: center;
-  color: #38433e;
-}
-
-.start-game {
-  text-align: center;
-  background-color: #38433e;
-  color: #78cf4c;
-  border: none;
-  border-radius: 5px;
-  padding: 15px 30px;
-  margin-left: 450px;
+.content button {
+  font-family: inherit;
+  background-color: var(--card-darkbrown);
+  color: var(--actiongreen);
+  font-size: 3vh;
+  border-radius: 20px;
+  padding: 30px;
+  width: 50%;
 }
 
-.start-game:hover, .team-action:hover, .logout:hover {
-  background-color:  #111110;
-}
+
