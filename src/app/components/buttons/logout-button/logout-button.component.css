@@ -1,0 +1,7 @@
+.btn-logOut {
+  background-color: var(--card-darkbrown);
+  color: var(--actiongreen);
+  border-radius: 20px;
+  padding: 30px;
+  font-size: large;
+}

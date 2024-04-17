@@ -1,0 +1,7 @@
+.btn {
+  background-color: var(--card-darkbrown);
+  color: var(--actiongreen);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: medium;
+}
