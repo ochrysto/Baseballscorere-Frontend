@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { ProtectedRouteExampleComponent } from './components/protected-route-example/protected-route-example.component';
 import { PublicRouteExampleComponent } from './components/public-route-example/public-route-example.component';
-import { LineUpComponent } from "./line-up/line-up.component";
-import { BaseballScorerHomeComponent } from "./baseball-scorer-home/baseball-scorer-home.component";
+import { LineUpComponent } from "./pages/line-up/line-up.component";
+import { BaseballScorerHomeComponent } from "./pages/baseball-scorer-home/baseball-scorer-home.component";
 import { AuthGuard } from '../guard/auth.guard';
 
 export const routes: Routes = [
