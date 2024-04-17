@@ -4,10 +4,12 @@ import { PublicRouteExampleComponent } from './components/public-route-example/p
 import { LineUpComponent } from "./pages/line-up/line-up.component";
 import { BaseballScorerHomeComponent } from "./pages/baseball-scorer-home/baseball-scorer-home.component";
 import { AuthGuard } from '../guard/auth.guard';
+import { GamePageComponent } from "./pages/game-page/game-page.component";
 
 export const routes: Routes = [
   { path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard] },
   { path: 'public', component: PublicRouteExampleComponent },
   { path: '', component: BaseballScorerHomeComponent },
-  { path: 'test', component: LineUpComponent },
+  { path: 'line-up', component: LineUpComponent },
+  { path: 'game', component: GamePageComponent },
 ];

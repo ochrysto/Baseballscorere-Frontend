@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {async, Observable} from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { RouterModule, RouterLink} from "@angular/router";
+import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-line-up',
   templateUrl: './line-up.component.html',
+  imports: [RouterModule, RouterLink, MatAutocompleteTrigger, MatAutocomplete, ReactiveFormsModule, MatSlideToggle, AsyncPipe, MatOption],
+  standalone: true,
   styleUrls: ['./line-up.component.css']
 })
 export class LineUpComponent {
