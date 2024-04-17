@@ -3,7 +3,7 @@ import {RouterModule, RouterOutlet} from '@angular/router';
 import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LineUpComponent} from "./line-up/line-up.component";
+import {LineUpComponent} from "./pages/line-up/line-up.component";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {AsyncPipe, NgForOf} from "@angular/common";

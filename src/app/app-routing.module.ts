@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BaseballScorerHomeComponent } from './baseball-scorer-home/baseball-scorer-home.component';
+import { BaseballScorerHomeComponent } from './pages/baseball-scorer-home/baseball-scorer-home.component';
 
 const routes: Routes = [
   { path: '', component: BaseballScorerHomeComponent }

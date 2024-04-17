@@ -10,6 +10,7 @@
   --card-lightbrown: #20251d;
 }
 
+
 html, body {
   height: 100%;
 }
@@ -18,3 +19,4 @@ body {
   font-family: Kanit, sans-serif;
   background-image: var(--bg-gradient);
 }
+

@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {Component} from '@angular/core';
+import {RouterLink, RouterModule} from "@angular/router";
+
 
 @Component({
   selector: 'app-baseball-scorer-home',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    RouterLink, RouterModule
+
   ],
   templateUrl: './baseball-scorer-home.component.html',
   styleUrl: './baseball-scorer-home.component.css'
 })
 export class BaseballScorerHomeComponent {
+
 
 }

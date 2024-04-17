@@ -1,3 +1,5 @@
+
+
 .main {
   display: flex;
 }
@@ -14,11 +16,17 @@
   align-items: center;
   padding: 20px;
 }
-.header p {
+.header a {
   font-family: inherit;
   margin-right: 50px;
   font-size: 2vh;
   font-weight: 500;
+  text-decoration: none;
+  color: var(--card-darkbrown);
+}
+.header a:hover {
+  color: var(--lightgray);
+  cursor: pointer;
 }
 .header button {
   font-family: inherit;
@@ -27,6 +35,11 @@
   font-size: 2vh;
   padding: 20px 30px;
   border-radius: 20px;
+  cursor: pointer;
+}
+.header button:hover {
+  background-color: var(--actiongreen);
+  color: var(--card-darkbrown);
 }
 .hitter {
   position: absolute;
@@ -62,6 +75,13 @@
   border-radius: 20px;
   padding: 30px;
   width: 50%;
+  cursor: pointer;
 }
+.content button:hover {
+  background-color: var(--actiongreen);
+  color: var(--card-darkbrown);
+}
+
+
 
 
