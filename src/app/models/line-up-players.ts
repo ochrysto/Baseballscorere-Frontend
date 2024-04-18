@@ -4,5 +4,5 @@ export interface LineUpPlayers {
   firstname: string;
   lastname: string;
   position: string;
-  passNumber: string;
+  passNumber: number;
 }

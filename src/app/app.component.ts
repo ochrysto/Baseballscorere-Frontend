@@ -19,19 +19,20 @@ export class AppComponent {
 }
 @NgModule ({
     declarations: [
-        LineUpComponent
+
     ],
-    imports: [
-        MatSlideToggleModule,
-        MatAutocompleteModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        NgForOf,
-        AsyncPipe
-    ],
+  imports: [
+    MatSlideToggleModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    NgForOf,
+    AsyncPipe,
+    LineUpComponent
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 class AppModule {}

@@ -19,11 +19,10 @@ body {
   grid-template:
     'header header scoreboard scoreboard'
     'on-base ballpark lineup lineup'
-    'on-base ballpark lineup lineup'
-    'on-base ballpark lineup lineup'
-    'on-base ballpark lineup lineup'
     'input input lineup lineup';
   grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
   background-color: var(--card-lightbrown);
   padding: 30px;
 }
