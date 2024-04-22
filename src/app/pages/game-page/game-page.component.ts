@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import {GameLineUpComponent} from "../../components/game-line-up/game-line-up.component";
 import {GameHeaderComponent} from "../../components/game-header/game-header.component";
+import {BallparkComponent} from "../../components/ballpark/ballpark.component";
+import {OnBaseComponent} from "../../components/on-base/on-base.component";
+import {GameInputComponent} from "../../components/game-input/game-input.component";
 
 @Component({
   selector: 'app-game-page',
   standalone: true,
   imports: [
     GameLineUpComponent,
-    GameHeaderComponent
+    GameHeaderComponent,
+    BallparkComponent,
+    OnBaseComponent,
+    GameInputComponent
   ],
   templateUrl: './game-page.component.html',
   styleUrl: './game-page.component.css'
