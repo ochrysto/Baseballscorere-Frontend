@@ -4,16 +4,18 @@
 
     <!-- defensive player -->
     @for (player of defensiveHomeTeam; track player.passNumber) {
-    <!-- Pitcher first Child-->
+    <!-- Pitcher = first Child-->
     <button class="defensive-player">
       {{player.jerseyNumber}}
       <span class="defensive-name">{{player.lastname}}</span>
     </button>
     }
 
-    @for (player of visitorTeam; track player.passNumber) {
-    <button class="offensive-player">{{player.jerseyNumber}}</button>
-    }
+
+    <button class="offensive-player">
+      {{visitorTeam.at(0)?.jerseyNumber}}
+    </button>
+
     <!-- Ballpark -->
     <img
       src="assets/ballpark.svg"
