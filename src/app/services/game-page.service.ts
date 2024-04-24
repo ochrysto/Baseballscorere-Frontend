@@ -14,71 +14,71 @@ export class GamePageService {
         jerseyNumber: '36',
         firstname: 'Frank',
         lastname: 'Riermeister',
-        position: 'C',
+        position: 2,
         passNumber: 666382,
     },
     {
         battingOrder: 2,
-         jerseyNumber: '9',
+        jerseyNumber: '9',
         firstname: 'Andre',
         lastname: 'Siener',
-        position: 'P',
+        position: 1,
         passNumber: 554932,
     },
     {
         battingOrder: 3,
-         jerseyNumber: '3',
+        jerseyNumber: '3',
         firstname: "Matthias",
         lastname: "Gilde",
-        position: "3B",
+        position: 5,
         passNumber: 443926
     },
     {
         battingOrder: 4,
-         jerseyNumber: '73',
+        jerseyNumber: '73',
         firstname: "Thorsten",
         lastname: "Laack",
-        position: "SS",
+        position: 6,
         passNumber: 546738
     },
     {
         battingOrder: 5,
-         jerseyNumber: '12',
+        jerseyNumber: '12',
         firstname: "Peter",
         lastname: "Frank",
-        position: "CF",
+        position: 8,
         passNumber: 546389
     },
     {
         battingOrder: 6,
-         jerseyNumber: '78',
+        jerseyNumber: '78',
         firstname: "Norbert",
         lastname: "Schwertner",
-        position: "LF",
+        position: 7,
         passNumber: 765449
     },
     {
         battingOrder: 7,
-         jerseyNumber: '56',
+        jerseyNumber: '56',
         firstname: "Connie",
         lastname: "Ritter",
-        position: "2B",
+        position: 4,
         passNumber: 563722
     },
     {
         battingOrder: 8,
-         jerseyNumber: '20',
+        jerseyNumber: '20',
         firstname: "Markus",
         lastname: "Kleininger",
-        position: "RF",
+        position: 9,
         passNumber: 964532
     },
     {
         battingOrder: 9,
-         jerseyNumber: '39',
+        jerseyNumber: '39',
         firstname: "Steffen",
         lastname: "Sammert",
-        position: "1B",
+        position: 3,
         passNumber: 657486
     }
 ]
@@ -89,7 +89,7 @@ export class GamePageService {
       jerseyNumber: '67',
       firstname: 'Hennes',
       lastname: 'Moser',
-      position: 'CF',
+      position: 8,
       passNumber: 746493,
     },
     {
@@ -97,7 +97,7 @@ export class GamePageService {
       jerseyNumber: '10',
       firstname: 'Lutz',
       lastname: 'Dreher',
-      position: 'C',
+      position: 2,
       passNumber: 935449,
     },
     {
@@ -105,7 +105,7 @@ export class GamePageService {
       jerseyNumber: '34',
       firstname: "Peter",
       lastname: "Paukner",
-      position: "SS",
+      position: 6,
       passNumber: 548302
     },
     {
@@ -113,7 +113,7 @@ export class GamePageService {
       jerseyNumber: '88',
       firstname: "Hennes",
       lastname: "Geyer",
-      position: "P",
+      position: 1,
       passNumber: 345250
     },
     {
@@ -121,7 +121,7 @@ export class GamePageService {
       jerseyNumber: '00',
       firstname: "Lenny",
       lastname: "Gerhardt",
-      position: "LF",
+      position: 7,
       passNumber: 600468
     },
     {
@@ -129,7 +129,7 @@ export class GamePageService {
       jerseyNumber: '25',
       firstname: "Mick",
       lastname: "Rapp",
-      position: "2B",
+      position: 4,
       passNumber: 552320
     },
     {
@@ -137,7 +137,7 @@ export class GamePageService {
       jerseyNumber: '42',
       firstname: "Jamie",
       lastname: "Tepper",
-      position: "1B",
+      position: 3,
       passNumber: 553725
     },
     {
@@ -145,7 +145,7 @@ export class GamePageService {
       jerseyNumber: '18',
       firstname: "Dilara",
       lastname: "Schirrmeister",
-      position: "RF",
+      position: 9,
       passNumber: 555382
     },
     {
@@ -153,7 +153,7 @@ export class GamePageService {
       jerseyNumber: '16',
       firstname: "Abdul",
       lastname: "Paschke",
-      position: "3B",
+      position: 5,
       passNumber: 546372
     }
   ]

@@ -3,6 +3,6 @@ export interface LineUpPlayers {
   jerseyNumber: string;
   firstname: string;
   lastname: string;
-  position: string;
+  position: number;
   passNumber: number;
 }

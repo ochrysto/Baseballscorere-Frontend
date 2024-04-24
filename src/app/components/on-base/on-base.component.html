@@ -4,14 +4,22 @@
       <div class="title">on Deck </div>
       <div class="line"></div>
     </div>
-    <div class="textfield"> 39 Steffen Sammert</div>
+    <div class="textfield">
+      {{ onBaseList.at(8)?.jerseyNumber }}
+      {{ onBaseList.at(8)?.firstname }}
+      {{ onBaseList.at(8)?.lastname }}
+    </div>
   </div>
   <div class="info-box">
     <div class="breakline">
       <div class="title">at Bat </div>
       <div class="line"></div>
     </div>
-    <div class="textfield">36 Frank Riermeister</div>
+    <div class="textfield">
+      {{ onBaseList.at(0)?.jerseyNumber }}
+      {{ onBaseList.at(0)?.firstname }}
+      {{ onBaseList.at(0)?.lastname }}
+    </div>
   </div>
   <div class="info-box">
     <div class="breakline">
@@ -36,7 +44,11 @@
 
   <div class="fieldset-container">
     <div class="fieldset-box">
-      <fieldset class="fieldset"><legend>36 Frank Riermeister</legend></fieldset>
+      <fieldset class="fieldset"><legend>
+        {{ onBaseList.at(0)?.jerseyNumber }}
+        {{ onBaseList.at(0)?.firstname }}
+        {{ onBaseList.at(0)?.lastname }}
+      </legend></fieldset>
     </div>
 </div>
 

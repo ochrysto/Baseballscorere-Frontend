@@ -18,7 +18,7 @@
   grid-area: 1/1;
 }
 .fieldset legend {
-  color: var(--homeblue);
+  color: var(--visitoryellow);
   font-size: 0.7em;
   padding: 0 10px;
 }
@@ -33,7 +33,7 @@
 .textfield {
   text-align: left;
   padding-left: 10px;
-  color: var(--homeblue);
+  color: var(--visitoryellow);
   line-height: 1.1em;
 }
 .title {

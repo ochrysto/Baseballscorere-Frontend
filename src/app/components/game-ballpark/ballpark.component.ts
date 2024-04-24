@@ -13,11 +13,15 @@ export class BallparkComponent implements OnInit{
 
   homeTeam: LineUpPlayers[] = [];
   visitorTeam: LineUpPlayers[] = [];
+  defensiveHomeTeam: LineUpPlayers[] = [];
+
    constructor(private gamePageService: GamePageService) {
   }
    ngOnInit() {
     this.visitorTeam = this.gamePageService.getAllGuestPlayer();
     this.homeTeam = this.gamePageService.getAllHomePlayers();
+    this.defensiveHomeTeam = [...this.homeTeam].sort((a, b) => a.position - b.position);
+
    }
 
 }
