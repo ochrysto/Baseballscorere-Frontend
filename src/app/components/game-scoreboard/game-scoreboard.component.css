@@ -1,0 +1,74 @@
+.container {
+  display: grid;
+  grid-template-rows: 3fr 1fr auto;
+  min-height: 100%;
+  box-sizing: border-box;
+  font-family: Kanit, sans-serif;
+}
+.scoreboard-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  font-size: .6em;
+  padding: 0 10px;
+}
+.teams-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  text-align: left;
+}
+.teams {
+  display: flex;
+  align-items: center;
+}
+.teams:nth-child(2) {
+  color: var(--visitoryellow);
+}
+.teams:nth-child(3) {
+  color: var(--homeblue);
+}
+.inning-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+.inning {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.inning-cell:first-child {
+  border-bottom: 1px solid var(--lightgray);
+}
+.inning-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.result-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.result {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.result-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.result-cell:first-child {
+  border-bottom: 1px solid var(--lightgray);
+}
+.footer {
+  display: flex;
+  /*justify-content: flex-end;*/
+  align-items: flex-end;
+  font-size: .7em;
+  color: var(--actiongreen);
+}
+.game-info {
+  margin-left: 10px;
+}
+.outs {
+  margin-left: 30px;
+}
+

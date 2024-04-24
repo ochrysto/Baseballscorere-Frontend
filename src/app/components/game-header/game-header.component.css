@@ -1,0 +1,56 @@
+
+.container-header {
+  display: flex;
+  flex-direction: column;
+  font-family: Kanit, sans-serif;
+  height: 100%;
+  justify-content: space-between;
+  max-width: 50vw;
+  overflow: hidden;
+}
+.game-header-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.game-headline h1{
+  margin: 20px;
+  font-family: Kanit, sans-serif;
+  font-size: 3.5em;
+  font-weight: 800;
+  color: var(--actiongreen);
+}
+.game-button button{
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  background-color: var(--card-darkbrown);
+  border: 1px solid var(--actiongreen);
+  color: var(--actiongreen);
+  border-radius: 10px;
+  font-family: Kanit, sans-serif;
+  font-size: .9em;
+  margin-right: 20px;
+}
+.game-button button:hover {
+  background-color: var(--actiongreen);
+  color: var(--card-darkbrown);
+}
+.game-header-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+.game-info {
+  display: flex;
+  color: var(--lightgray);
+  font-size: .7em;
+  text-align: left;
+}
+.game-clock {
+  font-size: .7em;
+  text-align: right;
+  color: var(--actiongreen);
+}

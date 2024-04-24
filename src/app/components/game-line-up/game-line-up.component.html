@@ -1,0 +1,34 @@
+<table>
+  <thead >
+  <tr class="table-head">
+    <td></td>
+    <td>Nr.</td>
+    <td>Name</td>
+    <td>Position</td>
+    <td></td>
+    <td class="th-inning">
+      <span class="material-symbols-outlined">arrow_back_ios</span>
+      <span class="inning-number">1</span>
+      <span class="material-symbols-outlined">arrow_forward_ios</span>
+    </td>
+    <td></td>
+  </tr>
+  </thead>
+  @for (player of visitorTeam; track player) {
+  <tbody class="player-visitor">
+  <tr>
+    <td class="icon">
+      <span class="material-symbols-outlined">sync</span>
+    </td>
+    <td>{{player.jerseyNumber}}</td>
+    <td>{{ player.firstname }} {{ player.lastname }}</td>
+    <td>{{ player.position}}</td>
+    <td class="batting-order">{{ player.battingOrder }}</td>
+    <td class="diamond"><app-diamond></app-diamond></td>
+    <td class="icon">
+      <span class="material-symbols-outlined">edit_square</span>
+    </td>
+  </tr>
+  </tbody>
+  }
+</table>
