@@ -33,6 +33,5 @@ export class AppComponent {
     LineUpComponent
   ],
   providers: [],
-  bootstrap: []
 })
 class AppModule {}

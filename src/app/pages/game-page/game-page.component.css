@@ -35,7 +35,6 @@ body {
   color: var(--lightgray);
   background-color: var(--card-darkbrown);
   text-align: center;
-  padding: 20px 0;
   font-size: 30px;
   font-family: Kanit, sans-serif;
 }
