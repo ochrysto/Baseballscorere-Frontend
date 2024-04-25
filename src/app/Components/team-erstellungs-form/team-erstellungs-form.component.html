@@ -1,24 +1,33 @@
 <div class="container">
   <form (ngSubmit)="onSubmit()" class="team-anlegen-form">
     <div>
-      <label for="Verbands_name">Name des Verbands</label>
-      <input type="text" id="Verbands_name" name="Verbands_name" [(ngModel)]="Verbands_name" required>
+      <label for="Liga_Name">Liga Name</label>
+      <select id="Liga_Name" name="Liga_Name" [(ngModel)]="Liga_Name" required>
+        <option *ngFor="let liga of ligaOptions" [value]="liga.id">{{ liga.name }}</option>
+      </select>
     </div>
     <div>
-      <label for="Stadt_name">Name der Stadt</label>
-      <input type="text" id="Stadt_name" name="Stadt_name" [(ngModel)]="Stadt_name" required>
+      <label for="Verein_name">Name der Verein</label>
+      <select id="Verein_name" name="Verein_name" [(ngModel)]="Verein_name" required>
+        <option *ngFor="let verein of vereinOptions" [value]="verein.id">{{ verein.name }}</option>
+      </select>
     </div>
+
     <div>
       <label for="Teams_name">Name des Teams</label>
-      <input type="text" id="Teams_name" name="Teams_name" [(ngModel)]="Teams_name" required>
+      <select id="Teams_name" name="Teams_name" [(ngModel)]="Teams_name" required>
+        <option *ngFor="let team of teamOptions" [value]="team.id">{{ team.name }}</option>
+      </select>
     </div>
     <div>
       <label for="Logo">Logo hochladen</label>
       <input type="file" id="Logo" name="Logo" (change)="onFileChange($event)" required>
     </div>
     <div>
-      <label for="email">Kontakt-E-Mail</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+      <label for="Manager">Manager</label>
+      <select id="Manager" name="Manager" [(ngModel)]="Manager" required>
+        <option *ngFor="let manager of managerOptions" [value]="manager.id">{{ manager.name }}</option>
+      </select>
     </div>
     <button type="submit">Team anlegen</button>
   </form>

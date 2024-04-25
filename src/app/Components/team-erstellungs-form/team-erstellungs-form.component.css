@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* This makes sure the container is at least as tall as the viewport */
-  background-color: #111; /* Match the background color to your design */
+  background-color: #111;
 }
 
 .team-anlegen-form {
@@ -49,6 +49,17 @@
 
 .team-anlegen-form input::placeholder {
   color: #aaa;
+}
+
+.team-anlegen-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  font-size: 16px;
 }
 
 @media (max-width: 600px) {
