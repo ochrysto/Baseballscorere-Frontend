@@ -1,0 +1,42 @@
+<div class="team-container">
+  <div class="team-header">
+    <img src="{{ team.logo }}" alt="Team Logo" class="team-logo">
+    <div class="team-titles">
+      <h1 class="team-edit-title">TEAM BEARBEITEN</h1>
+      <h2 class="team-name">{{ team.name }}</h2>
+    </div>
+  </div>
+  <div class="team-content">
+    <div class="new-player-form">
+      <!-- PlayerFormComponent's selector will be used here -->
+      <h3 class="form-title">Neue/n Spieler/in anlegen</h3>
+      <app-player-form (playerAdded)="addPlayer($event)"></app-player-form>
+    </div>
+    <!-- Player List Section -->
+    <div class="player-list-section">
+      <h3 class="player-list-title">Spieler/innenliste</h3>
+      <div class="list-header">
+        <span class="header-item">Nr.</span>
+        <span class="header-item">Name</span>
+        <span class="header-item">Passnummer</span>
+        <span class="header-item">Aktionen</span> <!-- Placeholder for the actions column -->
+      </div>
+      <ul class="player-list">
+        <li *ngFor="let player of players; let i = index" class="player-item">
+          <span class="player-number">{{ player.nr }}</span>
+          <span class="player-name">{{ player.name }}</span>
+          <span class="player-passnummer">{{ player.passnummer }}</span>
+          <div class="player-actions">
+            <button class="edit-button" (click)="modifyPlayer(i)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="delete-button" (click)="deletePlayer(i)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <button class="close-button" (click)="closeList()">schließen</button>
+    </div>
+  </div>
+</div>
