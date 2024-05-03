@@ -16,14 +16,16 @@
   grid-template-rows: 1fr 1fr 1fr;
   text-align: left;
 }
-.teams {
+.teams-btn {
+  all: unset;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
-.teams:nth-child(2) {
+.teams-btn:nth-child(2) {
   color: var(--visitoryellow);
 }
-.teams:nth-child(3) {
+.teams-btn:nth-child(3) {
   color: var(--homeblue);
 }
 .inning-container {

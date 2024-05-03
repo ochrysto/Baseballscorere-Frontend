@@ -3,22 +3,28 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
   height: 100%;
   width: 100%;
-  font-family: Kanit,sans-serif;
-  }
+  font-family: Kanit, sans-serif;
+}
 .fieldset-container {
   display: flex;
   padding: 10px;
 }
-.fieldset-box{
+.fieldset-box {
   display: grid;
   flex: 1;
 }
-.fieldset {
+
+.fieldset-visitor {
   text-align: left;
   grid-area: 1/1;
-}
-.fieldset legend {
   color: var(--visitoryellow);
+  font-size: 0.7em;
+  padding: 0 10px;
+}
+.fieldset-home {
+  text-align: left;
+  grid-area: 1/1;
+  color: var(--homeblue);
   font-size: 0.7em;
   padding: 0 10px;
 }
@@ -30,15 +36,80 @@
 .breakline {
   display: flex;
 }
-.textfield {
+.textfield-visitor {
   text-align: left;
   padding-left: 10px;
   color: var(--visitoryellow);
   line-height: 1.1em;
 }
+.textfield-home {
+  text-align: left;
+  padding-left: 10px;
+  color: var(--homeblue);
+  line-height: 1.1em;
+}
 .title {
   font-family: Kanit, sans-serif;
-  font-size: .5em;
+  font-size: 0.5em;
   white-space: nowrap;
   overflow: hidden;
 }
+/*.container {*/
+/*  display: grid;*/
+/*  grid-template-rows: repeat(6, 1fr); !* Repeat for 6 rows *!*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*  font-family: Kanit, sans-serif;*/
+/*}*/
+
+/*.fieldset-container {*/
+/*  display: flex;*/
+/*  padding: 10px;*/
+/*}*/
+
+/*.fieldset {*/
+/*  display: grid;*/
+/*  flex: 1;*/
+/*  text-align: left;*/
+/*  font-size: 0.7em;*/
+/*  padding: 0 10px;*/
+/*}*/
+
+/*.fieldset.visitor {*/
+/*  color: var(--visitoryellow);*/
+/*}*/
+
+/*.fieldset.home {*/
+/*  color: var(--homeblue);*/
+/*}*/
+
+/*.info-box {*/
+/*  font-family: Kanit, sans-serif;*/
+/*  display: grid;*/
+/*  grid-template-columns: 1fr;*/
+/*}*/
+
+/*.breakline {*/
+/*  display: flex;*/
+/*}*/
+
+/*.textfield {*/
+/*  text-align: left;*/
+/*  padding-left: 10px;*/
+/*  line-height: 1.1em;*/
+/*}*/
+
+/*.textfield.visitor {*/
+/*  color: var(--visitoryellow);*/
+/*}*/
+
+/*.textfield.home {*/
+/*  color: var(--homeblue);*/
+/*}*/
+
+/*.title {*/
+/*  font-family: Kanit, sans-serif;*/
+/*  font-size: 0.5em;*/
+/*  white-space: nowrap;*/
+/*  overflow: hidden;*/
+/*}*/

@@ -1,12 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Input, OnInit} from '@angular/core';
 import {LineUpPlayers} from "../models/line-up-players";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamePageService {
 
-  constructor() { }
+  public gameIsOn = false;
+
+
+  private inningStatusSubject = new Subject<string>();
+  inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
+
+  setInningStatus(inningStatus: string) {
+    this.inningStatusSubject.next(inningStatus);
+  }
+
+  constructor() {}
 
   protected visitorTeam: LineUpPlayers[] = [
     {

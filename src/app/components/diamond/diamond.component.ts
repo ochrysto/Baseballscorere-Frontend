@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
+import {GamePageService} from "../../services/game-page.service";
 
 @Component({
   selector: 'app-diamond',
@@ -15,10 +16,17 @@ export class DiamondComponent {
   second = '';
   third = '';
   home = '';
+  private currentInningStatus!: string;
+  strokeColor: any;
 
-  constructor(private playerService: PlayerService) {}
+  constructor(private playerService: PlayerService,
+              private gamePageService: GamePageService) {
+    this.strokeColor = 'red';
+  }
 
   ngOnInit() {
+    this.gamePageService.inningStatus$.subscribe(inningStatus => {
+      this.currentInningStatus = inningStatus;})
     console.log('onInit');
     this.playerService.call.subscribe((call) => {
       this.center = call[0];

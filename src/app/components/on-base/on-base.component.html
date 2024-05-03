@@ -1,25 +1,38 @@
+
+
 <div class="container">
+  @if (gamePageService.gameIsOn) {
   <div class="info-box">
     <div class="breakline">
       <div class="title">on Deck </div>
       <div class="line"></div>
     </div>
-    <div class="textfield">
-      {{ onBaseList.at(1)?.jerseyNumber }}
-      {{ onBaseList.at(1)?.firstname }}
-      {{ onBaseList.at(1)?.lastname }}
+    @if (currentInningStatus === "isTopInning") {
+    <div class="textfield-visitor">
+      {{getGuestPlayerName(1)}}
     </div>
+    }
+    @if (currentInningStatus === "isBottomInning") {
+      <div class="textfield-home">
+        {{getHomePlayerName(1)}}
+      </div>
+    }
   </div>
   <div class="info-box">
     <div class="breakline">
       <div class="title">at Bat </div>
       <div class="line"></div>
     </div>
-    <div class="textfield">
-      {{ onBaseList.at(0)?.jerseyNumber }}
-      {{ onBaseList.at(0)?.firstname }}
-      {{ onBaseList.at(0)?.lastname }}
+    @if (currentInningStatus === "isTopInning") {
+    <div class="textfield-visitor">
+      {{getGuestPlayerName(0)}}
     </div>
+    }
+    @if (currentInningStatus === "isBottomInning") {
+      <div class="textfield-home">
+        {{getHomePlayerName(0)}}
+      </div>
+    }
   </div>
   <div class="info-box">
     <div class="breakline">
@@ -44,11 +57,18 @@
 
   <div class="fieldset-container">
     <div class="fieldset-box">
-      <fieldset class="fieldset"><legend>
-        {{ onBaseList.at(0)?.jerseyNumber }}
-        {{ onBaseList.at(0)?.firstname }}
-        {{ onBaseList.at(0)?.lastname }}
+      @if (currentInningStatus === "isTopInning") {
+      <fieldset ><legend class="fieldset-visitor">
+        {{getGuestPlayerName(0)}}
       </legend></fieldset>
-    </div>
-</div>
+      }
+      @if (currentInningStatus === "isBottomInning") {
+        <fieldset ><legend class="fieldset-home">
+          {{ getHomePlayerName(0)}}
+        </legend></fieldset>
+      }
 
+    </div>
+
+</div>
+  }

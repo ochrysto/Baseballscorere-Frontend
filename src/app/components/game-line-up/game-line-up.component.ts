@@ -28,11 +28,15 @@ export class GameLineUpComponent implements OnInit{
     8: 'CF',
     9: 'RF'
   }
-  constructor(private gamePageService: GamePageService) {
+  protected currentInningStatus!: string;
+  constructor(protected gamePageService: GamePageService) {
   }
   ngOnInit() {
     this.visitorTeam = this.gamePageService.getAllGuestPlayer();
     this.homeTeam = this.gamePageService.getAllHomePlayers();
+    this.gamePageService.inningStatus$.subscribe(inningStatus => {
+      this.currentInningStatus = inningStatus;
+    });
   }
 
 

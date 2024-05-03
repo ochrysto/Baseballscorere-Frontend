@@ -15,6 +15,7 @@ import {AsyncPipe, NgForOf} from "@angular/common";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'Baseball-Scoresheet';
 }
 @NgModule ({

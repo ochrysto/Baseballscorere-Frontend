@@ -5,6 +5,12 @@
   height: 65px;
   font-family: "Comic Neue", "Comic Sans MS", cursive;
 }
+.frame.top-inning {
+  border-color: var(--homeblue);
+}
+.frame.visitor-inning {
+  border-color: var(--visitoryellow);
+}
 .central {
   font-size: 7vh;
 }
