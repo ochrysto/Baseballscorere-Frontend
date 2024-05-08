@@ -16,14 +16,6 @@ export class GameScoreboardComponent {
 
   changeInningStatus(inningStatus: string) {
     this.gamePageService.setInningStatus(inningStatus);
-   /* if (this.currentInningStatus === 'isTopInning') {
-      this.gamePageService.setInningStatus('isBottomInning');
-    } else {
-      this.gamePageService.setInningStatus('isTopInning');
-    }*/
-  }
+   }
 
- /* changeInning(newState: 'top' | 'bottom'): void {
-    this.gamePageService.updateState(newState);
-  }*/
 }

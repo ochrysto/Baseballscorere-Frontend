@@ -3,10 +3,12 @@ table {
   width: 100%;
   height: 100%;
   border: none;
+  border-collapse: separate;
   }
 .table-head {
   font-weight: 400;
   font-size: 0.7em;
+  height: 3vh;
 }
 .th-inning {
   display: flex;
@@ -29,6 +31,8 @@ table {
 }
 .diamond {
   color: var(--visitoryellow);
+  display: flex;
+  justify-content: center;
 }
 table tr:active {
   background-color: var(--visitoryellow);

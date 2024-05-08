@@ -1,7 +1,7 @@
 <div class="ballpark-component-container">
   <div class="ballpark-container">
     <!-- offensive player -->
-    @if (gamePageService.gameIsOn) {
+<!--    @if (gamePageService.gameIsOn) {-->
       <!-- defensive player -->
       @if (currentInningStatus === "isTopInning") {
         @for (player of defensiveHomeTeam; track player.passNumber) {
@@ -34,7 +34,7 @@
       }
 
 
-    }
+<!--    }-->
 
     <!-- Ballpark -->
     <img

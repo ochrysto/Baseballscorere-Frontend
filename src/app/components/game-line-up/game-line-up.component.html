@@ -1,6 +1,6 @@
 <table>
-  @if (gamePageService.gameIsOn && currentInningStatus === 'isTopInning' || currentInningStatus === 'isBottomInning') {
-  <thead >
+<!--  @if (gamePageService.gameIsOn && currentInningStatus === 'isTopInning' || currentInningStatus === 'isBottomInning') {-->
+
   <tr class="table-head">
     <td></td>
     <td>Nr.</td>
@@ -14,7 +14,7 @@
     </td>
     <td></td>
   </tr>
-  </thead>
+
 
   @if (currentInningStatus === "isTopInning") {
   @for (player of visitorTeam; track player) {
@@ -54,5 +54,5 @@
       </tbody>
   }
   }
-  }
+<!--  }-->
 </table>

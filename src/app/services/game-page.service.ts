@@ -7,10 +7,9 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 })
 export class GamePageService {
 
+  private defaultInningStatus: string = 'isTopInning';
   public gameIsOn = false;
-
-
-  private inningStatusSubject = new Subject<string>();
+  private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
   inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
 
   setInningStatus(inningStatus: string) {
