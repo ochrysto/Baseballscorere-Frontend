@@ -1,24 +1,39 @@
-.header { grid-area: header; }
-.scoreboard { grid-area: scoreboard; }
-.on-base { grid-area:on-base; }
+.header {
+  grid-area: header;
+}
+
+.scoreboard {
+  grid-area: scoreboard;
+}
+
+.on-base {
+  grid-area: on-base;
+}
+
 .ballpark {
   grid-area: ballpark;
   margin: 0 auto;
 
 }
-.input { grid-area: input; }
-.line-up{grid-area: lineup;}
+
+.input {
+  grid-area: input;
+}
+
+.line-up {
+  grid-area: lineup;
+}
 
 body {
   margin: 0;
-  height:100vh;
+  height: 100vh;
   width: 100vw;
   overflow: hidden;
-    }
+}
 
 .grid-container {
   box-sizing: border-box;
-  height:100vh;
+  height: 100vh;
   display: grid;
   grid-template:
     'header header scoreboard scoreboard'

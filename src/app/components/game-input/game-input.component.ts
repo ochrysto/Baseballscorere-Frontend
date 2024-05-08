@@ -1,5 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
-import {PlayerService } from '../../services/player.service';
+import {Component, EventEmitter} from '@angular/core';
+import {PlayerService} from '../../services/player.service';
 
 @Component({
   selector: 'app-game-input',
@@ -9,14 +9,14 @@ import {PlayerService } from '../../services/player.service';
   styleUrl: './game-input.component.css',
 })
 export class GameInputComponent {
-  constructor(private playerService: PlayerService) {}
+  constructor(private playerService: PlayerService) {
+  }
+
   selection = '';
   firstButtonValue: string = '';
   breadcrumb = '';
   groundOutScore = '';
   positionCounter: string[] = [];
-
-  selectB = true;
 
   selectButtonsVisible = true;
   hitButtonsVisible = false;
@@ -135,6 +135,7 @@ export class GameInputComponent {
       }
     }
   }
+
   private onGroundOut() {
     this.hideButtons();
     this.selectPositionsVisible = true;

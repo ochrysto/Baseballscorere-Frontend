@@ -23,6 +23,7 @@
   font-family: Kanit, sans-serif;
   font-weight: 500;
 }
+
 .defensive-player-visitor {
   width: 50px;
   height: 50px;
@@ -75,6 +76,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .defensive-name-visitor {
   color: var(--visitoryellow);
   position: absolute;
@@ -91,6 +93,7 @@
   top: 260px;
   left: 230px;
 }
+
 .defensive-player-home:first-child {
   position: absolute;
   top: 260px;
@@ -100,6 +103,7 @@
 .defensive-player-home:first-child p {
   color: #000;
 }
+
 .defensive-player-visitor:first-child p {
   color: #000;
 }
@@ -109,6 +113,7 @@
   top: 440px;
   left: 230px;
 }
+
 .defensive-player-home:nth-of-type(2) {
   position: absolute;
   top: 440px;
@@ -120,6 +125,7 @@
   top: 185px;
   left: 370px;
 }
+
 .defensive-player-home:nth-of-type(3) {
   position: absolute;
   top: 185px;
@@ -131,6 +137,7 @@
   top: 110px;
   left: 305px;
 }
+
 .defensive-player-home:nth-of-type(4) {
   position: absolute;
   top: 110px;
@@ -142,6 +149,7 @@
   top: 185px;
   left: 90px;
 }
+
 .defensive-player-home:nth-of-type(5) {
   position: absolute;
   top: 185px;
@@ -153,6 +161,7 @@
   top: 100px;
   left: 160px;
 }
+
 .defensive-player-home:nth-of-type(6) {
   position: absolute;
   top: 100px;
@@ -164,6 +173,7 @@
   top: 40px;
   left: 45px;
 }
+
 .defensive-player-home:nth-of-type(7) {
   position: absolute;
   top: 40px;
@@ -175,6 +185,7 @@
   top: 15px;
   left: 225px;
 }
+
 .defensive-player-home:nth-of-type(8) {
   position: absolute;
   top: 15px;
@@ -186,18 +197,11 @@
   top: 40px;
   left: 405px;
 }
+
 .defensive-player-home:nth-of-type(9) {
   position: absolute;
   top: 40px;
   left: 405px;
 }
 
-/*.blink {
-  animation: blinker 1s step-start infinite;
-}
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}*/

@@ -14,10 +14,10 @@ import {NgIf} from "@angular/common";
   templateUrl: './on-base.component.html',
   styleUrl: './on-base.component.css'
 })
-export class OnBaseComponent implements OnInit{
+export class OnBaseComponent implements OnInit {
   onBaseList: LineUpPlayers[] = [];
- /* isTopInning: boolean = this.gamePageService.isTopInning;
-  isBottomInning: boolean = this.gamePageService.isBottomInning;*/
+  /* isTopInning: boolean = this.gamePageService.isTopInning;
+   isBottomInning: boolean = this.gamePageService.isBottomInning;*/
   GuestOnBaselist: LineUpPlayers[] = [];
   HomeOnBaseList: LineUpPlayers[] = [];
   protected currentInningStatus!: string;
@@ -31,7 +31,6 @@ export class OnBaseComponent implements OnInit{
     this.gamePageService.inningStatus$.subscribe(inningStatus => {
       this.currentInningStatus = inningStatus;
     });
-
   }
 
   getHomePlayerName(index: number): string {
@@ -39,12 +38,12 @@ export class OnBaseComponent implements OnInit{
       + this.HomeOnBaseList?.at(index)?.firstname + ' '
       + this.HomeOnBaseList?.at(index)?.lastname || '';
   }
+
   getGuestPlayerName(index: number): string {
     return this.GuestOnBaselist?.at(index)?.jerseyNumber + ' '
       + this.GuestOnBaselist?.at(index)?.firstname + ' '
       + this.GuestOnBaselist?.at(index)?.lastname || '';
   }
-
 
 
 }

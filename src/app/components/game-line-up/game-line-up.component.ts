@@ -1,8 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LineUpPlayers} from "../../models/line-up-players";
 import {GamePageService} from "../../services/game-page.service";
 import {DiamondComponent} from "../diamond/diamond.component";
-import {PlayerService} from "../../services/player.service";
 
 @Component({
   selector: 'app-game-line-up',

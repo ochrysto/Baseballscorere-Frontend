@@ -2,33 +2,33 @@
 
   <div class="info-box">
     <div class="breakline">
-      <div class="title">on Deck </div>
+      <div class="title">on Deck</div>
       <div class="line"></div>
     </div>
     @if (currentInningStatus === "isTopInning") {
-    <div class="textfield-visitor">
-      {{getGuestPlayerName(1)}}
-    </div>
+      <div class="textfield-visitor">
+        {{ getGuestPlayerName(1) }}
+      </div>
     }
     @if (currentInningStatus === "isBottomInning") {
       <div class="textfield-home">
-        {{getHomePlayerName(1)}}
+        {{ getHomePlayerName(1) }}
       </div>
     }
   </div>
   <div class="info-box">
     <div class="breakline">
-      <div class="title">at Bat </div>
+      <div class="title">at Bat</div>
       <div class="line"></div>
     </div>
     @if (currentInningStatus === "isTopInning") {
-    <div class="textfield-visitor">
-      {{getGuestPlayerName(0)}}
-    </div>
+      <div class="textfield-visitor">
+        {{ getGuestPlayerName(0) }}
+      </div>
     }
     @if (currentInningStatus === "isBottomInning") {
       <div class="textfield-home">
-        {{getHomePlayerName(0)}}
+        {{ getHomePlayerName(0) }}
       </div>
     }
   </div>
@@ -40,12 +40,12 @@
     <div class="textfield"></div>
   </div>
   <div class="info-box">
-  <div class="breakline">
-    <div class="title">on Second</div>
-    <div class="line"></div>
+    <div class="breakline">
+      <div class="title">on Second</div>
+      <div class="line"></div>
+    </div>
+    <div class="textfield"></div>
   </div>
-  <div class="textfield"></div>
-</div>
   <div class="info-box">
     <div class="breakline">
       <div class="title">on Third</div>
@@ -57,14 +57,18 @@
   <div class="fieldset-container">
     <div class="fieldset-box">
       @if (currentInningStatus === "isTopInning") {
-      <fieldset ><legend class="fieldset-visitor">
-        {{getGuestPlayerName(0)}}
-      </legend></fieldset>
+        <fieldset>
+          <legend class="fieldset-visitor">
+            {{ getGuestPlayerName(0) }}
+          </legend>
+        </fieldset>
       }
       @if (currentInningStatus === "isBottomInning") {
-        <fieldset ><legend class="fieldset-home">
-          {{ getHomePlayerName(0)}}
-        </legend></fieldset>
+        <fieldset>
+          <legend class="fieldset-home">
+            {{ getHomePlayerName(0) }}
+          </legend>
+        </fieldset>
       }
     </div>
   </div>

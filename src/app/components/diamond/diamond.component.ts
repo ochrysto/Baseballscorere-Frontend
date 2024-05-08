@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PlayerService } from '../../services/player.service';
+import {Component, OnInit} from '@angular/core';
+import {PlayerService} from '../../services/player.service';
 import {GamePageService} from "../../services/game-page.service";
 import {NgClass} from "@angular/common";
 
@@ -12,7 +12,7 @@ import {NgClass} from "@angular/common";
   templateUrl: './diamond.component.html',
   styleUrl: './diamond.component.css',
 })
-export class DiamondComponent implements OnInit{
+export class DiamondComponent implements OnInit {
   base: number = 0;
   center = '';
   first = '';
@@ -22,22 +22,14 @@ export class DiamondComponent implements OnInit{
   public currentInningStatus!: string;
   strokeColor: any;
 
-  constructor(private gamePageService: GamePageService) { }
+  constructor(private gamePageService: GamePageService) {
+  }
 
 
   ngOnInit() {
     this.gamePageService.inningStatus$.subscribe(inningStatus => {
-      this.currentInningStatus = inningStatus;})
-
-    // console.log('onInit');
-    // this.playerService.call.subscribe((call) => {
-    //   this.center = call[0];
-    //   this.first = call[1];
-    //   this.second = call[2];
-    //   this.third = call[3];
-    //   this.home = call[4];
-    //   this.base = parseInt(call[5]);
-    // });
+      this.currentInningStatus = inningStatus;
+    })
   }
 
   getDynamicClass() {

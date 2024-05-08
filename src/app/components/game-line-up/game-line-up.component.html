@@ -1,5 +1,5 @@
 <table>
-<!--  @if (gamePageService.gameIsOn && currentInningStatus === 'isTopInning' || currentInningStatus === 'isBottomInning') {-->
+  <!--  @if (gamePageService.gameIsOn && currentInningStatus === 'isTopInning' || currentInningStatus === 'isBottomInning') {-->
 
   <tr class="table-head">
     <td></td>
@@ -17,42 +17,46 @@
 
 
   @if (currentInningStatus === "isTopInning") {
-  @for (player of visitorTeam; track player) {
-  <tbody class="player-visitor">
-  <tr>
-    <td class="icon">
-      <span class="material-symbols-outlined">sync</span>
-    </td>
-    <td>{{player.jerseyNumber}}</td>
-    <td>{{ player.firstname }} {{ player.lastname }}</td>
-    <td>{{ numberToStringMap[player.position] }}</td>
-    <td class="batting-order">{{ player.battingOrder }}</td>
-    <td class="diamond"><app-diamond></app-diamond></td>
-    <td class="icon">
-      <span class="material-symbols-outlined">edit_square</span>
-    </td>
-  </tr>
-  </tbody>
+    @for (player of visitorTeam; track player) {
+      <tbody class="player-visitor">
+      <tr>
+        <td class="icon">
+          <span class="material-symbols-outlined">sync</span>
+        </td>
+        <td>{{ player.jerseyNumber }}</td>
+        <td>{{ player.firstname }} {{ player.lastname }}</td>
+        <td>{{ numberToStringMap[player.position] }}</td>
+        <td class="batting-order">{{ player.battingOrder }}</td>
+        <td class="diamond">
+          <app-diamond></app-diamond>
+        </td>
+        <td class="icon">
+          <span class="material-symbols-outlined">edit_square</span>
+        </td>
+      </tr>
+      </tbody>
+    }
   }
-  }
-  @if (currentInningStatus === "isBottomInning"){
+  @if (currentInningStatus === "isBottomInning") {
     @for (player of homeTeam; track player) {
       <tbody class="player-home">
       <tr>
         <td class="icon">
           <span class="material-symbols-outlined">sync</span>
         </td>
-        <td>{{player.jerseyNumber}}</td>
+        <td>{{ player.jerseyNumber }}</td>
         <td>{{ player.firstname }} {{ player.lastname }}</td>
         <td>{{ numberToStringMap[player.position] }}</td>
         <td class="batting-order">{{ player.battingOrder }}</td>
-        <td class="diamond"><app-diamond></app-diamond></td>
+        <td class="diamond">
+          <app-diamond></app-diamond>
+        </td>
         <td class="icon">
           <span class="material-symbols-outlined">edit_square</span>
         </td>
       </tr>
       </tbody>
+    }
   }
-  }
-<!--  }-->
+  <!--  }-->
 </table>

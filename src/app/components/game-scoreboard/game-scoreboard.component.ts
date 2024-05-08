@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {GamePageService} from "../../services/game-page.service";
 
 @Component({
@@ -16,6 +16,6 @@ export class GameScoreboardComponent {
 
   changeInningStatus(inningStatus: string) {
     this.gamePageService.setInningStatus(inningStatus);
-   }
+  }
 
 }
