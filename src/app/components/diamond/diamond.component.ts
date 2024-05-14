@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {PlayerService} from '../../services/player.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {GamePageService} from "../../services/game-page.service";
 import {NgClass} from "@angular/common";
+import {Diamonds} from "../../models/diamonds";
 
 @Component({
   selector: 'app-diamond',
@@ -13,14 +13,17 @@ import {NgClass} from "@angular/common";
   styleUrl: './diamond.component.css',
 })
 export class DiamondComponent implements OnInit {
-  base: number = 0;
-  center = '';
-  first = '';
-  second = '';
+
+  @Input() content!: any; // Diamonds could be undefined
+  base: number =  0;
+  center =  '';
+  first =  '';
+  second =  '';
   third = '';
   home = '';
+  util: string = '';
+
   public currentInningStatus!: string;
-  strokeColor: any;
 
   constructor(private gamePageService: GamePageService) {
   }
@@ -36,5 +39,7 @@ export class DiamondComponent implements OnInit {
     console.log(this.currentInningStatus);
     return this.currentInningStatus === 'isTopInning' ? 'frame-visitor' : 'frame-home';
   }
+
+
 }
 
