@@ -1,6 +1,8 @@
 import {Injectable, Input, OnInit} from '@angular/core';
 import {LineUpPlayers} from "../models/line-up-players";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {GameScore} from "../models/gameScore";
+import {ScoreBoardInning} from "../models/scoreBoardInning";
 
 @Injectable({
   providedIn: 'root'
@@ -16,82 +18,83 @@ export class GamePageService {
     this.inningStatusSubject.next(inningStatus);
   }
 
-  constructor() {}
+  constructor() {
+  }
 
   protected visitorTeam: LineUpPlayers[] = [
     {
-        battingOrder: 1,
-        jerseyNumber: '36',
-        firstname: 'Frank',
-        lastname: 'Riermeister',
-        position: 2,
-        passNumber: 666382,
+      battingOrder: 1,
+      jerseyNumber: '36',
+      firstname: 'Frank',
+      lastname: 'Riermeister',
+      position: 2,
+      passNumber: 666382,
     },
     {
-        battingOrder: 2,
-        jerseyNumber: '9',
-        firstname: 'Andre',
-        lastname: 'Siener',
-        position: 1,
-        passNumber: 554932,
+      battingOrder: 2,
+      jerseyNumber: '9',
+      firstname: 'Andre',
+      lastname: 'Siener',
+      position: 1,
+      passNumber: 554932,
     },
     {
-        battingOrder: 3,
-        jerseyNumber: '3',
-        firstname: "Matthias",
-        lastname: "Gilde",
-        position: 5,
-        passNumber: 443926
+      battingOrder: 3,
+      jerseyNumber: '3',
+      firstname: "Matthias",
+      lastname: "Gilde",
+      position: 5,
+      passNumber: 443926
     },
     {
-        battingOrder: 4,
-        jerseyNumber: '73',
-        firstname: "Thorsten",
-        lastname: "Laack",
-        position: 6,
-        passNumber: 546738
+      battingOrder: 4,
+      jerseyNumber: '73',
+      firstname: "Thorsten",
+      lastname: "Laack",
+      position: 6,
+      passNumber: 546738
     },
     {
-        battingOrder: 5,
-        jerseyNumber: '12',
-        firstname: "Peter",
-        lastname: "Frank",
-        position: 8,
-        passNumber: 546389
+      battingOrder: 5,
+      jerseyNumber: '12',
+      firstname: "Peter",
+      lastname: "Frank",
+      position: 8,
+      passNumber: 546389
     },
     {
-        battingOrder: 6,
-        jerseyNumber: '78',
-        firstname: "Norbert",
-        lastname: "Schwertner",
-        position: 7,
-        passNumber: 765449
+      battingOrder: 6,
+      jerseyNumber: '78',
+      firstname: "Norbert",
+      lastname: "Schwertner",
+      position: 7,
+      passNumber: 765449
     },
     {
-        battingOrder: 7,
-        jerseyNumber: '56',
-        firstname: "Connie",
-        lastname: "Ritter",
-        position: 4,
-        passNumber: 563722
+      battingOrder: 7,
+      jerseyNumber: '56',
+      firstname: "Connie",
+      lastname: "Ritter",
+      position: 4,
+      passNumber: 563722
     },
     {
-        battingOrder: 8,
-        jerseyNumber: '20',
-        firstname: "Markus",
-        lastname: "Kleininger",
-        position: 9,
-        passNumber: 964532
+      battingOrder: 8,
+      jerseyNumber: '20',
+      firstname: "Markus",
+      lastname: "Kleininger",
+      position: 9,
+      passNumber: 964532
     },
     {
-        battingOrder: 9,
-        jerseyNumber: '39',
-        firstname: "Steffen",
-        lastname: "Sammert",
-        position: 3,
-        passNumber: 657486
+      battingOrder: 9,
+      jerseyNumber: '39',
+      firstname: "Steffen",
+      lastname: "Sammert",
+      position: 3,
+      passNumber: 657486
     }
-]
+  ]
 
   protected homeTeam: LineUpPlayers[] = [
     {
@@ -168,10 +171,81 @@ export class GamePageService {
     }
   ]
 
+  protected scoreBoardInnings: ScoreBoardInning[] = [
+    {
+      inningNumber: 1,
+      guestScore: '1',
+      homeScore: '3',
+    },
+    {
+      inningNumber: 2,
+      guestScore: '0',
+      homeScore: '2',
+    },
+    {
+      inningNumber: 3,
+      guestScore: '0',
+      homeScore: '1',
+    },
+    {
+      inningNumber: 4,
+      guestScore: '4',
+      homeScore: '0',
+    },
+    {
+      inningNumber: 5,
+      guestScore: '0',
+      homeScore: '0',
+    },
+    {
+      inningNumber: 6,
+      guestScore: '1',
+      homeScore: '1',
+    },
+    {
+      inningNumber: 7,
+      guestScore: '2',
+      homeScore: '0',
+    },
+    {
+      inningNumber: 8,
+      guestScore: '0',
+      homeScore: '0',
+    },
+    {
+      inningNumber: 9,
+      guestScore: '1',
+      homeScore: '0',
+    },
+  ]
+
+  protected gameScore: GameScore =
+    {
+      guestTeamRuns: 9,
+      homeTeamRuns: 4,
+      guestTeamHits: 8,
+      homeTeamHits: 7,
+      guestTeamErrors: 0,
+      homeTeamErrors: 3,
+      guestTeamLobs: 10,
+      homeTeamLobs: 12,
+      currentInning: 6,
+      topOrBottom: 'Top',
+      outs: 1,
+    }
+  ;
+
   getAllGuestPlayer() {
     return this.visitorTeam;
   }
   getAllHomePlayers() {
     return this.homeTeam;
   }
+  getGameScore() {
+    return this.gameScore;
+  }
+  getScoreBoardInnings() {
+    return this.scoreBoardInnings;
+  }
+
 }

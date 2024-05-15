@@ -5,78 +5,44 @@
       <button class="teams-btn" (click)="changeInningStatus('isTopInning')">Braunschweig 89ers</button>
       <button class="teams-btn" (click)="changeInningStatus('isBottomInning')">Bremen Dockers</button>
     </div>
+
     <div class="inning-container">
-      <div class="inning">
-        <div class="inning-cell">1</div>
-        <div class="inning-cell">0</div>
-        <div class="inning-cell">0</div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">2</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">3</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">4</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">5</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">6</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">7</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">8</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
-      <div class="inning">
-        <div class="inning-cell">9</div>
-        <div class="inning-cell"></div>
-        <div class="inning-cell"></div>
-      </div>
+      @for (inning of scoreBoardInnings; track inning.inningNumber) {
+        <div class="inning">
+
+          <div class="inning-cell">{{ inning.inningNumber }}</div>
+          <div class="inning-cell">{{ inning.guestScore }}</div>
+          <div class="inning-cell">{{ inning.homeScore }}</div>
+
+        </div>
+      }
     </div>
+
     <div class="result-container">
       <div class="result">
         <div class="result-cell">Runs</div>
-        <div class="result-cell">0</div>
-        <div class="result-cell">0</div>
+        <div class="result-cell">{{ gamesScore.guestTeamRuns }}</div>
+        <div class="result-cell">{{ gamesScore.homeTeamRuns }}</div>
       </div>
       <div class="result">
         <div class="result-cell">Hits</div>
-        <div class="result-cell">0</div>
-        <div class="result-cell">0</div>
+        <div class="result-cell">{{ gamesScore.guestTeamHits }}</div>
+        <div class="result-cell">{{ gamesScore.homeTeamHits }}</div>
       </div>
       <div class="result">
         <div class="result-cell">Errors</div>
-        <div class="result-cell">0</div>
-        <div class="result-cell">0</div>
+        <div class="result-cell">{{ gamesScore.guestTeamErrors }}</div>
+        <div class="result-cell">{{ gamesScore.homeTeamErrors }}</div>
       </div>
       <div class="result">
         <div class="result-cell">LOB</div>
-        <div class="result-cell">0</div>
-        <div class="result-cell">0</div>
+        <div class="result-cell">{{ gamesScore.guestTeamLobs }}</div>
+        <div class="result-cell">{{ gamesScore.homeTeamLobs }}</div>
       </div>
     </div>
   </div>
   <div class="footer">
-    <p class="game-info">Top 1 Inning</p>
-    <p class="outs">0 Aus</p>
+    <p class="game-info">{{ gamesScore.topOrBottom }} {{ gamesScore.currentInning }} Inning</p>
+    <p class="outs">{{ gamesScore.outs }} Aus</p>
   </div>
 </div>
