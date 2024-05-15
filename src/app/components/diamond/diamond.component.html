@@ -1,0 +1,56 @@
+<div [ngClass]="getDynamicClass()">
+  <svg viewBox="0 0 200 200">
+    <rect x="0" y="0" width="200" height="200" fill="none"/>
+
+    <!-- &lt;!&ndash;    Textfields   &ndash;&gt;
+     <text class="central" x="100" y="120" text-anchor="middle" fill="#85D4FE">
+       {{ center }}
+     </text>
+     <text class="corner" x="185" y="185" text-anchor="end" fill="#85D4FE">
+       {{ first }}
+     </text>
+     <text class="corner" x="185" y="50" text-anchor="end" fill="#85D4FE">
+       {{ second }}
+     </text>
+     <text class="corner" x="10" y="50" fill="#85D4FE">
+       {{ third }}
+     </text>
+     <text class="corner" x="10" y="185" fill="#85D4FE">
+       {{ home }}
+     </text>
+
+     @if (base === 1 || base === 2 || base === 3) {
+       <path
+         d="M100 150 L150 100"
+         stroke="#85D4FE"
+         fill="none"
+         stroke-width="5"
+         stroke-linecap="round"
+       />
+     }
+     @if (base === 2 || base === 3) {
+       <path
+         d="M100 150 L150 100 L100 50"
+         stroke="#85D4FE"
+         fill="none"
+         stroke-width="5"
+         stroke-linecap="round"
+       />
+     }
+     @if (base === 3) {
+       <path
+         d="M100 150 L150 100 L100 50 L50 100"
+         stroke="#85D4FE"
+         fill="none"
+         stroke-width="5"
+         stroke-linecap="round"
+       />
+     }
+     @if (base === 4) {
+       <path d="M100 150 L150 100 L100 50 L50 100 Z" fill="#85D4FE" />
+     }-->
+    <path d="M50 100 L100 50 L150 100 L100 150 Z" stroke="#fff" fill="none"/>
+  </svg>
+</div>
+
+

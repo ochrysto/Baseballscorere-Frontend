@@ -7,7 +7,6 @@ import {RouterLink, RouterModule} from "@angular/router";
   standalone: true,
   imports: [
     RouterLink, RouterModule
-
   ],
   templateUrl: './baseball-scorer-home.component.html',
   styleUrl: './baseball-scorer-home.component.css'

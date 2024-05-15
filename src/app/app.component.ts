@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LineUpComponent} from "./pages/line-up/line-up.component";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,20 +19,19 @@ export class AppComponent {
 }
 @NgModule ({
     declarations: [
-        LineUpComponent
+
     ],
-    imports: [
-        MatSlideToggleModule,
-        MatAutocompleteModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInput,
-        NgForOf,
-        AsyncPipe,
-        NgClass
-    ],
+  imports: [
+    MatSlideToggleModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    NgForOf,
+    AsyncPipe,
+    LineUpComponent
+  ],
   providers: [],
-  bootstrap: [AppComponent]
 })
 class AppModule {}

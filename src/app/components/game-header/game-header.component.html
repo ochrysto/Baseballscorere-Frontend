@@ -1,0 +1,17 @@
+<div class="container-header">
+  <div class="game-header-top">
+    <div class="game-headline">
+      <h1>THE GAME</h1>
+    </div>
+    <div class="game-button">
+      <button (click)="toggleGame()">{{ gamePageService.gameIsOn ? 'ball game' : 'play ball' }}</button>
+    </div>
+  </div>
+  <div class="game-header-bottom">
+    <div class="game-info">
+      <p>Spielnummer: 101-1 &nbsp; am {{ day }}.{{ month }}.{{ year }} &nbsp; Dauer: {{ elapsedTime }}
+        {{ elapsedTime === 1 ? 'Minute' : 'Minuten' }} </p>
+    </div>
+    <div class="game-clock">{{ currentTime }} Uhr</div>
+  </div>
+</div>

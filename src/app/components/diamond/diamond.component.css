@@ -1,0 +1,23 @@
+.frame-visitor {
+  border: 3px solid var(--visitoryellow);
+  color: var(--visitoryellow);
+  width: 65px;
+  height: 65px;
+  font-family: "Comic Neue", "Comic Sans MS", cursive;
+}
+
+.frame-home {
+  border: 3px solid var(--homeblue);
+  color: var(--homeblue);
+  width: 65px;
+  height: 65px;
+  font-family: "Comic Neue", "Comic Sans MS", cursive;
+}
+
+.central {
+  font-size: 7vh;
+}
+
+.corner {
+  font-size: 40px;
+}

@@ -1,0 +1,55 @@
+.header {
+  grid-area: header;
+}
+
+.scoreboard {
+  grid-area: scoreboard;
+}
+
+.on-base {
+  grid-area: on-base;
+}
+
+.ballpark {
+  grid-area: ballpark;
+  margin: 0 auto;
+
+}
+
+.input {
+  grid-area: input;
+}
+
+.line-up {
+  grid-area: lineup;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.grid-container {
+  box-sizing: border-box;
+  height: 100vh;
+  display: grid;
+  grid-template:
+    'header header scoreboard scoreboard'
+    'on-base ballpark lineup lineup'
+    'input input lineup lineup';
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  background-color: var(--card-lightbrown);
+  padding: 30px;
+}
+
+.grid-container > div {
+  color: var(--lightgray);
+  background-color: var(--card-darkbrown);
+  text-align: center;
+  font-size: 30px;
+  font-family: Kanit, sans-serif;
+}
