@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LineUpComponent } from './line-up.component';
 
+
 describe('LineUpComponent', () => {
   let component: LineUpComponent;
   let fixture: ComponentFixture<LineUpComponent>;
@@ -21,3 +22,4 @@ describe('LineUpComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

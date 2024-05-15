@@ -9,6 +9,30 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./line-up.component.css']
 })
 export class LineUpComponent {
+
+  activeTab: string = 'HEIM'; // Standardmäßig 'HEIM' als aktiver Tab
+
+  constructor() { }
+
+  switchTab(tabName: string): void {
+    this.activeTab = tabName;
+    this.updateContainerBorder();
+  }
+
+  updateContainerBorder(): void {
+    const border = document.querySelector('.border') as HTMLElement;
+    if (border) {
+      border.classList.remove('active-home', 'active-guest');
+      if (this.activeTab === 'HEIM') {
+        border.classList.add('active-home');
+      } else if (this.activeTab === 'GAST') {
+        border.classList.add('active-guest');
+      }
+    } else {
+      console.error('border element not found!');
+    }
+  }
+
   myControl = new FormControl();
   option: string[] = ['test', 'Ghost'];
   filteredOptions: Observable<string[]> | undefined;

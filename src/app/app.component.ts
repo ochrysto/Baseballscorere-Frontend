@@ -4,9 +4,10 @@ import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-togg
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LineUpComponent} from "./line-up/line-up.component";
+import {SpielAnlegenComponent} from "./spiel-anlegen/spiel-anlegen.component";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -29,7 +30,8 @@ export class AppComponent {
         MatFormField,
         MatInput,
         NgForOf,
-        AsyncPipe
+        AsyncPipe,
+        NgClass
     ],
   providers: [],
   bootstrap: [AppComponent]

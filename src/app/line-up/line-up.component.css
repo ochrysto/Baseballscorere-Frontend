@@ -1,71 +1,172 @@
 .line-up-container {
+  height: 100vh;
+  background-color: #B4FF00;
+  background-image: url("Plateconference.png");
+}
+.container {
   background-color: black;
-  color: #777777;
-  padding: 20px;
-  max-width: 600px;
-  margin: auto;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: 250px;
+  padding: 10px;
 }
 .line-up-container h1 {
   text-align: center;
+  font-family: Kanit, sans-serif;
+  font-weight: 800;
   color: #78cf4c;
+  padding: 30px;
+  font-size: 70px;
 }
-.teams-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+.team_heim .team p {
+  color: #85D4FE;
 }
+.team_heim .line-up-table input{
+  background-color: #85D4FE;
+}
+.team_heim button{
+  background-color: #85D4FE;
+}
+.team_heim button:hover {
+  color: #85D4FE;
+}
+.team_heim .line-up-table input {
+  background-color: #85D4FE;
+}
+.team_heim .line-up-table select {
+  background-color: #85D4FE;
+}
+.team_heim .line-up-table th, .line-up-table td {
+  color: #85D4FE;
+  border: none;
 
-.team h2 {
-  margin: 0;
-  padding: 0;
 }
-
+.team_heim .line-up-table td {
+  color: #85D4FE;
+  border: none;
+}
+.teams-header .the_heim button {
+  color: #85D4FE;
+}
+.teams-header .the_heim button:hover {
+  color: #3386b0;
+}
+.teams-header button {
+  text-align: center;
+  font-family: Kanit, sans-serif;
+  font-weight: 800;
+  color: #FFFF9F;
+  cursor: pointer;
+  margin-left: 193px;
+  margin-right: 198px;
+  border: none;
+  background-color: black;
+  font-size: 30px;
+}
+.teams-header button:hover {
+  color: #b4b455;
+  box-shadow: #dada37;
+}
 .team p {
-  margin: 0;
-  padding: 0;
-  color: limegreen;
+  margin: 5px;
+  padding: 5px;
+  color: #FFFF9F;
 }
 .line-up-table input {
-  background-color: #555;
+  background-color: #FFFF9F;
   border: 1px solid #777;
-  color: white;
+  color: black;
   padding: 5px;
   width: 90%;
 }
-
 .line-up-table td {
   padding: 8px;
 }
-
 .line-up-table select {
-  background-color: #555;
+  background-color: #FFFF9F;
   border: 1px solid #777;
-  color: #777;
+  color: black;
   padding: 5px;
   width: 98%;
 }
-
 .line-up-table table {
   width: 100%;
   margin-bottom: 20px;
-  background-color: #222;
+  background-color: black;
 }
-
 .line-up-table th, .line-up-table td {
   text-align: left;
-  padding: 8px;
-  border: 1px solid white;
+  padding: 5px;
+  color: #FFFF9F;
 }
-
-.action-button {
-  display: flex;
-  justify-content: center;
-}
-
 .action-button button {
-  background-color: limegreen;
+  background-color: #78cf4c;
   color: black;
+  display: block;
+  font-size: 20px;
+  right: 70px;
+  font-family: Kanit, sans-serif;
+  font-weight: 800;
   padding: 10px 20px;
   border: none;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 60px;
   cursor: pointer;
+}
+.action-button button:hover{
+  background-color: #39a10b;
+}
+.hidden {
+  display: none;
+}
+.tabs {
+  width: 100%;
+  display: flex;
+}
+.the_heim {
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+.the_gast {
+  border-bottom: none;
+  border-left: none;
+}
+.team_heim {
+  border-top: none;
+  border-bottom: none;
+}
+.team_home.active {
+  border: 3px solid #85D4FE;
+  border-top: none;
+
+}
+.border.active-home {
+  border: 3px solid #85D4FE;
+  border-top: none;
+  padding: 10px;
+  padding-top: 0px !important;
+  padding-left: 0px !important;
+}
+.border.active-guest {
+  border: 3px solid #FFFF9F;
+  border-top: none;
+  padding: 10px;
+  padding-top: 0px !important;
+}
+.border.active-home .the_heim {
+  border: 3px solid #85D4FE;
+  border-bottom: none;
+  border-left: none;
+}
+.active-home .the_heim {
+  border: 3px solid #85D4FE;
+  border-bottom: none;
+  border-left: none;
+}
+.border.active-guest .the_gast {
+  border: 3px solid #FFFF9F;
+  border-right: none;
+  border-bottom: none;
 }
