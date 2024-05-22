@@ -8,9 +8,13 @@
     <td>Position</td>
     <td></td>
     <td class="th-inning">
-      <span class="material-symbols-outlined">arrow_back_ios</span>
-      <span class="inning-number">1</span>
-      <span class="material-symbols-outlined">arrow_forward_ios</span>
+      @if (chosenInning > 1) {
+        <span class="material-symbols-outlined" (click)="getPrevInning()">arrow_back_ios</span>
+      }
+      <span class="inning-number">{{chosenInning}}</span>
+      @if (chosenInning < gamePageService.numberOfInnings) {
+        <span class="material-symbols-outlined" (click)="getNextInning()">arrow_forward_ios</span>
+      }
     </td>
     <td></td>
   </tr>
@@ -28,7 +32,7 @@
         <td>{{ numberToStringMap[player.position] }}</td>
         <td class="batting-order">{{ player.battingOrder }}</td>
         <td class="diamond">
-          <app-diamond></app-diamond>
+          <app-diamond [content]="gamePageService.getGuestDiamondsByPlayer(player.lastname, chosenInning)"></app-diamond>
         </td>
         <td class="icon">
           <span class="material-symbols-outlined">edit_square</span>
@@ -49,7 +53,7 @@
         <td>{{ numberToStringMap[player.position] }}</td>
         <td class="batting-order">{{ player.battingOrder }}</td>
         <td class="diamond">
-          <app-diamond></app-diamond>
+          <app-diamond [content]="gamePageService.getHomeDiamondsByPlayer(player.lastname, chosenInning)" ></app-diamond>
         </td>
         <td class="icon">
           <span class="material-symbols-outlined">edit_square</span>

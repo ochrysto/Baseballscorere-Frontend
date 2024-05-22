@@ -2,17 +2,23 @@ import {Component, OnInit} from '@angular/core';
 import {LineUpPlayers} from "../../models/line-up-players";
 import {GamePageService} from "../../services/game-page.service";
 import {DiamondComponent} from "../diamond/diamond.component";
+import {Diamonds} from "../../models/diamonds";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-game-line-up',
   standalone: true,
   imports: [
-    DiamondComponent
+    DiamondComponent,
+    DiamondComponent,
+    NgIf
   ],
   templateUrl: './game-line-up.component.html',
   styleUrl: './game-line-up.component.css'
 })
 export class GameLineUpComponent implements OnInit{
+
+  protected chosenInning: number = 1;
 
   visitorTeam: LineUpPlayers[] = [];
   homeTeam: LineUpPlayers[] = [];
@@ -37,9 +43,22 @@ export class GameLineUpComponent implements OnInit{
       this.currentInningStatus = inningStatus;
     });
   }
+  //Inning change
+  getPrevInning() {
+    this.chosenInning --;
+  }
 
+  getNextInning() {
+    this.chosenInning ++;
+  }
 
-
+  getValidDiamond(battingOrder: number): Diamonds | null {
+    const index = battingOrder - 1;
+    if (index >= 0 && index < this.gamePageService.diamonds.length) {
+      return this.gamePageService.diamonds[index];
+    }
+    return null;
+  }
 }
 
 
