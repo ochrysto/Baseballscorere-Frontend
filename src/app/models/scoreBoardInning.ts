@@ -1,5 +1,5 @@
 export interface ScoreBoardInning {
   inningNumber: number,
-  guestScore: number,
-  homeScore: number,
+  guestScore: string,
+  homeScore: string,
 }
