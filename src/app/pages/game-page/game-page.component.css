@@ -39,7 +39,7 @@ body {
     'header header scoreboard scoreboard'
     'on-base ballpark lineup lineup'
     'input input lineup lineup';
-  grid-gap: 20px;
+  grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 3fr 1fr;
   background-color: var(--card-lightbrown);
@@ -50,6 +50,6 @@ body {
   color: var(--lightgray);
   background-color: var(--card-darkbrown);
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
   font-family: Kanit, sans-serif;
 }

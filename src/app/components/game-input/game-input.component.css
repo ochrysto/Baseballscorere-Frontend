@@ -27,11 +27,165 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}a.input-container {
+   display: grid;
+   height: 100%;
+   width: 100%;
+   margin: 0;
+ }
+
+.button-box-container {
+  grid-column: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-box {
+  min-width: 50%;
+  padding: 10px;
+  background-color: var(--card-lightbrown);
+  border: var(--darkgray) solid 1px;
+  font-family: Kanit, sans-serif;
+}
+
+.confirmation-box {
+  grid-column: 2;
+  padding: 10px;
+  font-family: Kanit, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .selectButton {
-  padding: 0 30px;
-  height: 50px;
+  padding: 0 22px;
+  height: 37px;
+  border-radius: 10px;
+  background-color: var(--card-darkbrown);
+  border: var(--actiongreen) solid 2px;
+  color: var(--actiongreen);
+  font-size: 15px;
+  margin: 2px;
+}.input-container {
+   display: grid;
+   height: 100%;
+   width: 100%;
+   margin: 0;
+ }
+
+.button-box-container {
+  grid-column: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-box {
+  min-width: 50%;
+  padding: 10px;
+  background-color: var(--card-lightbrown);
+  border: var(--darkgray) solid 1px;
+  font-family: Kanit, sans-serif;
+}
+
+.confirmation-box {
+  grid-column: 2;
+  padding: 10px;
+  font-family: Kanit, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.selectButton {
+  padding: 0 22px;
+  height: 37px;
+  border-radius: 10px;
+  background-color: var(--card-darkbrown);
+  border: var(--actiongreen) solid 2px;
+  color: var(--actiongreen);
+  font-size: 10px;
+  margin: 2px;
+}
+
+.selectButton:hover {
+  background-color: var(--actiongreen);
+  color: var(--card-darkbrown);
+}
+
+.ok {
+  max-width: 150px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--actiongreen);
+  border: var(--actiongreen) solid 2px;
+  color: var(--card-darkbrown);
+  font-size: 15px;
+  margin: 2px;
+}
+
+.ok:hover {
+  box-shadow: 0 0 10px var(--actiongreen);
+}
+
+.undo {
+  max-width: 150px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--card-darkbrown);
+  border: var(--actiongreen) solid 2px;
+  color: var(--actiongreen);
+  font-size: 15px;
+  margin: 2px;
+}
+
+.undo:hover {
+  box-shadow: 0 0 10px var(--actiongreen);
+}
+
+.selectButton:hover {
+  background-color: var(--actiongreen);
+  color: var(--card-darkbrown);
+}
+
+.ok {
+  max-width: 150px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--actiongreen);
+  border: var(--actiongreen) solid 2px;
+  color: var(--card-darkbrown);
+  font-size: 15px;
+  margin: 2px;
+}
+
+.ok:hover {
+  box-shadow: 0 0 10px var(--actiongreen);
+}
+
+.undo {
+  max-width: 150px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--card-darkbrown);
+  border: var(--actiongreen) solid 2px;
+  color: var(--actiongreen);
+  font-size: 15px;
+  margin: 2px;
+}
+
+.undo:hover {
+  box-shadow: 0 0 10px var(--actiongreen);
+}
+
+.selectButton {
+  padding: 0 20px;
+  height: 40px;
   border-radius: 10px;
   background-color: var(--card-darkbrown);
   border: var(--actiongreen) solid 2px;
