@@ -9,11 +9,11 @@
     <td></td>
     <td class="th-inning">
       @if (chosenInning > 1) {
-        <span class="material-symbols-outlined" (click)="getPrevInning()">arrow_back_ios</span>
+        <span class="material-symbols-outlined arrow" (click)="getPrevInning()">arrow_back_ios</span>
       }
       <span class="inning-number">{{chosenInning}}</span>
       @if (chosenInning < gamePageService.numberOfInnings) {
-        <span class="material-symbols-outlined" (click)="getNextInning()">arrow_forward_ios</span>
+        <span class="material-symbols-outlined arrow" (click)="getNextInning()">arrow_forward_ios</span>
       }
     </td>
     <td></td>

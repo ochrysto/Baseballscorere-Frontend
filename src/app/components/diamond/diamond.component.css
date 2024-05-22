@@ -3,8 +3,8 @@
   color: var(--visitoryellow);
   stroke: var(--visitoryellow);
   fill: var(--visitoryellow);
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   font-family: "Comic Neue", "Comic Sans MS", cursive;
 }
 
@@ -13,8 +13,8 @@
   color: var(--homeblue);
   stroke: var(--homeblue);
   fill: var(--homeblue);
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   font-family: "Comic Neue", "Comic Sans MS", cursive;
 }
 

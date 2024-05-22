@@ -1,5 +1,3 @@
-import {ScoreBoardInning} from "./scoreBoardInning";
-
 export interface GameScore {
 
   guestTeamRuns: number,
@@ -13,7 +11,4 @@ export interface GameScore {
   currentInning: number;
   topOrBottom: string;
   outs: number;
-  innings: ScoreBoardInning[];
-
-
 }

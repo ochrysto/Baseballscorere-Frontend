@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GamePageService} from "../../services/game-page.service";
 import {NgClass} from "@angular/common";
-import {Diamonds} from "../../models/diamonds";
 
 @Component({
   selector: 'app-diamond',

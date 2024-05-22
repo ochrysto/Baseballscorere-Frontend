@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {LineUpPlayers} from "../../models/line-up-players";
 import {GamePageService} from "../../services/game-page.service";
 import {DiamondComponent} from "../diamond/diamond.component";
-import {Diamonds} from "../../models/diamonds";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -16,13 +15,13 @@ import {NgIf} from "@angular/common";
   templateUrl: './game-line-up.component.html',
   styleUrl: './game-line-up.component.css'
 })
-export class GameLineUpComponent implements OnInit{
+export class GameLineUpComponent implements OnInit {
 
   protected chosenInning: number = 1;
 
   visitorTeam: LineUpPlayers[] = [];
   homeTeam: LineUpPlayers[] = [];
-  numberToStringMap: { [key: number]: string} = {
+  numberToStringMap: { [key: number]: string } = {
     1: 'P',
     2: 'C',
     3: '1B',
@@ -34,8 +33,10 @@ export class GameLineUpComponent implements OnInit{
     9: 'RF'
   }
   protected currentInningStatus!: string;
+
   constructor(protected gamePageService: GamePageService) {
   }
+
   ngOnInit() {
     this.visitorTeam = this.gamePageService.getAllGuestPlayer();
     this.homeTeam = this.gamePageService.getAllHomePlayers();
@@ -43,22 +44,16 @@ export class GameLineUpComponent implements OnInit{
       this.currentInningStatus = inningStatus;
     });
   }
+
   //Inning change
   getPrevInning() {
-    this.chosenInning --;
+    this.chosenInning--;
   }
 
   getNextInning() {
-    this.chosenInning ++;
+    this.chosenInning++;
   }
 
-  getValidDiamond(battingOrder: number): Diamonds | null {
-    const index = battingOrder - 1;
-    if (index >= 0 && index < this.gamePageService.diamonds.length) {
-      return this.gamePageService.diamonds[index];
-    }
-    return null;
-  }
 }
 
 

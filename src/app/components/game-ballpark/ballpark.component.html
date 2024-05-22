@@ -1,40 +1,58 @@
 <div class="ballpark-component-container">
   <div class="ballpark-container">
     <!-- offensive player -->
-<!--    @if (gamePageService.gameIsOn) {-->
-      <!-- defensive player -->
-      @if (currentInningStatus === "isTopInning") {
-        @for (player of defensiveHomeTeam; track player.passNumber) {
-          <!-- Pitcher = first Child-->
-          <button class="defensive-player-home">
-            {{ player.jerseyNumber }}
-            <span class="defensive-name-home">{{ player.lastname }}</span>
-          </button>
-        }
-      }
-      @if (currentInningStatus === "isBottomInning") {
-        @for (player of defensiveGuestTeam; track player.passNumber) {
-          <!-- Pitcher = first Child-->
-          <button class="defensive-player-visitor">
-            {{ player.jerseyNumber }}
-            <span class="defensive-name-visitor">{{ player.lastname }}</span>
-          </button>
-        }
-      }
-
-      @if (currentInningStatus === 'isTopInning') {
-      <button class="offensive-player-visitor">
-        {{ visitorTeam.at(0)?.jerseyNumber }}
-      </button>
-      }
-      @if (currentInningStatus === 'isBottomInning') {
-        <button class="offensive-player-home">
-          {{ homeTeam.at(0)?.jerseyNumber }}
+    <!--    @if (gamePageService.gameIsOn) {-->
+    <!-- defensive player -->
+    @if (currentInningStatus === "isTopInning") {
+      @for (player of defensiveHomeTeam; track player.passNumber) {
+        <!-- Pitcher = first Child-->
+        <button class="defensive-player-home">
+          {{ player.jerseyNumber }}
+          <span class="defensive-name-home">{{ player.lastname }}</span>
         </button>
       }
+    }
+    @if (currentInningStatus === "isBottomInning") {
+      @for (player of defensiveGuestTeam; track player.passNumber) {
+        <!-- Pitcher = first Child-->
+        <button class="defensive-player-visitor">
+          {{ player.jerseyNumber }}
+          <span class="defensive-name-visitor">{{ player.lastname }}</span>
+        </button>
+      }
+    }
+
+    @if (currentInningStatus === 'isTopInning') {
+      <button class="offensive-player-visitor-batter">
+        {{ visitorTeam.at(0)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-visitor-firstbase">
+        {{ homeTeam.at(1)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-visitor-secondbase">
+        {{ homeTeam.at(2)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-visitor-thirdbase">
+        {{ homeTeam.at(3)?.jerseyNumber }}
+      </button>
+    }
+    @if (currentInningStatus === 'isBottomInning') {
+      <button class="offensive-player-home-batter">
+        {{ homeTeam.at(0)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-home-firstbase">
+        {{ homeTeam.at(1)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-home-secondbase">
+        {{ homeTeam.at(2)?.jerseyNumber }}
+      </button>
+      <button class="offensive-player-home-thirdbase">
+        {{ homeTeam.at(3)?.jerseyNumber }}
+      </button>
+    }
 
 
-<!--    }-->
+    <!--    }-->
 
     <!-- Ballpark -->
     <img
@@ -44,4 +62,3 @@
     />
   </div>
 </div>
-
