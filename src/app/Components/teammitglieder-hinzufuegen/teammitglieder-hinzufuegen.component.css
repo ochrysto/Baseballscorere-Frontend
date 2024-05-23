@@ -54,12 +54,12 @@
 }
 
 .player-list li {
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #222;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #222; /* Slight contrast for each list item */
+  border-bottom: 1px solid #333;
 }
 
 .close-button {
@@ -71,8 +71,8 @@
   cursor: pointer;
   font-size: 1rem;
   position: absolute; /* Positioning the button */
-  bottom: 150px; /* Spacing from bottom */
-  right: 150px; /* Spacing from right */
+  top: 50px; /* Spacing from bottom */
+  right: 110px; /* Spacing from right */
 }
 
 .close-button:hover {
@@ -86,7 +86,7 @@
   clear: both;
 }
 
-.list-header, .player-item {
+.list-header, .player-item div{
   display: flex;
 }
 
@@ -103,46 +103,27 @@
   align-items: center;
 }
 
-.header-item {
-  flex-basis: 35%; /* Adjust flex-basis as needed to fit content */
-}
-
-/* The first child (Nr.) and the last child (actions) need specific flex values to match the header layout */
-.header-item:first-child, .player-number {
-  flex: 0.5;
-}
-
-.header-item:last-child, .player-passnummer {
-  flex: 1.5;
-}
-
-.player-actions {
-  flex: 0.5;
-  display: flex;
-  justify-content: space-around;
-}
+/* Adjusting individual flex sizes for better alignment */
+.header-item:first-child, .player-number { flex: 0.5; }
+.header-item:nth-child(2), .player-name { flex: 2; } /* Name might need more space */
+.header-item:nth-child(3), .player-passnummer { flex: 1.5; }
+.header-item:last-child, .player-actions { flex: 1; } /* Actions column less space */
 
 /* Buttons inside the actions column */
 .edit-button, .delete-button {
-  background: transparent;
+  background: none;
   border: none;
-  margin: 0 5px; /* Space between the buttons */
   cursor: pointer;
-  color: #73f80d; /* Button color */
+  color: #73f80d;
 }
 
-.player-number { flex: 0.5; }
-.player-name { flex: 2; }
-.player-passnummer { flex: 2; }
-.player-actions { flex: 1; } /* Give action column less space */
-
-.player-item {
-  background-color: #222; /* Slight contrast for list items */
-  padding: 10px;
+.player-item div{
   border-bottom: 1px solid #333; /* Separator between items */
+  justify-content: center;
+  align-items: center;
 }
 
-.player-item:last-child {
+.player-item div:last-child {
   border-bottom: none; /* No border for the last item */
 }
 
@@ -150,6 +131,28 @@
   margin: 0 5px;
 }
 
+.player-edit-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
+.player-edit-form input[type="text"] {
+  flex: 1;
+  margin: 0 10px;
+  padding: 5px;
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
 
-
+/* Style the form's buttons */
+.player-edit-form button {
+  padding: 5px 15px;
+  background-color: #73f80d;
+  color: #111;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

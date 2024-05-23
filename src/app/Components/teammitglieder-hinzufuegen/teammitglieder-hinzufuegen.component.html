@@ -8,32 +8,39 @@
   </div>
   <div class="team-content">
     <div class="new-player-form">
-      <!-- PlayerFormComponent's selector will be used here -->
-      <h3 class="form-title">Neue/n Spieler/in anlegen</h3>
-      <app-player-form (playerAdded)="addPlayer($event)"></app-player-form>
+      <h3 class="form-title">teaminformationen bearbeiten</h3>
+      <app-teaminformationen-bearbeiten></app-teaminformationen-bearbeiten>
     </div>
-    <!-- Player List Section -->
     <div class="player-list-section">
       <h3 class="player-list-title">Spieler/innenliste</h3>
       <div class="list-header">
-        <span class="header-item">Nr.</span>
+        <span class="header-item">Trikotnummer</span>
         <span class="header-item">Name</span>
         <span class="header-item">Passnummer</span>
-        <span class="header-item">Aktionen</span> <!-- Placeholder for the actions column -->
+        <span class="header-item">Aktionen</span>
       </div>
       <ul class="player-list">
         <li *ngFor="let player of players; let i = index" class="player-item">
-          <span class="player-number">{{ player.nr }}</span>
-          <span class="player-name">{{ player.name }}</span>
-          <span class="player-passnummer">{{ player.passnummer }}</span>
-          <div class="player-actions">
-            <button class="edit-button" (click)="modifyPlayer(i)">
-              <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button class="delete-button" (click)="deletePlayer(i)">
-              <i class="fas fa-trash-alt"></i>
-            </button>
+          <div *ngIf="!player.editing">
+            <span class="player-number">{{ player.trikotnummer }}</span>
+            <span class="player-name">{{ player.name }}</span>
+            <span class="player-passnummer">{{ player.passnummer }}</span>
+            <div class="player-actions">
+              <button class="edit-button" (click)="toggleEdit(i)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button class="delete-button" (click)="deletePlayer(i)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
           </div>
+          <form *ngIf="player.editing" class="player-edit-form" (ngSubmit)="submitEdit(i)">
+            <input type="text" [(ngModel)]="player.trikotnummer" name="Trikotnummer" placeholder="Trikotnummer">
+            <input type="text" [(ngModel)]="player.name" name="name" placeholder="Vorname und Nachname">
+            <input type="text" [(ngModel)]="player.passnummer" name="passnummer" placeholder="Passnummer">
+            <button type="submit">Save</button>
+            <button type="button" (click)="toggleEdit(i)">Cancel</button>
+          </form>
         </li>
       </ul>
       <button class="close-button" (click)="closeList()">schließen</button>
