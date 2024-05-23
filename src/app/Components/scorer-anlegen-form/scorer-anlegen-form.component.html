@@ -1,0 +1,17 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" class="scorer-form">
+    <div>
+      <label for="vorname">Vorname</label>
+      <input type="text" id="vorname" name="vorname" [(ngModel)]="vorname" required>
+    </div>
+    <div>
+      <label for="nachname">Nachname</label>
+      <input type="text" id="nachname" name="nachname" [(ngModel)]="nachname" required>
+    </div>
+    <div>
+      <label for="passnummer">Pass Nummer</label>
+      <input type="text" id="passnummer" name="passnummer" [(ngModel)]="passnummer" required>
+    </div>
+    <button type="submit">Scorer erstellen</button>
+  </form>
+</div>

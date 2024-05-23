@@ -1,0 +1,65 @@
+.container {
+  justify-content: center;
+  align-items: center;
+}
+
+.team-anlegen-form {
+  background-color: #2d2d2d;
+  padding: 30px;
+  border-radius: 5px;
+  color: #73f80d;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.team-anlegen-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.team-anlegen-form input[type="text"],
+.team-anlegen-form input[type="file"],
+.team-anlegen-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.team-anlegen-form button {
+  padding: 10px 20px;
+  background-color: #73f80d;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.team-anlegen-form button:hover {
+  background-color: #60d309;
+}
+
+.team-anlegen-form input::placeholder {
+  color: #aaa;
+}
+
+.team-anlegen-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #1c1c1c;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}
