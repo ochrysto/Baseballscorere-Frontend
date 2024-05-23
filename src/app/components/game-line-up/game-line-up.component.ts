@@ -17,10 +17,17 @@ import {NgIf} from "@angular/common";
 })
 export class GameLineUpComponent implements OnInit {
 
+  /**
+   * default inning to be shown in line-up
+   * @protected
+   */
   protected chosenInning: number = 1;
 
   visitorTeam: LineUpPlayers[] = [];
   homeTeam: LineUpPlayers[] = [];
+  /**
+   * turns position numbers into strings for better representation
+   */
   numberToStringMap: { [key: number]: string } = {
     1: 'P',
     2: 'C',
@@ -45,15 +52,18 @@ export class GameLineUpComponent implements OnInit {
     });
   }
 
-  //Inning change
+  /**
+   * changes presentation of diamonds to the previous inning
+   */
   getPrevInning() {
     this.chosenInning--;
   }
-
+  /**
+   * changes presentation of diamonds to the next inning
+   */
   getNextInning() {
     this.chosenInning++;
   }
-
 }
 
 

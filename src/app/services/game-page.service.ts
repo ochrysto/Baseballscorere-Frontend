@@ -4,12 +4,14 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {OffensiveActions} from "../models/offensiveActions";
 import {ScoreBoardInning} from "../models/scoreBoardInning";
 import {GameScore} from "../models/gameScore";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamePageService {
 
+  private baseUrl = 'http://localhost:8081';
   private defaultInningStatus: string = 'isTopInning';
   public gameIsOn = false;
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
@@ -17,19 +19,31 @@ export class GamePageService {
   numberOfInnings: number = 9;
 
 
+  constructor(private httpClient: HttpClient) {}
+
+  /**
+   * changes inningstatus from topinning to bottominning and vice versa in scoreboard component
+   * @param inningStatus
+   */
   setInningStatus(inningStatus: string) {
     this.inningStatusSubject.next(inningStatus);
   }
 
-  constructor() {
-  }
 
-
+  /**
+   * gets the fitting diamond for a certain hometeamplayer in a certain Inning in line-up component
+   * @param playerName
+   * @param inning
+   */
   getHomeDiamondsByPlayer(playerName: string, inning: number) {
     return this.offensiveActionsHomeTeam.find(action =>
       action.name === playerName)?.offensiveActions.at(inning - 1);
   }
-
+  /**
+   * gets the fitting diamond for a certain guestteamplayer in a certain Inning in line-up component
+   * @param playerName
+   * @param inning
+   */
   getGuestDiamondsByPlayer(playerName: string, inning: number) {
     return this.offensiveActionsGuestTeam.find(action =>
       action.name === playerName)?.offensiveActions.at(inning - 1);

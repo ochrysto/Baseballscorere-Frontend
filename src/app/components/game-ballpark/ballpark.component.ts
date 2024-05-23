@@ -30,5 +30,4 @@ export class BallparkComponent implements OnInit {
     this.defensiveGuestTeam = [...this.visitorTeam].sort((a, b) => a.position - b.position);
     this.gamePageService.inningStatus$.subscribe(inningStatus => {this.currentInningStatus = inningStatus;})
   }
-
 }

@@ -17,6 +17,10 @@ table {
   justify-content: space-evenly;
 }
 
+.arrow {
+  cursor: pointer;
+}
+
 .inning-number {
   font-size: 1.8em;
 }
