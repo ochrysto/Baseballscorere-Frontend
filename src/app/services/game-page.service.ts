@@ -21,6 +21,10 @@ export class GamePageService {
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
   inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
   numberOfInnings: number = 9;
+  public selectedBase = new BehaviorSubject<number>(0);
+  public selectedBase$: Observable<number> = this.selectedBase.asObservable();
+  public isChanged = new BehaviorSubject<null>(null);
+  public isChanged$: Observable<null> = this.isChanged.asObservable();
 
 
   constructor(private httpClient: HttpClient) {}
@@ -2021,11 +2025,16 @@ export class GamePageService {
 
   postGameAction(gid: number, data: ActionPost) {
     const url = `${this.baseUrl}/game/${gid}/action`;
+    this.triggerChange();
     return this.httpClient.post<MessageGet>(url, data);
   }
 
   getGameState(gid: number) {
     const url = `${this.baseUrl}/game/${gid}/state`;
     return this.httpClient.get<GameStateGet>(url);
+  }
+
+  public triggerChange() {
+    this.isChanged.next(null);
   }
 }

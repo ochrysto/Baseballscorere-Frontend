@@ -12,7 +12,7 @@ export const routes: Routes = [
   { path: 'public', component: PublicRouteExampleComponent },
   { path: '', component: BaseballScorerHomeComponent },
   { path: 'line-up', component: LineUpComponent },
-  { path: 'game', component: GamePageComponent },
+  { path: 'game', component: GamePageComponent, canActivate: [AuthGuard] },
   {
     path: 'test1', component: SpielAnlegenComponent
   },

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ActionsGet } from '../../models/actions-get';
 import { Button } from '../../models/button';
 import { GamePageService } from '../../services/game-page.service';
+import {ActionPost} from "../../models/action-post";
 
 @Component({
   selector: 'app-game-input',
@@ -15,14 +15,34 @@ export class GameInputComponent {
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
   constructor(private service: GamePageService) {
-    this.loadButtons()
+    this.loadButtons(this.service.selectedBase.getValue())
+    service.selectedBase.subscribe({
+      next: base => {
+        this.loadButtons(base)
+      },
+      error: err => {}
+    });
   }
 
-  loadButtons() {
+  loadButtons(base: number) {
     // TODO: remove handcode ID
     this.service.getGameActions(1).subscribe({
       next: (buttons) => {
-        this.currentButtons = buttons;
+        let selectedButtons = null;
+        switch (base) {
+          case 0:
+            selectedButtons = buttons["batter"];
+            break;
+          case 1:
+            selectedButtons = buttons["firstBaseRunner"];
+            break;
+          case 2:
+            selectedButtons = buttons["secondBaseRunner"];
+            break;
+          case 3:
+            selectedButtons = buttons["thirdBaseRunner"];
+        }
+        this.currentButtons = selectedButtons;
         console.log("Successfully got buttons from python backend. Thanks Mischa!")
       },
       error: (err) => {
@@ -34,9 +54,9 @@ export class GameInputComponent {
   isButton(obj: any): obj is Button {
     return (
       typeof obj.button === 'string' &&
-      typeof obj.action_type === 'string' &&
-      typeof obj.responsible_required === 'boolean' &&
-      typeof obj.multiple_responsible_required === 'boolean'
+      typeof obj.actionType === 'string' &&
+      typeof obj.responsibleRequired === 'boolean' &&
+      typeof obj.multipleResponsibleRequired === 'boolean'
     );
   }
 
@@ -49,6 +69,16 @@ export class GameInputComponent {
     if (this.isButton(button)) {
       console.log("Tiefpunkt erreicht")
       // TODO: add logic for the buttons here
+      let postData: ActionPost = {
+        base: this.service.selectedBase.getValue(),
+        distance: 0,
+        type: button.actionType,
+        responsible: []
+      }
+      this.service.postGameAction(1, postData).subscribe({
+        next: (msg) => {console.log("Server response: ", msg)},
+        error: (err) => {console.log("Error: ", err)}
+      });
     } else {
       this.buttonStack.push(this.currentButtons);  // Push the current buttons to the button stack.
       this.currentButtons = this.currentButtons[button.button];  // Set the current buttons to the subbuttons of the clicked button.

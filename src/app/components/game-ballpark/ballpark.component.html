@@ -23,32 +23,52 @@
     }
 
     @if (currentInningStatus === 'isTopInning') {
-      <button class="offensive-player-visitor-batter">
-        {{ visitorTeam.at(0)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-visitor-firstbase">
-        {{ homeTeam.at(1)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-visitor-secondbase">
-        {{ homeTeam.at(2)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-visitor-thirdbase">
-        {{ homeTeam.at(3)?.jerseyNumber }}
-      </button>
+      @if (gameState?.batter) {
+        <button class="offensive-player-visitor-batter"
+        (click)="selectBase(0)">
+          {{ gameState?.batter?.passnumber }}
+        </button>
+      }
+      @if (gameState?.firstBase) {
+        <button class="offensive-player-visitor-firstbase"
+                (click)="selectBase(1)">
+          {{ gameState?.firstBase?.passnumber }}
+        </button>
+      }
+      @if (gameState?.secondBase) {
+        <button class="offensive-player-visitor-secondbase"
+                (click)="selectBase(2)">
+          {{ gameState?.secondBase?.passnumber }}
+        </button>
+      }
+      @if (gameState?.thirdBase) {
+        <button class="offensive-player-visitor-thirdbase"
+                (click)="selectBase(3)">
+          {{ gameState?.thirdBase?.passnumber }}
+        </button>
+      }
     }
     @if (currentInningStatus === 'isBottomInning') {
-      <button class="offensive-player-home-batter">
-        {{ homeTeam.at(0)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-home-firstbase">
-        {{ homeTeam.at(1)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-home-secondbase">
-        {{ homeTeam.at(2)?.jerseyNumber }}
-      </button>
-      <button class="offensive-player-home-thirdbase">
-        {{ homeTeam.at(3)?.jerseyNumber }}
-      </button>
+      @if (gameState?.batter) {
+        <button class="offensive-player-home-batter">
+          {{ gameState?.batter?.passnumber }}
+        </button>
+      }
+      @if (gameState?.firstBase) {
+        <button class="offensive-player-home-firstbase">
+          {{ gameState?.firstBase?.passnumber }}
+        </button>
+      }
+      @if (gameState?.secondBase) {
+        <button class="offensive-player-home-secondbase">
+          {{ gameState?.secondBase?.passnumber }}
+        </button>
+      }
+      @if (gameState?.thirdBase) {
+        <button class="offensive-player-home-thirdbase">
+          {{ gameState?.thirdBase?.passnumber }}
+        </button>
+      }
     }
 
 
