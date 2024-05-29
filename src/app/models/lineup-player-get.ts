@@ -1,0 +1,6 @@
+export interface LineupPlayerGet {
+  id: number;
+  firstName: string;
+  lastName: string;
+  passnumber: number;
+}

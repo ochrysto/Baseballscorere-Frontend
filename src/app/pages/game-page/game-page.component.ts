@@ -21,5 +21,4 @@ import {GameScoreboardComponent} from "../../components/game-scoreboard/game-sco
   styleUrl: './game-page.component.css'
 })
 export class GamePageComponent {
-
 }

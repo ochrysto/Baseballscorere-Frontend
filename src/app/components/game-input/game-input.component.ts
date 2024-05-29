@@ -1,150 +1,90 @@
-import {Component, EventEmitter} from '@angular/core';
-import {PlayerService} from '../../services/player.service';
+import { Component } from '@angular/core';
+import { ActionsGet } from '../../models/actions-get';
+import { Button } from '../../models/button';
+import { GamePageService } from '../../services/game-page.service';
 
 @Component({
   selector: 'app-game-input',
   standalone: true,
-  imports: [],
   templateUrl: './game-input.component.html',
   styleUrl: './game-input.component.css',
 })
 export class GameInputComponent {
-  constructor(private playerService: PlayerService) {
+  buttonStack: any[][] = []; // Stack to keep track of button states for back navigation.
+  currentButtons: any; // Array to hold the currently displayed buttons.
+  showBackButton: boolean = false; // Flag to control the visibility of the back button.
+
+  constructor(private service: GamePageService) {
+    this.loadButtons()
   }
 
-  selection = '';
-  firstButtonValue: string = '';
-  breadcrumb = '';
-  groundOutScore = '';
-  positionCounter: string[] = [];
+  loadButtons() {
+    // TODO: remove handcode ID
+    this.service.getGameActions(1).subscribe({
+      next: (buttons) => {
+        this.currentButtons = buttons;
+        console.log("Successfully got buttons from python backend. Thanks Mischa!")
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 
-  selectButtonsVisible = true;
-  hitButtonsVisible = false;
-  outButtonsVisible = false;
-  errorButtonsVisible = false;
-  selectPositionsVisible: boolean = false;
-  isGroundOut: boolean = false;
-  assistError: boolean = false;
+  isButton(obj: any): obj is Button {
+    return (
+      typeof obj.button === 'string' &&
+      typeof obj.action_type === 'string' &&
+      typeof obj.responsible_required === 'boolean' &&
+      typeof obj.multiple_responsible_required === 'boolean'
+    );
+  }
 
-  showButtons(category: string): void {
-    this.addBreadcrumb(category);
-    this.selectButtonsVisible = false;
-    switch (category) {
-      case 'Hit': {
-        this.hitButtonsVisible = true;
-        break;
-      }
-      case 'Out': {
-        this.outButtonsVisible = true;
-        break;
-      }
-      case 'Error': {
-        this.errorButtonsVisible = true;
-        break;
-      }
-      case 'A-E': {
-        this.onAssistError();
-        break;
-      }
-      case 'GO': {
-        this.onGroundOut();
-        break;
-      }
-      case 'F':
-      case 'U':
-      case 'OBR':
-      case 'E': {
-        this.onFirstButtonClick(category);
-        this.selectPositionsVisible = true;
-        break;
-      }
-      default: {
-        this.selectButtonsVisible = true;
-      }
+
+  /**
+   * Handles button click events.
+   * @param button The clicked button object.
+   */
+  handleButtonClick(button: any) {
+    if (this.isButton(button)) {
+      console.log("Tiefpunkt erreicht")
+      // TODO: add logic for the buttons here
+    } else {
+      this.buttonStack.push(this.currentButtons);  // Push the current buttons to the button stack.
+      this.currentButtons = this.currentButtons[button.button];  // Set the current buttons to the subbuttons of the clicked button.
+      this.showBackButton = true;  // Show the back button.
     }
   }
 
-  private hideButtons(): void {
-    this.hitButtonsVisible = false;
-    this.outButtonsVisible = false;
-    this.errorButtonsVisible = false;
-    this.selectPositionsVisible = false;
+  /**
+   * Handles back button click event.
+   */
+  handleBack() {
+    if (this.buttonStack.length > 0) {
+      this.currentButtons = this.buttonStack.pop()!; // Pop the previous buttons from the button stack.
+      this.showBackButton = this.buttonStack.length > 0; // Update the visibility of the back button.
+    }
   }
 
-  onSelect(value: string) {
-    this.selectButtonsVisible = false;
-    this.selection = value;
-    this.addBreadcrumb(value);
-    this.hideButtons();
-    this.isGroundOut = false;
+  parseButtons(buttons: any) {
+    if (buttons == null) {
+      return [];
+    }
+
+    if (buttons instanceof Array) {
+      return buttons
+    } else {
+      return Object.entries(buttons)
+        .filter(v => v[1] !== null)
+        .map(([key, _]) => { return {'button': key} });
+    }
   }
 
-  onConfirmation(selection: string) {
-    this.playerService.score = selection;
-    this.hideButtons();
-    this.breadcrumb = '';
-    this.groundOutScore = '';
-    this.selectButtonsVisible = true;
-    this.assistError = false;
-    this.selection = '';
-    this.positionCounter = [];
-    this.firstButtonValue = '';
-    this.isGroundOut = false;
-  }
-
-  private addBreadcrumb(value: string) {
-    this.breadcrumb += ' > ' + value;
+  onConfirmation() {
+    return null
   }
 
   undoSelection() {
-    this.selection = '';
-    this.hideButtons();
-    this.breadcrumb = '';
-    this.selectButtonsVisible = true;
-    this.isGroundOut = false;
-    this.assistError = false;
-    this.groundOutScore = '';
-  }
-
-  private onFirstButtonClick(score: string) {
-    this.hideButtons();
-    this.firstButtonValue = score;
-  }
-
-  onSecondButtonClick(score: string) {
-    if (this.firstButtonValue) {
-      const combinedScore = this.firstButtonValue + score;
-      this.onSelect(combinedScore);
-    }
-    if (this.isGroundOut) {
-      if (this.groundOutScore != '') {
-        this.groundOutScore = this.groundOutScore + '-' + score;
-        this.selection = this.groundOutScore;
-        this.addBreadcrumb(this.groundOutScore);
-      } else {
-        this.addBreadcrumb(score);
-        this.groundOutScore = score;
-      }
-    }
-    if (this.assistError) {
-      if (this.selection === '') {
-        this.selection = score + '-E';
-      } else {
-        this.selection += score;
-        this.addBreadcrumb(this.selection);
-      }
-    }
-  }
-
-  private onGroundOut() {
-    this.hideButtons();
-    this.selectPositionsVisible = true;
-    this.isGroundOut = true;
-  }
-
-  private onAssistError() {
-    this.hideButtons();
-    this.selectPositionsVisible = true;
-    this.assistError = true;
+    return null
   }
 }

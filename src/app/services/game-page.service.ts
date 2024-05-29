@@ -5,13 +5,17 @@ import {OffensiveActions} from "../models/offensiveActions";
 import {ScoreBoardInning} from "../models/scoreBoardInning";
 import {GameScore} from "../models/gameScore";
 import {HttpClient} from "@angular/common/http";
+import { ActionsGet } from '../models/actions-get';
+import { MessageGet } from '../models/message-get';
+import { ActionPost } from '../models/action-post';
+import { GameStateGet } from '../models/game-state-get';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamePageService {
 
-  private baseUrl = 'http://localhost:8081';
+  private baseUrl = 'http://localhost:8080';
   private defaultInningStatus: string = 'isTopInning';
   public gameIsOn = false;
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
@@ -2010,4 +2014,18 @@ export class GamePageService {
     return this.scoreBoardInnings;
   }
 
+  getGameActions(gid: number) {
+    const url = `${this.baseUrl}/game/${gid}/action`;
+    return this.httpClient.get<ActionsGet>(url);
+  }
+
+  postGameAction(gid: number, data: ActionPost) {
+    const url = `${this.baseUrl}/game/${gid}/action`;
+    return this.httpClient.post<MessageGet>(url, data);
+  }
+
+  getGameState(gid: number) {
+    const url = `${this.baseUrl}/game/${gid}/state`;
+    return this.httpClient.get<GameStateGet>(url);
+  }
 }
