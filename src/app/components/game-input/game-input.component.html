@@ -1,15 +1,16 @@
 <div class="input-container">
   <div class="button-box-container">
     <div class="button-box">
-        @if (showBackButton) {
-          <button (click)="handleBack()">Back</button>
-        }
-        @for (button of parseButtons(currentButtons); track button.button) {
-          <button (click)="handleButtonClick(button)">{{ button.button }}</button>
-        }
-        @empty {
-          <p>No buttons</p>
-        }
+      @if (showBackButton) {
+        <button (click)="handleBack()" class="selectButton">Back</button>
+      }
+      @for (button of parseButtons(currentButtons); track button.button) {
+        <button (click)="handleButtonClick(button)" class="selectButton">
+          {{ button.button }}
+        </button>
+      } @empty {
+        <p>select player</p>
+      }
     </div>
   </div>
 
@@ -18,4 +19,3 @@
     <button (click)="onConfirmation()" class="ok">OK</button>
   </div>
 </div>
-

@@ -56,7 +56,7 @@ export class GamePageService {
     return this.offensiveActionsGuestTeam.find(action =>
       action.name === playerName)?.offensiveActions.at(inning - 1);
   }
-
+  //dummy lists before backend connection
   protected visitorTeam: LineUpPlayers[] = [
     {
       battingOrder: 1,

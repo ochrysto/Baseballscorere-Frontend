@@ -29,6 +29,10 @@ export class GameHeaderComponent implements OnInit {
     this.updateTime();
   }
 
+  /**
+   * refreshes page to display current time
+   * @private
+   */
   private updateTime() {
     const timeObservable = interval(1000).pipe(
       map(() => this.getCurrentTimeString()));
@@ -42,14 +46,18 @@ export class GameHeaderComponent implements OnInit {
     return `${hours}:${minutes}`;
   }
 
-
+  /**
+   * starts and ends game
+   */
   //TODO add link to confirmationpage if 'ballgame' is clicked (gameIsOn = false)
   toggleGame() {
     this.gamePageService.gameIsOn = !this.gamePageService.gameIsOn;
     this.gamePageService.gameIsOn ? this.startTimer() : this.stopTimer();
-
   }
 
+  /**
+   * starts the timer and counts in minutes
+   */
   startTimer() {
     if (!this.isStarted) {
       this.isStarted = true;
@@ -59,6 +67,9 @@ export class GameHeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * stops timer
+   */
   stopTimer() {
     if (this.isStarted) {
       clearInterval(this.intervalId);

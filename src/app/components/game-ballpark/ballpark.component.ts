@@ -43,6 +43,10 @@ export class BallparkComponent implements OnInit {
     this.refresh();
   }
 
+  /**
+   * rerenders the page
+   * @protected
+   */
   protected refresh() {
     setTimeout(() => this.gamePageService.getGameState(1).subscribe({
       next: (state) => {
@@ -54,6 +58,10 @@ export class BallparkComponent implements OnInit {
     }), 1000);
   }
 
+  /**
+   * selects the offensive player
+   * @param number identifies the baseposition
+   */
   selectBase(number: number) {
     this.gamePageService.selectedBase.next(number);
   }

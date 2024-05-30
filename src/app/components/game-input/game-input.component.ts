@@ -24,6 +24,10 @@ export class GameInputComponent {
     });
   }
 
+  /**
+   * loads fitting buttons to base selection
+   * @param base
+   */
   loadButtons(base: number) {
     // TODO: remove handcode ID
     this.service.getGameActions(1).subscribe({
@@ -75,6 +79,7 @@ export class GameInputComponent {
         type: button.actionType,
         responsible: []
       }
+
       this.service.postGameAction(1, postData).subscribe({
         next: (msg) => {console.log("Server response: ", msg)},
         error: (err) => {console.log("Error: ", err)}
