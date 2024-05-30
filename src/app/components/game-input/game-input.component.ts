@@ -1,5 +1,8 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {PlayerService} from '../../services/player.service';
+import {TeamServesService} from "../../services/team-serves.service";
+import {GetTeam} from "../../models/GetTeam";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-game-input',
@@ -8,8 +11,10 @@ import {PlayerService} from '../../services/player.service';
   templateUrl: './game-input.component.html',
   styleUrl: './game-input.component.css',
 })
-export class GameInputComponent {
-  constructor(private playerService: PlayerService) {
+export class GameInputComponent implements OnInit {
+  allTeams: any[] = [];
+
+  constructor(private playerService: PlayerService, private teamservise: TeamServesService) {
   }
 
   selection = '';
@@ -146,5 +151,11 @@ export class GameInputComponent {
     this.hideButtons();
     this.selectPositionsVisible = true;
     this.assistError = true;
+  }
+
+  ngOnInit(): void {
+
+    this.allTeams = this.teamservise.getAllTeams();
+
   }
 }

@@ -2,6 +2,7 @@
   height: 100vh;
   background-color: #B4FF00;
   background-image: url("Plateconference.png");
+  background-repeat: no-repeat;
 }
 .container {
   background-color: black;
@@ -58,7 +59,7 @@
   color: #FFFF9F;
   cursor: pointer;
   margin-left: 193px;
-  margin-right: 198px;
+  margin-right: 214px;
   border: none;
   background-color: black;
   font-size: 30px;
@@ -104,14 +105,14 @@
   color: black;
   display: block;
   font-size: 20px;
-  right: 70px;
+  right: -80px;
   font-family: Kanit, sans-serif;
   font-weight: 800;
   padding: 10px 20px;
   border: none;
   border-radius: 30px;
   position: absolute;
-  bottom: 60px;
+  bottom: 50px;
   cursor: pointer;
 }
 .action-button button:hover{

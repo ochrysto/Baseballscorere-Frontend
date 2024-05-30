@@ -13,7 +13,5 @@ export const routes: Routes = [
   { path: '', component: BaseballScorerHomeComponent },
   { path: 'line-up', component: LineUpComponent },
   { path: 'game', component: GamePageComponent },
-  {
-    path: 'test1', component: SpielAnlegenComponent
-  },
+  { path: 'Anlegen', component: SpielAnlegenComponent },
 ];
