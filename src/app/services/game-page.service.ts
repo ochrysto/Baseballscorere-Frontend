@@ -9,6 +9,7 @@ import { ActionsGet } from '../models/actions-get';
 import { MessageGet } from '../models/message-get';
 import { ActionPost } from '../models/action-post';
 import { GameStateGet } from '../models/game-state-get';
+import {GameGet} from "../models/game-get";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class GamePageService {
   public selectedBase$: Observable<number> = this.selectedBase.asObservable();
   public isChanged = new BehaviorSubject<null>(null);
   public isChanged$: Observable<null> = this.isChanged.asObservable();
+  public game?: GameGet;
 
 
   constructor(private httpClient: HttpClient) {}

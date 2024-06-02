@@ -22,8 +22,8 @@ export class BallparkComponent implements OnInit {
   protected currentInningStatus!: string;
   protected gameState: GameStateGet | undefined;
 
-  constructor(protected gamePageService: GamePageService) {
-    this.gamePageService.isChanged$.subscribe({
+  constructor(protected service: GamePageService) {
+    this.service.isChanged$.subscribe({
       next: value => {
         this.refresh();
         console.log("succesfully refreshed ballpark component");
@@ -33,28 +33,35 @@ export class BallparkComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.visitorTeam = this.gamePageService.getAllGuestPlayer();
-    this.homeTeam = this.gamePageService.getAllHomePlayers();
+    this.visitorTeam = this.service.getAllGuestPlayer();
+    this.homeTeam = this.service.getAllHomePlayers();
     this.defensiveHomeTeam = [...this.homeTeam].sort((a, b) => a.position - b.position);
     this.defensiveGuestTeam = [...this.visitorTeam].sort((a, b) => a.position - b.position);
-    this.gamePageService.inningStatus$.subscribe(inningStatus => {
+    this.service.inningStatus$.subscribe(inningStatus => {
       this.currentInningStatus = inningStatus;
     })
     this.refresh();
   }
 
   protected refresh() {
-    setTimeout(() => this.gamePageService.getGameState(1).subscribe({
-      next: (state) => {
-        this.gameState = state
-      },
-      error: (err) => {
-        console.log("cannot get game state", err);
-      }
-    }), 1000);
+    if (!this.service.game?.id) {
+      console.error("Game id not found! Check `GamePageService`!")
+      return;
+    }
+
+    setTimeout(() => {
+      return this.service.getGameState(this.service.game!.id).subscribe({
+        next: (state) => {
+          this.gameState = state
+        },
+        error: (err) => {
+          console.log("cannot get game state", err);
+        }
+      });
+    }, 1000);
   }
 
   selectBase(number: number) {
-    this.gamePageService.selectedBase.next(number);
+    this.service.selectedBase.next(number);
   }
 }

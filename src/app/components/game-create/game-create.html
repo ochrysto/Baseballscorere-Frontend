@@ -9,111 +9,132 @@
   <main>
     <h1>SPIEL ANLEGEN</h1>
     <div class="form-container">
-      <form [formGroup]="gameForm">
+      <form [formGroup]="gameForm" (ngSubmit)="createGame()">
         <div class="form-row">
           <p>Spielnummer</p>
-          <input type="text">
+          <input type="text" formControlName="gameNr" [ngClass]="{'is-invalid': getFieldError('gameNr')}">
+          <div *ngIf="getFieldError('gameNr')" class="invalid-feedback">Spielnummer is required.</div>
+
           <p class="right">Datum</p>
-          <input type="date">
-          <p>
-            Ort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <input type="text">
+          <input type="date" formControlName="date" [ngClass]="{'is-invalid': getFieldError('date')}">
+          <div *ngIf="getFieldError('date')" class="invalid-feedback">Datum is required.</div>
+
+          <p>Ort</p>
+          <input type="text" formControlName="location" [ngClass]="{'is-invalid': getFieldError('location')}">
+          <div *ngIf="getFieldError('location')" class="invalid-feedback">Ort is required.</div>
+
           <!-- Inning number input-->
           <p class="Innings">Innings</p>
-          <input type="number" min="1" max="20" formControlName="innings">
+          <input type="number" min="1" max="20" formControlName="innings" [ngClass]="{'is-invalid': getFieldError('innings')}">
+          <div *ngIf="getFieldError('innings')" class="invalid-feedback">Innings must be between 1 and 20.</div>
+
           <!-- Association select box-->
-          <p>Verband&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <select required formControlName="">
+          <p>Verband</p>
+          <select formControlName="associationId" required [ngClass]="{'is-invalid': getFieldError('associationId')}">
             @if (associations.length > 0) {
               <option value="" disabled selected hidden>Verband</option>
             }
-            @for (association of associations; track association.id) {
-              <option [value]="association">{{ association.name }}</option>
+            @for (association of associations; track association) {
+              <option [value]="association.id">{{ association.name }}</option>
             } @empty {
               <option value="" disabled selected hidden>No associations found</option>
             }
           </select>
+          <div *ngIf="getFieldError('associationId')" class="invalid-feedback">Verband is required.</div>
+
           <!-- League select box-->
-          <p class="Liga">Liga&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <select required [(ngModel)]="league">
+          <p class="Liga">Liga</p>
+          <select formControlName="leagueId" required [ngClass]="{'is-invalid': getFieldError('leagueId')}">
             @if (leagues.length > 0) {
               <option value="" disabled selected hidden>Liga</option>
             }
-            @for (league of leagues; track league.id) {
-              <option [value]="league">{{ league.name }}</option>
+            @for (league of leagues; track league) {
+              <option [value]="league.id">{{ league.name }}</option>
             } @empty {
               <option value="" disabled selected hidden>No leagues found</option>
             }
           </select>
+          <div *ngIf="getFieldError('leagueId')" class="invalid-feedback">Liga is required.</div>
         </div>
+
         <div class="team-section">
           <div class="team">
-            <select required [(ngModel)]="homeTeam">
-              @if (teams) {
+            <select formControlName="hostTeamId" required [ngClass]="{'is-invalid': getFieldError('hostTeamId')}">
+              @if (teams.length > 0) {
                 <option value="" disabled selected hidden>Heimmannschaft</option>
-                @for (team of teams; track team.teamId) {
-                  <option [value]="team">{{ team.name }}</option>
-                }
-              } @else {
+              }
+              @for (team of teams; track team) {
+                <option [value]="team.teamId">{{ team.name }}</option>
+              } @empty {
                 <option value="" disabled selected hidden>No teams found</option>
               }
             </select>
+            <div *ngIf="getFieldError('hostTeamId')" class="invalid-feedback">Heimmannschaft is required.</div>
           </div>
+
           <div class="vs">VS</div>
+
           <div class="team">
-            <select required [(ngModel)]="awayTeam">
-              @if (teams) {
+            <select formControlName="guestTeamId" required [ngClass]="{'is-invalid': getFieldError('guestTeamId')}">
+              @if (teams.length > 0) {
                 <option value="" disabled selected hidden>Gastmannschaft</option>
-                @for (team of teams; track team.teamId) {
-                  <option [value]="team">{{ team.name }}</option>
-                }
-              } @else {
+              }
+              @for (team of teams; track team) {
+                <option [value]="team.teamId">{{ team.name }}</option>
+              } @empty {
                 <option value="" disabled selected hidden>No teams found</option>
               }
             </select>
+            <div *ngIf="getFieldError('guestTeamId')" class="invalid-feedback">Gastmannschaft is required.</div>
           </div>
         </div>
+
         <div class="officials-row">
           <div class="official">
-            <div class="umpire-header">
-              Headumpire
-            </div>
+            <div class="umpire-header">Headumpire</div>
             <label>Name</label>
-            <select>
+            <select formControlName="umpireIdsList">
               <option></option>
             </select>
             <label>Nummer</label>
             <input type="text">
           </div>
           <div class="official">
-            <div class="plateumpire-header">
-              Plateumpire
-            </div>
+            <div class="plateumpire-header">Plateumpire</div>
             <label>Name</label>
-            <select>
-              <option></option>
+            <select formControlName="umpireIdsList">
+              @if (umpires.length > 0) {
+                <option value="" disabled selected hidden>Umpire</option>
+              }
+              @for (umpire of umpires; track umpire) {
+                <option [value]="umpire.umpireId">{{ umpire.name }}</option>
+              } @empty {
+                <option value="" disabled selected hidden>No umpires found</option>
+              }
             </select>
             <label>Nummer</label>
             <input type="text">
           </div>
           <div class="official">
-            <div class="scorer-header">
-              Scorer
-            </div>
+            <div class="scorer-header">Scorer</div>
             <label>Name</label>
-            <select>
-              <option></option>
+            <select formControlName="scorerId">
+              @if (scorers.length > 0) {
+                <option value="" disabled selected hidden>Scorer</option>
+              }
+              @for (scorer of scorers; track scorer) {
+                <option [value]="scorer.scorerId">{{ scorer.name }}</option>
+              } @empty {
+                <option value="" disabled selected hidden>No scorer found</option>
+              }
             </select>
             <label>Nummer</label>
             <input type="text">
           </div>
         </div>
+
+        <button type="submit" class="weiter-btn">Weiter</button>
       </form>
     </div>
-    <button routerLink="/line-up" type="submit" class="weiter-btn">Weiter</button>
-    <div>
-      <button (click)="createGame()" class="weiter-btn">Moin</button>
-    </div>
-
   </main>
 </div>

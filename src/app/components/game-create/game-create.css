@@ -139,3 +139,13 @@ label {
   padding-right: 30px;
   margin-left: 20px;
 }
+
+.is-invalid {
+  border: 1px solid red;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.9em;
+}
+

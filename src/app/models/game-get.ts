@@ -5,6 +5,7 @@ import {LeagueGet} from "./league-get";
 import {AssociationGet} from "./association-get";
 
 export interface GameGet {
+  id: number;
   gameNr: number;
   date: string;
   location: string;

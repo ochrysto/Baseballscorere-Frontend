@@ -17,26 +17,21 @@ export class GameInputComponent {
   currentButtons: any; // Array to hold the currently displayed buttons.
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
-  allTeams: TeamGet[] = [];
-
-  constructor(private service: GamePageService, private playerService: PlayerService, private teamservise: TeamServesService) {
+  constructor(private service: GamePageService) {
     this.loadButtons(this.service.selectedBase.getValue())
     service.selectedBase.subscribe({
-      next: base => {
-        this.loadButtons(base)
-      },
-      error: err => {
-      }
-    });
-    this.teamservise.getAllTeams().subscribe({
-      next: value => this.allTeams = value,
-      error: err => console.error("Cannot get teams")
+      next: base => this.loadButtons(base),
+      error: err => console.error("Cannot load buttons: " + err)
     });
   }
 
   loadButtons(base: number) {
-    // TODO: remove handcode ID
-    this.service.getGameActions(1).subscribe({
+    if (!this.service.game?.id) {
+      console.error("Game id not found! Check `GamePageService`!")
+      return;
+    }
+
+    this.service.getGameActions(this.service.game.id).subscribe({
       next: (buttons) => {
         let selectedButtons = null;
         switch (base) {
@@ -85,7 +80,13 @@ export class GameInputComponent {
         type: button.actionType,
         responsible: []
       }
-      this.service.postGameAction(1, postData).subscribe({
+
+      if (!this.service.game?.id) {
+        console.error("Game id not found! Check `GamePageService`!")
+        return;
+      }
+
+      this.service.postGameAction(this.service.game.id, postData).subscribe({
         next: (msg) => {
           console.log("Server response: ", msg)
         },

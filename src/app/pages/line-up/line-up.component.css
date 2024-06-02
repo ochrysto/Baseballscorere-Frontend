@@ -8,8 +8,9 @@
   background-color: black;
   text-align: center;
   max-width: 1000px;
-  margin-left: 250px;
+  margin: 0 auto;
   padding: 10px;
+  border: 5px solid black;
 }
 .line-up-container h1 {
   text-align: center;
@@ -19,154 +20,67 @@
   padding: 30px;
   font-size: 70px;
 }
-.team_heim .team p {
-  color: #85D4FE;
+.teams-header {
+  display: flex;
+  flex-direction: column;
 }
-.team_heim .line-up-table input{
-  background-color: #85D4FE;
+.tabs {
+  display: flex;
+  border-bottom: 5px solid black;
 }
-.team_heim button{
-  background-color: #85D4FE;
-}
-.team_heim button:hover {
-  color: #85D4FE;
-}
-.team_heim .line-up-table input {
-  background-color: #85D4FE;
-}
-.team_heim .line-up-table select {
-  background-color: #85D4FE;
-}
-.team_heim .line-up-table th, .line-up-table td {
-  color: #85D4FE;
-  border: none;
-
-}
-.team_heim .line-up-table td {
-  color: #85D4FE;
-  border: none;
-}
-.teams-header .the_heim button {
-  color: #85D4FE;
-}
-.teams-header .the_heim button:hover {
-  color: #3386b0;
-}
-.teams-header button {
-  text-align: center;
-  font-family: Kanit, sans-serif;
-  font-weight: 800;
-  color: #FFFF9F;
-  cursor: pointer;
-  margin-left: 193px;
-  margin-right: 214px;
-  border: none;
+.tab {
+  flex: 1;
+  padding: 10px;
+  font-size: 24px;
   background-color: black;
-  font-size: 30px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
-.teams-header button:hover {
-  color: #b4b455;
-  box-shadow: #dada37;
-}
-.team p {
-  margin: 5px;
-  padding: 5px;
-  color: #FFFF9F;
-}
-.line-up-table input {
-  background-color: #FFFF9F;
-  border: 1px solid #777;
+.tab.active {
+  border-bottom: 5px solid black;
+  background-color: white;
   color: black;
-  padding: 5px;
-  width: 90%;
 }
-.line-up-table td {
-  padding: 8px;
-}
-.line-up-table select {
-  background-color: #FFFF9F;
-  border: 1px solid #777;
+.team_heim .team p,
+.team_away .team p {
   color: black;
-  padding: 5px;
-  width: 98%;
 }
-.line-up-table table {
+.line-up-table {
+  background-color: black;
+  color: white;
   width: 100%;
-  margin-bottom: 20px;
-  background-color: black;
 }
-.line-up-table th, .line-up-table td {
-  text-align: left;
-  padding: 5px;
-  color: #FFFF9F;
+.team_heim .line-up-table td,
+.team_away .line-up-table td {
+  padding: 10px;
+  border: 1px solid white;
 }
-.action-button button {
-  background-color: #78cf4c;
-  color: black;
-  display: block;
-  font-size: 20px;
-  right: -80px;
-  font-family: Kanit, sans-serif;
-  font-weight: 800;
-  padding: 10px 20px;
+.line-up-table input,
+.line-up-table select {
   border: none;
-  border-radius: 30px;
-  position: absolute;
-  bottom: 50px;
-  cursor: pointer;
-}
-.action-button button:hover{
-  background-color: #39a10b;
 }
 .hidden {
   display: none;
 }
-.tabs {
-  width: 100%;
-  display: flex;
+.team_heim .line-up-table input,
+.team_heim .line-up-table select,
+.team_heim button {
+  background-color: #85D4FE;
 }
-.the_heim {
-  border-top: none;
-  border-left: none;
-  border-bottom: none;
+.team_away .line-up-table input,
+.team_away .line-up-table select,
+.team_away button {
+  background-color: #F15152;
 }
-.the_gast {
-  border-bottom: none;
-  border-left: none;
+.team_heim.active {
+  background-color: #85D4FE;
 }
-.team_heim {
-  border-top: none;
-  border-bottom: none;
+.team_away.active {
+  background-color: #F15152;
 }
-.team_home.active {
-  border: 3px solid #85D4FE;
-  border-top: none;
-}
-.border.active-home {
-  border: 3px solid #85D4FE;
-  border-top: none;
-  padding: 10px;
-  padding-top: 0px !important;
-  padding-left: 0px !important;
-}
-.border.active-guest {
-  border: 3px solid #FFFF9F;
-  border-top: none;
-  padding: 10px;
-  padding-top: 0px !important;
-}
-.border.active-home .the_heim {
-  border: 3px solid #85D4FE;
-  border-bottom: none;
-  border-left: none;
-}
-.active-home .the_heim {
-  border: 3px solid #85D4FE;
-  border-bottom: none;
-  border-left: none;
-}
-.border.active-guest .the_gast {
-  border: 3px solid #FFFF9F;
-  border-right: none;
-  border-bottom: none;
+.team_heim.active p,
+.team_away.active p {
+  color: black;
 }

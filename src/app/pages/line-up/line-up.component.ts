@@ -1,59 +1,71 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {async, Observable, of} from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import {RouterModule, RouterLink, Router} from "@angular/router";
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
-import {AsyncPipe, NgClass} from "@angular/common";
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {LineUpServiceService} from "../../services/line-up-service.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClientModule} from '@angular/common/http';
+import {LineUpService} from "../../services/line-up.service";
+import {NgClass, NgForOf} from "@angular/common";
+import {PlayerGet} from "../../models/player-get";
+import {GameGet} from "../../models/game-get";
+import {switchMap} from "rxjs";
+import {GameService} from "../../services/game.service";
+import {LineUpPost} from "../../models/line-up-post";
+import {LineUpPlayerPost} from "../../models/line-up-player-post";
+import {PositionService} from "../../services/position.service";
+import {PositionGet} from "../../models/position-get";
+
+
 @Component({
   selector: 'app-line-up',
   templateUrl: './line-up.component.html',
-  imports: [RouterModule,
-    NgClass,
-    RouterLink,
-    MatAutocompleteTrigger,
-    MatAutocomplete,
+  imports: [
     ReactiveFormsModule,
-    MatSlideToggle,
-    AsyncPipe,
-    MatOption,
     HttpClientModule,
+    NgClass,
+    NgForOf,
   ],
   standalone: true,
   styleUrls: ['./line-up.component.css']
 })
-export class LineUpComponent {
-  Verein_name: string = '';
-  Teams_name: string = '';
-  Manager: string = '';
-  PassnummerOptions$: Observable<any[]> = of([]);
-  nameOptions$: Observable<any[]> = of([]);
-  PositionOptions$: Observable<any[]> = of([]);
-  PassnummerOptions = [
-    { id: 1, name: 'Madrid' },
-    { id: 2, name: 'Barcelone' },
-    { id: 3, name: 'Bayern' }
-  ];
-  nameOptions = [
-    { id: 1, name: 'Madrid 1' },
-    { id: 2, name: 'Barcelone 2' },
-    { id: 3, name: 'Bayern 3' }
-  ];
-  PositionOptions = [
-    { id: 1, name: 'Regragi' },
-    { id: 2, name: 'Ancelotti' },
-    { id: 3, name: 'Enrique' }
-  ];
-  constructor(private router: Router, private LineUpServiceService: LineUpServiceService) { }
+export class LineUpComponent implements OnInit {
+  @Input() game!: GameGet;
+  homePlayers: PlayerGet[] = [];
+  awayPlayers: PlayerGet[] = [];
+  positions: PositionGet[] = [];
+  activeTab: string = 'HEIM';
 
-  activeTab: string = 'HEIM'; // Standardmäßig 'HEIM' als aktiver Tab
+  lineUpForm: FormGroup;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private lineUpService: LineUpService,
+    private gameService: GameService,
+    private positionService: PositionService,
+    private fb: FormBuilder
+  ) {
+    this.lineUpForm = this.fb.group({
+      homeLineUp: this.fb.array([]),
+      awayLineUp: this.fb.array([])
+    });
+    this.positionService.getPositions().subscribe({
+      next: positions => this.positions = positions,
+      error: err => console.error("Cannon get positions: " + err)
+    });
+  }
+
+  get homeLineUp(): FormArray {
+    return this.lineUpForm.get('homeLineUp') as FormArray;
+  }
+
+  get awayLineUp(): FormArray {
+    return this.lineUpForm.get('awayLineUp') as FormArray;
+  }
+
   switchTab(tabName: string): void {
     this.activeTab = tabName;
     this.updateContainerBorder();
   }
+
   updateContainerBorder(): void {
     const border = document.querySelector('.border') as HTMLElement;
     if (border) {
@@ -67,34 +79,74 @@ export class LineUpComponent {
       console.error('border element not found!');
     }
   }
-  myControl = new FormControl();
-  option: string[] = ['test', 'Ghost'];
-  filteredOptions: Observable<string[]> | undefined;
+
   ngOnInit() {
-    {
-      this.fetchnames();
-      this.fetchPassnummer();
-      this.fetchPosition();
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        const gameId = +params.get('id')!;
+        return this.gameService.getGame(gameId);
+      })
+    ).subscribe(game => {
+      this.game = game;
+      this.fetchPlayers(game.hostTeam.teamId, 'home');
+      this.fetchPlayers(game.guestTeam.teamId, 'away');
+    });
+  }
+
+  fetchPlayers(teamId: number, teamType: 'home' | 'away'): void {
+    this.lineUpService.getPlayersByTeamId(teamId).subscribe(players => {
+      if (teamType === 'home') {
+        this.homePlayers = players;
+        this.populateLineUpForm(this.homeLineUp, players);
+      } else {
+        this.awayPlayers = players;
+        this.populateLineUpForm(this.awayLineUp, players);
+      }
+    });
+  }
+
+  populateLineUpForm(lineUpFormArray: FormArray, players: PlayerGet[]): void {
+    players.forEach(() => {
+      lineUpFormArray.push(this.fb.group({
+        playerId: [''],
+        passNumber: [''],
+        position: ['']
+      }));
+    });
+  }
+
+  onSubmit(): void {
+    const homeLineUp = this.lineUpForm.value.homeLineUp;
+    const awayLineUp = this.lineUpForm.value.awayLineUp;
+
+    const homeLineUpPlayers: LineUpPlayerPost[] = homeLineUp.map((lineUp: any) => ({
+      // teamId: this.game.hostTeam.teamId,
+      playerId: lineUp.playerId,
+      jerseyNr: lineUp.passNumber,
+      positionId: lineUp.position
+    }));
+
+    const homeLineUpPost: LineUpPost = {
+      teamId: this.game.hostTeam.teamId,
+      gameId: this.game.id,
+      playerList: homeLineUpPlayers
     }
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
-  }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.option.filter(option => option.toLowerCase().includes(filterValue));
-  }
-    protected readonly async = async;
 
-  fetchnames(){
-    this.nameOptions$ = this.LineUpServiceService.getName();
-  }
-  fetchPassnummer(){
-    this.PassnummerOptions$ = this.LineUpServiceService.getPassnummer();
-  }
-  fetchPosition(){
-    this.PositionOptions$ = this.LineUpServiceService.getPosition();
-  }
+    const awayLineUpPlayers: LineUpPlayerPost[] = awayLineUp.map((lineUp: any) => ({
+      // teamId: this.game.guestTeam.teamId,
+      playerId: lineUp.playerId,
+      jerseyNr: lineUp.passNumber,
+      positionId: lineUp.position
+    }));
 
+    const awayLineUpPost: LineUpPost = {
+      teamId: this.game.guestTeam.teamId,
+      gameId: this.game.id,
+      playerList: awayLineUpPlayers
+    }
+
+    this.lineUpService.submitLineUp([homeLineUpPost, awayLineUpPost]).subscribe(() => {
+      this.router.navigate(['/game', this.game.id]);
+    });
+  }
 }

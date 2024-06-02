@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {GameGet} from "../models/game-get";
 import {GamePost} from "../models/game-post";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +14,9 @@ export class GameService {
 
   public postGame(gameData: GamePost) {
     return this.http.post<GameGet>(this.baseUrl, gameData);
+  }
+
+  getGame(gameId: number): Observable<GameGet> {
+    return this.http.get<GameGet>(this.baseUrl + `/${gameId}`);
   }
 }

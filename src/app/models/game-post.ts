@@ -2,7 +2,7 @@ export interface GamePost {
   // @NotNull(message = "Number for game name is mandatory")
   gameNr: number;
 
-  date: number;
+  date: string;
 
   // @NotEmpty
   location: string;

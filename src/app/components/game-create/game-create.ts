@@ -1,51 +1,68 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {TeamServesService} from "../../services/team-serves.service";
-import {TeamGet} from "../../models/team-get";
-import {AssociationGet} from "../../models/association-get";
-import {LeagueGet} from "../../models/league-get";
-import {AssociationService} from "../../services/association.service";
-import {LeagueService} from "../../services/league.service";
-import {GameService} from "../../services/game.service";
-import {GamePost} from "../../models/game-post";
+import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { TeamServesService } from "../../services/team-serves.service";
+import { TeamGet } from "../../models/team-get";
+import { AssociationGet } from "../../models/association-get";
+import { LeagueGet } from "../../models/league-get";
+import { AssociationService } from "../../services/association.service";
+import { LeagueService } from "../../services/league.service";
+import { GameService } from "../../services/game.service";
+import { GamePost } from "../../models/game-post";
+import {DatePipe, NgClass, NgIf} from "@angular/common";
+import {ScorerService} from "../../services/scorer.service";
+import {ScorerGet} from "../../models/scorer-get";
+import {UmpireService} from "../../services/umpire.service";
+import {UmpireGet} from "../../models/umpire-get";
 
 @Component({
   selector: 'app-game-create',
   standalone: true,
   templateUrl: './game-create.html',
+  styleUrls: ['./game-create.css'],
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgClass,
+    NgIf
   ],
-  styleUrl: './game-create.css'
+  providers: [DatePipe]
 })
 export class GameCreate {
   teams: TeamGet[] = [];
   associations: AssociationGet[] = [];
   leagues: LeagueGet[] = [];
-  // Input data from HTML
-  innings: number = 1;
-  association?: AssociationGet;
-  league?: LeagueGet;
-  awayTeam?: TeamGet;
-  homeTeam?: TeamGet;
+  scorers: ScorerGet[] = [];
+  umpires: UmpireGet[] = [];
+  gameForm: FormGroup;
 
-  gameForm = new FormGroup({
-    gameNr: new FormControl(''), // number,
-    date: new FormControl(''), // number,
-    location: new FormControl(''), // string,
-    innings: new FormControl(''), // number,
-    associationId: new FormControl(''), // number,
-    leagueId: new FormControl(''), // number,
-    hostTeamId: new FormControl(''), // number,
-    guestTeamId: new FormControl(''), // number,
-    umpireIdsList: new FormControl(''), // number[]
-    scorerId: new FormControl(''), // number,
-  })
-
-  constructor(private teamService: TeamServesService, private associationService: AssociationService, private leagueService: LeagueService, private gameService: GameService) {
+  constructor(
+    private fb: FormBuilder,
+    private teamService: TeamServesService,
+    private associationService: AssociationService,
+    private leagueService: LeagueService,
+    private gameService: GameService,
+    private scorerService: ScorerService,
+    private umpireService: UmpireService,
+    private router: Router,
+    private datePipe: DatePipe
+  ) {
+    this.gameForm = this.fb.group({
+      gameNr: ['', Validators.required],
+      date: ['', Validators.required],
+      location: ['', Validators.required],
+      innings: [1, [Validators.required, Validators.min(5), Validators.max(35)]],
+      associationId: ['', Validators.required],
+      leagueId: ['', Validators.required],
+      hostTeamId: ['', Validators.required],
+      guestTeamId: ['', Validators.required],
+      umpireIdsList: [[]],
+      scorerId: ['']
+    });
     this.getTeams();
     this.getAssociations();
-    this.getLeagues()
+    this.getLeagues();
+    this.getScorers();
+    this.getUmpires();
   }
 
   private getTeams() {
@@ -69,40 +86,54 @@ export class GameCreate {
     });
   }
 
+  private getScorers() {
+    this.scorerService.getAllScorers().subscribe({
+      next: value => this.scorers = value,
+      error: err => console.error("Cannot get scorers: " + err)
+    });
+  }
+
+  private getUmpires() {
+    this.umpireService.getAllUmpires().subscribe({
+      next: value => this.umpires = value,
+      error: err => console.error("Cannot get umpires: " + err)
+    });
+  }
+
   public createGame() {
-    if (!this.awayTeam) {
-      console.error("Away team was not provided!");
-      return
-    }
-    if (!this.homeTeam) {
-      console.error("Home team was not provided!");
-      return
-    }
-    if (!this.association) {
-      console.error("Association was not provided!");
-      return
-    }
-    if (!this.league) {
-      console.error("League was not provided!");
-      return
+    if (this.gameForm.invalid) {
+      this.gameForm.markAllAsTouched();  // Mark all fields as touched to trigger validation messages
+      console.error("Form is invalid!");
+      return;
     }
 
+    const formValues = this.gameForm.value;
+    let formattedDate = this.datePipe.transform(formValues.date, 'yyyy-MM-dd');
+
     let gameData: GamePost = {
-      associationId: this.association.id,
-      date: 0,
-      gameNr: 0,
-      guestTeamId: this.awayTeam.teamId,
-      hostTeamId: this.homeTeam.teamId,
-      innings: this.innings,
-      leagueId: this.league.id,
-      location: "",
-      scorerId: 0,
-      umpireIdsList: []
+      associationId: formValues.associationId,
+      date: formattedDate!,
+      gameNr: formValues.gameNr,
+      guestTeamId: formValues.guestTeamId,
+      hostTeamId: formValues.hostTeamId,
+      innings: formValues.innings,
+      leagueId: formValues.leagueId,
+      location: formValues.location,
+      scorerId: formValues.scorerId,
+      umpireIdsList: [formValues.umpireIdsList]
     }
 
     this.gameService.postGame(gameData).subscribe({
-      next: value => console.log("Successfully created a game: " + value),
+      next: value => {
+        console.log("Successfully created a game: " + value);
+        this.router.navigate(['/game', value.id, 'line-up']);
+      },
       error: err => console.error("Cannot create a game: " + err)
-    })
+    });
+  }
+
+  public getFieldError(controlName: string): boolean | null {
+    const control = this.gameForm.get(controlName);
+    return control && control.invalid && (control.dirty || control.touched);
   }
 }
