@@ -1,0 +1,119 @@
+<div class="container">
+  <header>
+    <nav>
+      <button>Neues Team anlegen</button>
+      <button>Team bearbeiten</button>
+      <button>LogOut</button>
+    </nav>
+  </header>
+  <main>
+    <h1>SPIEL ANLEGEN</h1>
+    <div class="form-container">
+      <form [formGroup]="gameForm">
+        <div class="form-row">
+          <p>Spielnummer</p>
+          <input type="text">
+          <p class="right">Datum</p>
+          <input type="date">
+          <p>
+            Ort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <input type="text">
+          <!-- Inning number input-->
+          <p class="Innings">Innings</p>
+          <input type="number" min="1" max="20" formControlName="innings">
+          <!-- Association select box-->
+          <p>Verband&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <select required formControlName="">
+            @if (associations.length > 0) {
+              <option value="" disabled selected hidden>Verband</option>
+            }
+            @for (association of associations; track association.id) {
+              <option [value]="association">{{ association.name }}</option>
+            } @empty {
+              <option value="" disabled selected hidden>No associations found</option>
+            }
+          </select>
+          <!-- League select box-->
+          <p class="Liga">Liga&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <select required [(ngModel)]="league">
+            @if (leagues.length > 0) {
+              <option value="" disabled selected hidden>Liga</option>
+            }
+            @for (league of leagues; track league.id) {
+              <option [value]="league">{{ league.name }}</option>
+            } @empty {
+              <option value="" disabled selected hidden>No leagues found</option>
+            }
+          </select>
+        </div>
+        <div class="team-section">
+          <div class="team">
+            <select required [(ngModel)]="homeTeam">
+              @if (teams) {
+                <option value="" disabled selected hidden>Heimmannschaft</option>
+                @for (team of teams; track team.teamId) {
+                  <option [value]="team">{{ team.name }}</option>
+                }
+              } @else {
+                <option value="" disabled selected hidden>No teams found</option>
+              }
+            </select>
+          </div>
+          <div class="vs">VS</div>
+          <div class="team">
+            <select required [(ngModel)]="awayTeam">
+              @if (teams) {
+                <option value="" disabled selected hidden>Gastmannschaft</option>
+                @for (team of teams; track team.teamId) {
+                  <option [value]="team">{{ team.name }}</option>
+                }
+              } @else {
+                <option value="" disabled selected hidden>No teams found</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="officials-row">
+          <div class="official">
+            <div class="umpire-header">
+              Headumpire
+            </div>
+            <label>Name</label>
+            <select>
+              <option></option>
+            </select>
+            <label>Nummer</label>
+            <input type="text">
+          </div>
+          <div class="official">
+            <div class="plateumpire-header">
+              Plateumpire
+            </div>
+            <label>Name</label>
+            <select>
+              <option></option>
+            </select>
+            <label>Nummer</label>
+            <input type="text">
+          </div>
+          <div class="official">
+            <div class="scorer-header">
+              Scorer
+            </div>
+            <label>Name</label>
+            <select>
+              <option></option>
+            </select>
+            <label>Nummer</label>
+            <input type="text">
+          </div>
+        </div>
+      </form>
+    </div>
+    <button routerLink="/line-up" type="submit" class="weiter-btn">Weiter</button>
+    <div>
+      <button (click)="createGame()" class="weiter-btn">Moin</button>
+    </div>
+
+  </main>
+</div>

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {LineUpPlayers} from "../models/line-up-players";
 import {BehaviorSubject, Observable} from "rxjs";
-import {OffensiveActions} from "../models/offensiveActions";
-import {ScoreBoardInning} from "../models/scoreBoardInning";
-import {GameScore} from "../models/gameScore";
+import {OffensiveActionsGet} from "../models/offensive-actions-get";
+import {ScoreboardInningGet} from "../models/scoreboard-inning-get";
+import {GameScoreGet} from "../models/game-score-get";
 import {HttpClient} from "@angular/common/http";
 import { ActionsGet } from '../models/actions-get';
 import { MessageGet } from '../models/message-get';
@@ -205,7 +205,7 @@ export class GamePageService {
       passNumber: 546372
     }
   ]
-  protected offensiveActionsHomeTeam: OffensiveActions[] = [
+  protected offensiveActionsHomeTeam: OffensiveActionsGet[] = [
     {
       name: 'Moser',
       passNumber: 1,
@@ -1072,7 +1072,7 @@ export class GamePageService {
       ]
     }
   ]
-  protected offensiveActionsGuestTeam: OffensiveActions[] = [
+  protected offensiveActionsGuestTeam: OffensiveActionsGet[] = [
     {
       name: 'Riermeister',
       passNumber: 1,
@@ -1939,7 +1939,7 @@ export class GamePageService {
       ]
     }
   ]
-  protected scoreBoardInnings: ScoreBoardInning[] = [
+  protected scoreBoardInnings: ScoreboardInningGet[] = [
     {
       inningNumber: 1,
       guestScore: '1',
@@ -1986,7 +1986,7 @@ export class GamePageService {
       homeScore: '0',
     },
   ]
-  protected gameScore: GameScore =
+  protected gameScore: GameScoreGet =
     {
       guestTeamRuns: 9,
       homeTeamRuns: 4,

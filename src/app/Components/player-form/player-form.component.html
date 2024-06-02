@@ -1,0 +1,19 @@
+<div class="player-form">
+  <div class="form-field">
+    <label for="vorname">Vorname</label>
+    <input type="text" id="vorname" [(ngModel)]="vorname" placeholder="Vorname">
+  </div>
+  <div class="form-field">
+    <label for="nachname">Nachname</label>
+    <input type="text" id="nachname" [(ngModel)]="nachname" placeholder="Nachname">
+  </div>
+  <div class="form-field">
+    <label for="passnummer">Passnummer</label>
+    <input type="text" id="passnummer" [(ngModel)]="passnummer" placeholder="Passnummer">
+  </div>
+  <div class="form-field">
+    <label for="trikotnummer">Trikotnummer</label>
+    <input type="text" id="trikotnummer" [(ngModel)]="trikotnummer" placeholder="Trikotnummer">
+  </div>
+  <button (click)="addPlayer()">Spieler/in hochladen</button>
+</div>

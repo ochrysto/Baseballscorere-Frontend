@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GamePageService} from "../../services/game-page.service";
-import { GameScore } from '../../models/gameScore';
-import {ScoreBoardInning} from "../../models/scoreBoardInning";
+import { GameScoreGet } from '../../models/game-score-get';
+import {ScoreboardInningGet} from "../../models/scoreboard-inning-get";
 
 
 @Component({
@@ -13,8 +13,8 @@ import {ScoreBoardInning} from "../../models/scoreBoardInning";
 })
 export class GameScoreboardComponent implements OnInit {
   private currentInningStatus!: string;
-  protected gamesScore!: GameScore;
-  protected scoreBoardInnings!: ScoreBoardInning[];
+  protected gamesScore!: GameScoreGet;
+  protected scoreBoardInnings!: ScoreboardInningGet[];
 
 
   constructor(private gamePageService: GamePageService) {

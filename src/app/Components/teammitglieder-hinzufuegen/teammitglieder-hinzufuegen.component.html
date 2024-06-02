@@ -1,0 +1,49 @@
+<div class="team-container">
+  <div class="team-header">
+    <img src="{{ team.logo }}" alt="Team Logo" class="team-logo">
+    <div class="team-titles">
+      <h1 class="team-edit-title">TEAM BEARBEITEN</h1>
+      <h2 class="team-name">{{ team.name }}</h2>
+    </div>
+  </div>
+  <div class="team-content">
+    <div class="new-player-form">
+      <h3 class="form-title">teaminformationen bearbeiten</h3>
+      <app-teaminformationen-bearbeiten></app-teaminformationen-bearbeiten>
+    </div>
+    <div class="player-list-section">
+      <h3 class="player-list-title">Spieler/innenliste</h3>
+      <div class="list-header">
+        <span class="header-item">Trikotnummer</span>
+        <span class="header-item">Name</span>
+        <span class="header-item">Passnummer</span>
+        <span class="header-item">Aktionen</span>
+      </div>
+      <ul class="player-list">
+        <li *ngFor="let player of players; let i = index" class="player-item">
+          <div *ngIf="!player.editing">
+            <span class="player-number">{{ player.trikotnummer }}</span>
+            <span class="player-name">{{ player.name }}</span>
+            <span class="player-passnummer">{{ player.passnummer }}</span>
+            <div class="player-actions">
+              <button class="edit-button" (click)="toggleEdit(i)">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button class="delete-button" (click)="deletePlayer(i)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+          <form *ngIf="player.editing" class="player-edit-form" (ngSubmit)="submitEdit(i)">
+            <input type="text" [(ngModel)]="player.trikotnummer" name="Trikotnummer" placeholder="Trikotnummer">
+            <input type="text" [(ngModel)]="player.name" name="name" placeholder="Vorname und Nachname">
+            <input type="text" [(ngModel)]="player.passnummer" name="passnummer" placeholder="Passnummer">
+            <button type="submit">Save</button>
+            <button type="button" (click)="toggleEdit(i)">Cancel</button>
+          </form>
+        </li>
+      </ul>
+      <button class="close-button" (click)="closeList()">schließen</button>
+    </div>
+  </div>
+</div>

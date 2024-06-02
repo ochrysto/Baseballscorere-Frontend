@@ -1,18 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {GetTeam} from "../models/GetTeam";
+import {TeamGet} from "../models/team-get";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamServesService {
-  private baseUrl = 'https://lockalhost8080/team'  // base URL for the Employee backend API.
+  private baseUrl = 'http://localhost:8080/team'  // base URL for the Employee backend API.
 
   constructor(private http: HttpClient) {
   }
 
-  public getAllTeams(): any {
-    return this.http.get<any[]>(this.baseUrl);
+  public getAllTeams() {
+    return this.http.get<TeamGet[]>(this.baseUrl);
   }
 }

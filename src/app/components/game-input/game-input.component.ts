@@ -4,6 +4,7 @@ import {ActionPost} from "../../models/action-post";
 import {Component} from '@angular/core';
 import {PlayerService} from '../../services/player.service';
 import {TeamServesService} from "../../services/team-serves.service";
+import {TeamGet} from "../../models/team-get";
 
 @Component({
   selector: 'app-game-input',
@@ -16,7 +17,7 @@ export class GameInputComponent {
   currentButtons: any; // Array to hold the currently displayed buttons.
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
-  allTeams: any[] = [];
+  allTeams: TeamGet[] = [];
 
   constructor(private service: GamePageService, private playerService: PlayerService, private teamservise: TeamServesService) {
     this.loadButtons(this.service.selectedBase.getValue())
@@ -27,7 +28,10 @@ export class GameInputComponent {
       error: err => {
       }
     });
-    this.allTeams = this.teamservise.getAllTeams();
+    this.teamservise.getAllTeams().subscribe({
+      next: value => this.allTeams = value,
+      error: err => console.error("Cannot get teams")
+    });
   }
 
   loadButtons(base: number) {

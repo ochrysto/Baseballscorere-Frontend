@@ -1,0 +1,50 @@
+.player-form {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.player-form h3 {
+  color: #73f80d;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-field label {
+  color: #aaa;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #000;
+  color: #fff;
+}
+
+.form-field input::placeholder {
+  color: #555;
+}
+
+.player-form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #73f80d;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.player-form button:hover {
+  background-color: #60d309;
+}
