@@ -34,13 +34,13 @@ export class OnBaseComponent implements OnInit {
   }
 
   getHomePlayerName(index: number): string {
-    return this.HomeOnBaseList?.at(index)?.jerseyNumber + ' '
+    return this.HomeOnBaseList?.at(index)?.jerseyNr + ' '
       + this.HomeOnBaseList?.at(index)?.firstname + ' '
       + this.HomeOnBaseList?.at(index)?.lastname || '';
   }
 
   getGuestPlayerName(index: number): string {
-    return this.GuestOnBaselist?.at(index)?.jerseyNumber + ' '
+    return this.GuestOnBaselist?.at(index)?.jerseyNr + ' '
       + this.GuestOnBaselist?.at(index)?.firstname + ' '
       + this.GuestOnBaselist?.at(index)?.lastname || '';
   }

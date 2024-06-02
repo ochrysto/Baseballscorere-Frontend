@@ -36,6 +36,7 @@ export class GamePageComponent implements OnInit {
       })
     ).subscribe(game => {
       this.gamePageService.game = game;
+      this.gamePageService.toggleIsGameFetched();
     });
   }
 }

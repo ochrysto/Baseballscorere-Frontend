@@ -26,6 +26,8 @@ export class GamePageService {
   public selectedBase$: Observable<number> = this.selectedBase.asObservable();
   public isChanged = new BehaviorSubject<null>(null);
   public isChanged$: Observable<null> = this.isChanged.asObservable();
+  public isGameFetched = new BehaviorSubject<boolean>(false);
+  public isGameFetched$: Observable<boolean> = this.isGameFetched.asObservable();
   public game?: GameGet;
 
 
@@ -62,7 +64,7 @@ export class GamePageService {
   protected visitorTeam: LineUpPlayers[] = [
     {
       battingOrder: 1,
-      jerseyNumber: '36',
+      jerseyNr: '36',
       firstname: 'Frank',
       lastname: 'Riermeister',
       position: 2,
@@ -70,7 +72,7 @@ export class GamePageService {
     },
     {
       battingOrder: 2,
-      jerseyNumber: '9',
+      jerseyNr: '9',
       firstname: 'Andre',
       lastname: 'Siener',
       position: 1,
@@ -78,7 +80,7 @@ export class GamePageService {
     },
     {
       battingOrder: 3,
-      jerseyNumber: '3',
+      jerseyNr: '3',
       firstname: "Matthias",
       lastname: "Gilde",
       position: 5,
@@ -86,7 +88,7 @@ export class GamePageService {
     },
     {
       battingOrder: 4,
-      jerseyNumber: '73',
+      jerseyNr: '73',
       firstname: "Thorsten",
       lastname: "Laack",
       position: 6,
@@ -94,7 +96,7 @@ export class GamePageService {
     },
     {
       battingOrder: 5,
-      jerseyNumber: '12',
+      jerseyNr: '12',
       firstname: "Peter",
       lastname: "Frank",
       position: 8,
@@ -102,7 +104,7 @@ export class GamePageService {
     },
     {
       battingOrder: 6,
-      jerseyNumber: '78',
+      jerseyNr: '78',
       firstname: "Norbert",
       lastname: "Schwertner",
       position: 7,
@@ -110,7 +112,7 @@ export class GamePageService {
     },
     {
       battingOrder: 7,
-      jerseyNumber: '56',
+      jerseyNr: '56',
       firstname: "Connie",
       lastname: "Ritter",
       position: 4,
@@ -118,7 +120,7 @@ export class GamePageService {
     },
     {
       battingOrder: 8,
-      jerseyNumber: '20',
+      jerseyNr: '20',
       firstname: "Markus",
       lastname: "Kleininger",
       position: 9,
@@ -126,7 +128,7 @@ export class GamePageService {
     },
     {
       battingOrder: 9,
-      jerseyNumber: '39',
+      jerseyNr: '39',
       firstname: "Steffen",
       lastname: "Sammert",
       position: 3,
@@ -136,7 +138,7 @@ export class GamePageService {
   protected homeTeam: LineUpPlayers[] = [
     {
       battingOrder: 1,
-      jerseyNumber: '67',
+      jerseyNr: '67',
       firstname: 'Hennes',
       lastname: 'Moser',
       position: 8,
@@ -144,7 +146,7 @@ export class GamePageService {
     },
     {
       battingOrder: 2,
-      jerseyNumber: '10',
+      jerseyNr: '10',
       firstname: 'Lutz',
       lastname: 'Dreher',
       position: 2,
@@ -152,7 +154,7 @@ export class GamePageService {
     },
     {
       battingOrder: 3,
-      jerseyNumber: '34',
+      jerseyNr: '34',
       firstname: "Peter",
       lastname: "Paukner",
       position: 6,
@@ -160,7 +162,7 @@ export class GamePageService {
     },
     {
       battingOrder: 4,
-      jerseyNumber: '88',
+      jerseyNr: '88',
       firstname: "Hennes",
       lastname: "Geyer",
       position: 1,
@@ -168,7 +170,7 @@ export class GamePageService {
     },
     {
       battingOrder: 5,
-      jerseyNumber: '00',
+      jerseyNr: '00',
       firstname: "Lenny",
       lastname: "Gerhardt",
       position: 7,
@@ -176,7 +178,7 @@ export class GamePageService {
     },
     {
       battingOrder: 6,
-      jerseyNumber: '25',
+      jerseyNr: '25',
       firstname: "Mick",
       lastname: "Rapp",
       position: 4,
@@ -184,7 +186,7 @@ export class GamePageService {
     },
     {
       battingOrder: 7,
-      jerseyNumber: '42',
+      jerseyNr: '42',
       firstname: "Jamie",
       lastname: "Tepper",
       position: 3,
@@ -192,7 +194,7 @@ export class GamePageService {
     },
     {
       battingOrder: 8,
-      jerseyNumber: '18',
+      jerseyNr: '18',
       firstname: "Dilara",
       lastname: "Schirrmeister",
       position: 9,
@@ -200,7 +202,7 @@ export class GamePageService {
     },
     {
       battingOrder: 9,
-      jerseyNumber: '16',
+      jerseyNr: '16',
       firstname: "Abdul",
       lastname: "Paschke",
       position: 5,
@@ -2038,5 +2040,9 @@ export class GamePageService {
 
   public triggerChange() {
     this.isChanged.next(null);
+  }
+
+  public toggleIsGameFetched() {
+    this.isGameFetched.next(true);
   }
 }

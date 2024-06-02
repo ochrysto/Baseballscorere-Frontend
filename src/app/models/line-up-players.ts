@@ -1,6 +1,6 @@
 export interface LineUpPlayers {
   battingOrder: number;
-  jerseyNumber: string;
+  jerseyNr: string;
   firstname: string;
   lastname: string;
   position: number;

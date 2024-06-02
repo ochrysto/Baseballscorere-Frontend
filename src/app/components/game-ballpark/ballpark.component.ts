@@ -29,6 +29,14 @@ export class BallparkComponent implements OnInit {
         console.log("succesfully refreshed ballpark component");
       },
       error: error => {console.log("Refresh fehlt")}
+    });
+
+    this.service.isGameFetched$.subscribe({
+      next: value => {
+        this.refresh();
+        console.log("succesfully refreshed ballpark component");
+      },
+      error: error => {console.log("Refresh fehlt")}
     })
   }
 
@@ -39,8 +47,7 @@ export class BallparkComponent implements OnInit {
     this.defensiveGuestTeam = [...this.visitorTeam].sort((a, b) => a.position - b.position);
     this.service.inningStatus$.subscribe(inningStatus => {
       this.currentInningStatus = inningStatus;
-    })
-    this.refresh();
+    });
   }
 
   protected refresh() {
@@ -58,7 +65,7 @@ export class BallparkComponent implements OnInit {
           console.log("cannot get game state", err);
         }
       });
-    }, 1000);
+    }, 400);
   }
 
   selectBase(number: number) {

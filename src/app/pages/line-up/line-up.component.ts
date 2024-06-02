@@ -146,7 +146,12 @@ export class LineUpComponent implements OnInit {
     }
 
     this.lineUpService.submitLineUp([homeLineUpPost, awayLineUpPost]).subscribe(() => {
-      this.router.navigate(['/game', this.game.id]);
+      this.gameService.createFirstTurn(this.game.id).subscribe({
+        next: msg => {
+          this.router.navigate(['/game', this.game.id]);
+        },
+        error: err => console.error("Cannot create a first turn: " + err)
+      })
     });
   }
 }

@@ -18,7 +18,13 @@ export class GameInputComponent {
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
   constructor(private service: GamePageService) {
-    this.loadButtons(this.service.selectedBase.getValue())
+    this.service.isGameFetched$.subscribe({
+      next: value => {
+        this.loadButtons(this.service.selectedBase.getValue());
+        console.log("succesfully load buttons");
+      },
+      error: error => {console.log("cannot load buttons for " + this.service.selectedBase.getValue() +" base")}
+    });
     service.selectedBase.subscribe({
       next: base => this.loadButtons(base),
       error: err => console.error("Cannot load buttons: " + err)
