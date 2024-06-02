@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { Button } from '../../models/button';
-import { GamePageService } from '../../services/game-page.service';
+import {Button} from '../../models/button';
+import {GamePageService} from '../../services/game-page.service';
 import {ActionPost} from "../../models/action-post";
+import {Component} from '@angular/core';
+import {PlayerService} from '../../services/player.service';
+import {TeamServesService} from "../../services/team-serves.service";
 
 @Component({
   selector: 'app-game-input',
@@ -14,14 +16,18 @@ export class GameInputComponent {
   currentButtons: any; // Array to hold the currently displayed buttons.
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
-  constructor(private service: GamePageService) {
+  allTeams: any[] = [];
+
+  constructor(private service: GamePageService, private playerService: PlayerService, private teamservise: TeamServesService) {
     this.loadButtons(this.service.selectedBase.getValue())
     service.selectedBase.subscribe({
       next: base => {
         this.loadButtons(base)
       },
-      error: err => {}
+      error: err => {
+      }
     });
+    this.allTeams = this.teamservise.getAllTeams();
   }
 
   loadButtons(base: number) {
@@ -76,8 +82,12 @@ export class GameInputComponent {
         responsible: []
       }
       this.service.postGameAction(1, postData).subscribe({
-        next: (msg) => {console.log("Server response: ", msg)},
-        error: (err) => {console.log("Error: ", err)}
+        next: (msg) => {
+          console.log("Server response: ", msg)
+        },
+        error: (err) => {
+          console.log("Error: ", err)
+        }
       });
     } else {
       this.buttonStack.push(this.currentButtons);  // Push the current buttons to the button stack.
@@ -106,7 +116,9 @@ export class GameInputComponent {
     } else {
       return Object.entries(buttons)
         .filter(v => v[1] !== null)
-        .map(([key, _]) => { return {'button': key} });
+        .map(([key, _]) => {
+          return {'button': key}
+        });
     }
   }
 

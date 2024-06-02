@@ -11,7 +11,7 @@
         </div>
       </div>
         <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">
-          <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM" class="team home">
+          <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM"  class="team home">
           <p>Bremen Dockers</p>
           <div class="line-up-table">
         <table>
@@ -308,15 +308,21 @@
           <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
         </td>
         <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-    </table>
+        <td>
+          <select>
+            <option value="">Wählen...</option>
+            <option value="pitcher">Pitcher</option>
+            <option value="catcher">Catcher</option>
+          </select>
+        </td>
+        </tr>
+      </table>
+    </div>
   </div>
-  <div class="action-button">
-    <button>Zum Spiel</button>
+    <div class="action-button">
+      <button routerLink="/game">Zum Spiel</button>
+    </div>
+  </div>
+    </div>
   </div>
 </div>

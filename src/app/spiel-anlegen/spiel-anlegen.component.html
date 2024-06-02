@@ -15,7 +15,8 @@
           <input type="text">
           <p class="right">Datum</p>
           <input type="date">
-          <p>Ort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          <p>
+            Ort&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
           <input type="text">
           <p class="Innings">Innings</p>
           <select>
@@ -80,6 +81,7 @@
         </div>
       </form>
     </div>
-    <button type="submit" class="weiter-btn">Weiter</button>
+    {{allteams}}
+    <button routerLink="/line-up" type="submit" class="weiter-btn">Weiter</button>
   </main>
 </div>
