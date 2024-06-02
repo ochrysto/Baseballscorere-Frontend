@@ -21,18 +21,18 @@
 
 
   @if (currentInningStatus === "isTopInning") {
-    @for (player of visitorTeam; track player) {
+    @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
       <tbody class="player-visitor">
       <tr>
         <td class="icon">
           <span class="material-symbols-outlined">sync</span>
         </td>
-        <td>{{ player.jerseyNr }}</td>
-        <td>{{ player.firstname }} {{ player.lastname }}</td>
-        <td>{{ numberToStringMap[player.position] }}</td>
-        <td class="batting-order">{{ player.battingOrder }}</td>
+        <td>{{ diamond.jerseyNr }}</td>
+        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>  <!-- TODO: change -->
+        <td class="batting-order">{{ diamond.jerseyNr }}</td>  <!-- TODO: change -->
         <td class="diamond">
-          <app-diamond [content]="gamePageService.getGuestDiamondsByPlayer(player.lastname, chosenInning)"></app-diamond>
+          <app-diamond [content]="diamond.diamond"></app-diamond>
         </td>
         <td class="icon">
           <span class="material-symbols-outlined">edit_square</span>
@@ -42,18 +42,18 @@
     }
   }
   @if (currentInningStatus === "isBottomInning") {
-    @for (player of homeTeam; track player) {
+    @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
       <tbody class="player-home">
       <tr>
         <td class="icon">
           <span class="material-symbols-outlined">sync</span>
         </td>
-        <td>{{ player.jerseyNr }}</td>
-        <td>{{ player.firstname }} {{ player.lastname }}</td>
-        <td>{{ numberToStringMap[player.position] }}</td>
-        <td class="batting-order">{{ player.battingOrder }}</td>
+        <td>{{ diamond.jerseyNr }}</td>
+        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>  <!-- TODO: change -->
+        <td class="batting-order">{{ diamond.jerseyNr }}</td>  <!-- TODO: change -->
         <td class="diamond">
-          <app-diamond [content]="gamePageService.getHomeDiamondsByPlayer(player.lastname, chosenInning)" ></app-diamond>
+          <app-diamond [content]="diamond.diamond" ></app-diamond>
         </td>
         <td class="icon">
           <span class="material-symbols-outlined">edit_square</span>

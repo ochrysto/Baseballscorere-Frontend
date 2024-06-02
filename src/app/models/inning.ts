@@ -1,6 +1,6 @@
-import {Diamonds} from "./diamonds";
+import {DiamondGet} from "./diamond-get";
 
 export interface Inning {
   inningNumber: number;
-  diamonds: Diamonds[];
+  diamonds: DiamondGet[];
 }

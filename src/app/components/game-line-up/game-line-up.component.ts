@@ -3,6 +3,7 @@ import {LineUpPlayers} from "../../models/line-up-players";
 import {GamePageService} from "../../services/game-page.service";
 import {DiamondComponent} from "../diamond/diamond.component";
 import {NgIf} from "@angular/common";
+import {OffensiveActionsGet} from "../../models/offensive-actions-get";
 
 @Component({
   selector: 'app-game-line-up',
@@ -23,8 +24,8 @@ export class GameLineUpComponent implements OnInit {
    */
   protected chosenInning: number = 1;
 
-  visitorTeam: LineUpPlayers[] = [];
-  homeTeam: LineUpPlayers[] = [];
+  visitorTeamDiamonds: OffensiveActionsGet[][] = [];
+  homeTeamDiamonds: OffensiveActionsGet[][] = [];
   /**
    * turns position numbers into strings for better representation
    */
@@ -45,8 +46,30 @@ export class GameLineUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.visitorTeam = this.gamePageService.getAllGuestPlayer();
-    this.homeTeam = this.gamePageService.getAllHomePlayers();
+    // Refresh diamonds on game fetch
+    this.gamePageService.isGameFetched$.subscribe({
+      next: value => {
+        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
+          next: diamonds => this.visitorTeamDiamonds = diamonds
+        });
+        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
+          next: diamonds => this.homeTeamDiamonds = diamonds
+        });
+      }
+    });
+
+    // Refresh diamonds on game change
+    this.gamePageService.isChanged$.subscribe({
+      next: value => {
+        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
+          next: diamonds => this.visitorTeamDiamonds = diamonds
+        });
+        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
+          next: diamonds => this.homeTeamDiamonds = diamonds
+        });
+      }
+    });
+
     this.gamePageService.inningStatus$.subscribe(inningStatus => {
       this.currentInningStatus = inningStatus;
     });

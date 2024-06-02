@@ -50,6 +50,10 @@ export class BallparkComponent implements OnInit {
     });
   }
 
+  /**
+   * rerenders the page
+   * @protected
+   */
   protected refresh() {
     if (!this.service.game?.id) {
       console.error("Game id not found! Check `GamePageService`!")
@@ -68,6 +72,10 @@ export class BallparkComponent implements OnInit {
     }, 400);
   }
 
+  /**
+   * selects the offensive player
+   * @param number identifies the baseposition
+   */
   selectBase(number: number) {
     this.service.selectedBase.next(number);
   }

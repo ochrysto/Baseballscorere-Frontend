@@ -1,10 +1,7 @@
+import {Component} from '@angular/core';
 import {Button} from '../../models/button';
 import {GamePageService} from '../../services/game-page.service';
 import {ActionPost} from "../../models/action-post";
-import {Component} from '@angular/core';
-import {PlayerService} from '../../services/player.service';
-import {TeamServesService} from "../../services/team-serves.service";
-import {TeamGet} from "../../models/team-get";
 
 @Component({
   selector: 'app-game-input',
@@ -23,7 +20,9 @@ export class GameInputComponent {
         this.loadButtons(this.service.selectedBase.getValue());
         console.log("succesfully load buttons");
       },
-      error: error => {console.log("cannot load buttons for " + this.service.selectedBase.getValue() +" base")}
+      error: error => {
+        console.log("cannot load buttons for " + this.service.selectedBase.getValue() + " base")
+      }
     });
     service.selectedBase.subscribe({
       next: base => this.loadButtons(base),
@@ -31,6 +30,10 @@ export class GameInputComponent {
     });
   }
 
+  /**
+   * loads fitting buttons to base selection
+   * @param base
+   */
   loadButtons(base: number) {
     if (!this.service.game?.id) {
       console.error("Game id not found! Check `GamePageService`!")

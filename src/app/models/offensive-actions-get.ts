@@ -1,7 +1,9 @@
-import {Diamonds} from "./diamonds";
+import {DiamondGet} from "./diamond-get";
 
 export interface OffensiveActionsGet {
-  name: string;
-  passNumber: number;
-  offensiveActions: Diamonds[];
+  firstName: string;
+  lastName: string;
+  jerseyNr: number;
+  isAtBat: boolean;
+  diamond: DiamondGet;
 }

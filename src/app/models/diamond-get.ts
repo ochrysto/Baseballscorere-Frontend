@@ -1,4 +1,4 @@
-export interface Diamonds {
+export interface DiamondGet {
   order: number;
   base: number;
   center: string;
