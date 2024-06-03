@@ -23,8 +23,8 @@ export const routes: Routes = [
   {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard]},
   {path: 'game', component: GameCreate, canActivate: [AuthGuard]},
   {path: 'scorer_anlegen', component: ScorerAnlegenFormComponent},
-  {path: 'schiedsrichter_anlegen', component: SchiedsrichterAnlegenFormComponent},
-  {path: 'team_erstellen', component: TeamErstellungsFormComponent},
-  {path: 'TeamBearbeiten/:id', component: TeammitgliederHinzufuegenComponent}, // Assuming :id is a unique identifier for a team
-  {path: '', redirectTo: '/team_erstellen', pathMatch: 'full'}
+  {path: 'create-umpire', component: SchiedsrichterAnlegenFormComponent},
+  {path: 'create-team', component: TeamErstellungsFormComponent},
+  {path: 'edit-team/:id', component: TeammitgliederHinzufuegenComponent}, // Assuming :id is a unique identifier for a team
+  {path: '', redirectTo: '/create-team', pathMatch: 'full'}
 ];

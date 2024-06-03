@@ -11,9 +11,9 @@ export interface GameStateGet {
   homeHits: number;
   awayLob: number;
   homeLob: number;
-  //awayRuns: number[];
-  //homeRuns: number[];
-  scoreBoardInnings: ScoreboardInningGet[]
+  awayRuns: number[];
+  homeRuns: number[];
+  // scoreBoardInnings: ScoreboardInningGet[]
   inning: number;
   team: string;
   outs: number;
