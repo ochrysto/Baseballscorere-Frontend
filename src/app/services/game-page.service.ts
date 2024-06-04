@@ -1,15 +1,13 @@
-import {Injectable} from '@angular/core';
-import {LineUpPlayers} from "../models/line-up-players";
-import {BehaviorSubject, Observable, tap} from "rxjs";
-import {OffensiveActionsGet} from "../models/offensive-actions-get";
-import {ScoreboardInningGet} from "../models/scoreboard-inning-get";
-import {GameScoreGet} from "../models/game-score-get";
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { LineUpPlayers } from '../models/line-up-players';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { OffensiveActionsGet } from '../models/offensive-actions-get';
+import { HttpClient } from '@angular/common/http';
 import { ActionsGet } from '../models/actions-get';
 import { MessageGet } from '../models/message-get';
 import { ActionPost } from '../models/action-post';
 import { GameStateGet } from '../models/game-state-get';
-import {GameGet} from "../models/game-get";
+import { GameGet } from '../models/game-get';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +19,6 @@ export class GamePageService {
   public gameIsOn = false;
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
   inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
-  // numberOfInnings: number = 9;
   public selectedBase = new BehaviorSubject<number>(0);
   public selectedBase$: Observable<number> = this.selectedBase.asObservable();
   public isChanged = new BehaviorSubject<null>(null);
@@ -31,7 +28,8 @@ export class GamePageService {
   public game?: GameGet;
 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   /**
    * changes inningstatus from topinning to bottominning and vice versa in scoreboard component
@@ -49,7 +47,7 @@ export class GamePageService {
       firstname: 'Frank',
       lastname: 'Riermeister',
       position: 2,
-      passNumber: 666382,
+      passNumber: 666382
     },
     {
       battingOrder: 2,
@@ -57,61 +55,61 @@ export class GamePageService {
       firstname: 'Andre',
       lastname: 'Siener',
       position: 1,
-      passNumber: 554932,
+      passNumber: 554932
     },
     {
       battingOrder: 3,
       jerseyNr: '3',
-      firstname: "Matthias",
-      lastname: "Gilde",
+      firstname: 'Matthias',
+      lastname: 'Gilde',
       position: 5,
       passNumber: 443926
     },
     {
       battingOrder: 4,
       jerseyNr: '73',
-      firstname: "Thorsten",
-      lastname: "Laack",
+      firstname: 'Thorsten',
+      lastname: 'Laack',
       position: 6,
       passNumber: 546738
     },
     {
       battingOrder: 5,
       jerseyNr: '12',
-      firstname: "Peter",
-      lastname: "Frank",
+      firstname: 'Peter',
+      lastname: 'Frank',
       position: 8,
       passNumber: 546389
     },
     {
       battingOrder: 6,
       jerseyNr: '78',
-      firstname: "Norbert",
-      lastname: "Schwertner",
+      firstname: 'Norbert',
+      lastname: 'Schwertner',
       position: 7,
       passNumber: 765449
     },
     {
       battingOrder: 7,
       jerseyNr: '56',
-      firstname: "Connie",
-      lastname: "Ritter",
+      firstname: 'Connie',
+      lastname: 'Ritter',
       position: 4,
       passNumber: 563722
     },
     {
       battingOrder: 8,
       jerseyNr: '20',
-      firstname: "Markus",
-      lastname: "Kleininger",
+      firstname: 'Markus',
+      lastname: 'Kleininger',
       position: 9,
       passNumber: 964532
     },
     {
       battingOrder: 9,
       jerseyNr: '39',
-      firstname: "Steffen",
-      lastname: "Sammert",
+      firstname: 'Steffen',
+      lastname: 'Sammert',
       position: 3,
       passNumber: 657486
     }
@@ -123,7 +121,7 @@ export class GamePageService {
       firstname: 'Hennes',
       lastname: 'Moser',
       position: 8,
-      passNumber: 746493,
+      passNumber: 746493
     },
     {
       battingOrder: 2,
@@ -131,127 +129,65 @@ export class GamePageService {
       firstname: 'Lutz',
       lastname: 'Dreher',
       position: 2,
-      passNumber: 935449,
+      passNumber: 935449
     },
     {
       battingOrder: 3,
       jerseyNr: '34',
-      firstname: "Peter",
-      lastname: "Paukner",
+      firstname: 'Peter',
+      lastname: 'Paukner',
       position: 6,
       passNumber: 548302
     },
     {
       battingOrder: 4,
       jerseyNr: '88',
-      firstname: "Hennes",
-      lastname: "Geyer",
+      firstname: 'Hennes',
+      lastname: 'Geyer',
       position: 1,
       passNumber: 345250
     },
     {
       battingOrder: 5,
       jerseyNr: '00',
-      firstname: "Lenny",
-      lastname: "Gerhardt",
+      firstname: 'Lenny',
+      lastname: 'Gerhardt',
       position: 7,
       passNumber: 600468
     },
     {
       battingOrder: 6,
       jerseyNr: '25',
-      firstname: "Mick",
-      lastname: "Rapp",
+      firstname: 'Mick',
+      lastname: 'Rapp',
       position: 4,
       passNumber: 552320
     },
     {
       battingOrder: 7,
       jerseyNr: '42',
-      firstname: "Jamie",
-      lastname: "Tepper",
+      firstname: 'Jamie',
+      lastname: 'Tepper',
       position: 3,
       passNumber: 553725
     },
     {
       battingOrder: 8,
       jerseyNr: '18',
-      firstname: "Dilara",
-      lastname: "Schirrmeister",
+      firstname: 'Dilara',
+      lastname: 'Schirrmeister',
       position: 9,
       passNumber: 555382
     },
     {
       battingOrder: 9,
       jerseyNr: '16',
-      firstname: "Abdul",
-      lastname: "Paschke",
+      firstname: 'Abdul',
+      lastname: 'Paschke',
       position: 5,
       passNumber: 546372
     }
   ]
-
-  // protected scoreBoardInnings: ScoreboardInningGet[] = [
-  //   {
-  //     inningNumber: 1,
-  //     guestScore: '1',
-  //     homeScore: '3',
-  //   },
-  //   {
-  //     inningNumber: 2,
-  //     guestScore: '0',
-  //     homeScore: '2',
-  //   },
-  //   {
-  //     inningNumber: 3,
-  //     guestScore: '0',
-  //     homeScore: '1',
-  //   },
-  //   {
-  //     inningNumber: 4,
-  //     guestScore: '4',
-  //     homeScore: '0',
-  //   },
-  //   {
-  //     inningNumber: 5,
-  //     guestScore: '0',
-  //     homeScore: '0',
-  //   },
-  //   {
-  //     inningNumber: 6,
-  //     guestScore: '1',
-  //     homeScore: '1',
-  //   },
-  //   {
-  //     inningNumber: 7,
-  //     guestScore: '2',
-  //     homeScore: '0',
-  //   },
-  //   {
-  //     inningNumber: 8,
-  //     guestScore: '0',
-  //     homeScore: '0',
-  //   },
-  //   {
-  //     inningNumber: 9,
-  //     guestScore: '1',
-  //     homeScore: '0',
-  //   },
-  // ]
-  // protected gameScore: GameScoreGet =
-  //   {
-  //     guestTeamRuns: 9,
-  //     homeTeamRuns: 4,
-  //     guestTeamHits: 8,
-  //     homeTeamHits: 7,
-  //     guestTeamErrors: 0,
-  //     homeTeamErrors: 3,
-  //     guestTeamLobs: 10,
-  //     homeTeamLobs: 12,
-  //     currentInning: 6,
-  //     topOrBottom: 'Top',
-  //     outs: 1,
-  //   };
 
   getAllGuestPlayer() {
     return this.visitorTeam;
@@ -260,14 +196,6 @@ export class GamePageService {
   getAllHomePlayers() {
     return this.homeTeam;
   }
-
-  // getGameScore() {
-  //   return this.gameScore;
-  // }
-
-  // getScoreBoardInnings() {
-  //   return this.scoreBoardInnings;
-  // }
 
   getGameActions(gid: number) {
     const url = `${this.baseUrl}/game/${gid}/action`;
@@ -297,7 +225,7 @@ export class GamePageService {
   }
 
   public triggerChange() {
-    console.log("Game change triggered")
+    console.log('Game change triggered')
     this.isChanged.next(null);
   }
 

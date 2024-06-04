@@ -43,7 +43,7 @@ export class GamePageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private gameService: GameService, private service: GamePageService) {
     this.service.isChanged$.subscribe({
       next: value => this.refreshAllData(),
-      error: err => console.error("Cannot refresh all data: " + err)
+      error: err => console.error('Cannot refresh all data: ' + err)
     });
 
     this.service.isGameFetched$.subscribe({
@@ -57,7 +57,7 @@ export class GamePageComponent implements OnInit {
     this.service.selectedBase$.subscribe({
       next: base => {
         this.selectedBase = base;
-        console.log("Changed selected base to " + base);
+        console.log('Changed selected base to ' + base);
       }
     })
   }
@@ -90,10 +90,10 @@ export class GamePageComponent implements OnInit {
     // Refresh diamonds on game change
     this.service.isChanged$.subscribe({
       next: value => {
-        this.service.getGameDiamonds(this.game.id, "AWAY").subscribe({
+        this.service.getGameDiamonds(this.game.id, 'AWAY').subscribe({
           next: diamonds => this.visitorTeamDiamonds = diamonds
         });
-        this.service.getGameDiamonds(this.game.id, "HOME").subscribe({
+        this.service.getGameDiamonds(this.game.id, 'HOME').subscribe({
           next: diamonds => this.homeTeamDiamonds = diamonds
         });
       }
@@ -112,8 +112,6 @@ export class GamePageComponent implements OnInit {
       })
     ).subscribe(game => {
       this.game = game;
-      // this.service.triggerChange();
-      // this.service.toggleIsGameFetched();
       this.refreshAllData();
     });
   }

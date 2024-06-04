@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import {Button} from '../../models/button';
-import {GamePageService} from '../../services/game-page.service';
-import {ActionPost} from "../../models/action-post";
+import { Button } from '../../models/button';
+import { GamePageService } from '../../services/game-page.service';
+import { ActionPost } from '../../models/action-post';
 import { ActionsGet } from '../../models/actions-get';
 import { GameGet } from '../../models/game-get';
 
@@ -9,22 +9,33 @@ import { GameGet } from '../../models/game-get';
   selector: 'app-game-input',
   standalone: true,
   templateUrl: './game-input.component.html',
-  styleUrl: './game-input.component.css',
+  styleUrl: './game-input.component.css'
 })
 export class GameInputComponent {
   @Input()
-  get actions(): ActionsGet { return this._actions }
+  get actions(): ActionsGet {
+    return this._actions
+  }
+
   set actions(actions: ActionsGet) {
     this._actions = actions;
     this.refreshButtons();
   }
 
   @Input()
-  get game() { return this._game }
-  set game(game: GameGet) { this._game = game }
+  get game() {
+    return this._game
+  }
+
+  set game(game: GameGet) {
+    this._game = game
+  }
 
   @Input()
-  get base(): number { return this._base }
+  get base(): number {
+    return this._base
+  }
+
   set base(base: number) {
     this._base = base;
     this.refreshButtons();
@@ -38,56 +49,7 @@ export class GameInputComponent {
   currentButtons: any; // Array to hold the currently displayed buttons.
   showBackButton: boolean = false; // Flag to control the visibility of the back button.
 
-  constructor(private service: GamePageService) {
-    // this.service.isGameFetched$.subscribe({
-    //   next: value => {
-    //     this.loadButtons(this.service.selectedBase.getValue());
-    //     console.log("succesfully load buttons");
-    //   },
-    //   error: error => {
-    //     console.log("cannot load buttons for " + this.service.selectedBase.getValue() + " base")
-    //   }
-    // });
-    // service.selectedBase.subscribe({
-    //   next: base => this.loadButtons(base),
-    //   error: err => console.error("Cannot load buttons: " + err)
-    // });
-  }
-
-  // /**
-  //  * loads fitting buttons to base selection
-  //  * @param base
-  //  */
-  // loadButtons(base: number) {
-  //   if (!this.service.game?.id) {
-  //     console.error("Game id not found! Check `GamePageService`!")
-  //     return;
-  //   }
-  //
-  //   this.service.getGameActions(this.service.game.id).subscribe({
-  //     next: (buttons) => {
-  //       let selectedButtons = null;
-  //       switch (base) {
-  //         case 0:
-  //           selectedButtons = buttons["batter"];
-  //           break;
-  //         case 1:
-  //           selectedButtons = buttons["firstBaseRunner"];
-  //           break;
-  //         case 2:
-  //           selectedButtons = buttons["secondBaseRunner"];
-  //           break;
-  //         case 3:
-  //           selectedButtons = buttons["thirdBaseRunner"];
-  //       }
-  //       this.currentButtons = selectedButtons;
-  //       console.log("Successfully got buttons from python backend. Thanks Mischa!")
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //   });
-  // }
+  constructor(private service: GamePageService) {}
 
   isButton(obj: any): obj is Button {
     return (
@@ -103,16 +65,16 @@ export class GameInputComponent {
     let selectedButtons = null;
     switch (this._base) {
       case 0:
-        selectedButtons = this.actions["batter"];
+        selectedButtons = this.actions['batter'];
         break;
       case 1:
-        selectedButtons = this.actions["firstBaseRunner"];
+        selectedButtons = this.actions['firstBaseRunner'];
         break;
       case 2:
-        selectedButtons = this.actions["secondBaseRunner"];
+        selectedButtons = this.actions['secondBaseRunner'];
         break;
       case 3:
-        selectedButtons = this.actions["thirdBaseRunner"];
+        selectedButtons = this.actions['thirdBaseRunner'];
     }
     this.currentButtons = selectedButtons;
   }
@@ -124,7 +86,7 @@ export class GameInputComponent {
    */
   handleButtonClick(button: any) {
     if (this.isButton(button)) {
-      console.log("Tiefpunkt erreicht")
+      console.log('Tiefpunkt erreicht')
       // TODO: add logic for the buttons here
       let postData: ActionPost = {
         base: this.service.selectedBase.getValue(),
@@ -134,16 +96,16 @@ export class GameInputComponent {
       }
 
       if (!this._game.id) {
-        console.error("Game id not found! Check `GamePageService`!")
+        console.error('Game id not found! Check `GamePageService`!')
         return;
       }
 
       this.service.postGameAction(this.game.id, postData).subscribe({
         next: (msg) => {
-          console.log("Server response: ", msg)
+          console.log('Server response: ', msg)
         },
         error: (err) => {
-          console.log("Error: ", err)
+          console.log('Error: ', err)
         }
       });
     } else {

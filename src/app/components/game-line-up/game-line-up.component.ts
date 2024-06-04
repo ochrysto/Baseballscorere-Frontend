@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {LineUpPlayers} from "../../models/line-up-players";
-import {GamePageService} from "../../services/game-page.service";
-import {DiamondComponent} from "../diamond/diamond.component";
-import {NgIf} from "@angular/common";
-import {OffensiveActionsGet} from "../../models/offensive-actions-get";
+import { GamePageService } from '../../services/game-page.service';
+import { DiamondComponent } from '../diamond/diamond.component';
+import { NgIf } from '@angular/common';
+import { OffensiveActionsGet } from '../../models/offensive-actions-get';
 import { GameStateGet } from '../../models/game-state-get';
 
 @Component({
@@ -19,16 +18,31 @@ import { GameStateGet } from '../../models/game-state-get';
 })
 export class GameLineUpComponent implements OnInit {
   @Input()
-  get gameState(): GameStateGet { return this._gameState }
-  set gameState(gameState: GameStateGet) { this._gameState = gameState }
+  get gameState(): GameStateGet {
+    return this._gameState
+  }
+
+  set gameState(gameState: GameStateGet) {
+    this._gameState = gameState
+  }
 
   @Input()
-  get visitorTeamDiamonds() { return this._visitorTeamDiamonds }
-  set visitorTeamDiamonds( diamonds: OffensiveActionsGet[][] ) { this._visitorTeamDiamonds = diamonds }
+  get visitorTeamDiamonds() {
+    return this._visitorTeamDiamonds
+  }
+
+  set visitorTeamDiamonds(diamonds: OffensiveActionsGet[][]) {
+    this._visitorTeamDiamonds = diamonds
+  }
 
   @Input()
-  get homeTeamDiamonds() { return this._homeTeamDiamonds }
-  set homeTeamDiamonds( diamonds: OffensiveActionsGet[][] ) { this._homeTeamDiamonds = diamonds }
+  get homeTeamDiamonds() {
+    return this._homeTeamDiamonds
+  }
+
+  set homeTeamDiamonds(diamonds: OffensiveActionsGet[][]) {
+    this._homeTeamDiamonds = diamonds
+  }
 
 
   /**
@@ -61,33 +75,6 @@ export class GameLineUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    // // Refresh diamonds on game fetch
-    // this.gamePageService.isGameFetched$.subscribe({
-    //   next: value => {
-    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
-    //       next: diamonds => this._visitorTeamDiamonds = diamonds
-    //     });
-    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
-    //       next: diamonds => this._homeTeamDiamonds = diamonds
-    //     });
-    //   }
-    // });
-    //
-    // // Refresh diamonds on game change
-    // this.gamePageService.isChanged$.subscribe({
-    //   next: value => {
-    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
-    //       next: diamonds => this._visitorTeamDiamonds = diamonds
-    //     });
-    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
-    //       next: diamonds => this._homeTeamDiamonds = diamonds
-    //     });
-    //   }
-    // });
-    //
-    // this.gamePageService.inningStatus$.subscribe(inningStatus => {
-    //   this.currentInningStatus = inningStatus;
-    // });
   }
 
   /**
@@ -96,6 +83,7 @@ export class GameLineUpComponent implements OnInit {
   getPrevInning() {
     this.chosenInning--;
   }
+
   /**
    * changes presentation of diamonds to the next inning
    */
