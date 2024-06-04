@@ -4,10 +4,12 @@
   color: #ffffff;
   height: 100vh;
 }
+
 nav {
   text-align: right;
   padding: 20px;
 }
+
 nav button {
   border: none;
   background-color: #b4ff00;
@@ -17,10 +19,12 @@ nav button {
   cursor: pointer;
   padding: 10px 30px;
 }
+
 nav button:hover {
   background-color: #1c1e1a;
   border-radius: 30px;
 }
+
 h1 {
   text-align: center;
   color: #9fa89a;
@@ -29,16 +33,25 @@ h1 {
   font-size: 50px;
   padding-bottom: 20px;
 }
+
 .form-container {
   background-color: black;
   padding: 20px;
   border-radius: 5px;
-  max-width: 800px; /* Adjust based on actual width */
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .form-row {
-  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 300px;
+  padding: 10px;
 }
 
 .team-section {
@@ -49,67 +62,89 @@ h1 {
   padding-top: 15px;
 }
 
+.team-section .team {
+  flex: 0 0 45%;
+}
+
+.team select {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.5em;
+  border-radius: 15px;
+  background-color: lightgray;
+  border: 2px solid #b4ff00;
+  color: black;
+}
+
 .vs {
   font-size: 34px;
   margin: 0 15px;
 }
-.weiter-btn {
+
+.submit-btn {
   border: none;
   border-radius: 15px;
   background-color: #b4ff00;
   font-family: Kanit, sans-serif;
   font-weight: 800;
   cursor: pointer;
-  margin: 10px;
   color: #111110;
   display: block;
-  font-size: 15px;
-  right: 120px;
-  padding: 10px 30px;
-  position: absolute;
-  bottom: 60px;
+  font-size: 25px;
+  padding: 12px 50px;
+  margin-left: 78%;
 }
+
 input[type="text"],
 input[type="number"],
 input[type="date"],
 select {
-  color: #78cf4c;
-  margin-bottom: 15px;
+  color: black; /* #78cf4c is bad to see :( */
   font-size: 16px;
-  width: 30%;
-  padding-bottom: 5px;
-}
-.team-section th,
-.team-section td {
-  background-color: #ffff9f;
-}
-.form-row {
-  padding-right: 150px;
   width: 100%;
+  padding: 5px;
 }
-p {
-  margin: 10px;
-  color: #78cf4c;
-  display: inline-block;
-  padding-right: 10px;
-  font-size: 20px;
+
+label {
+  font-size: 15px;
+  color: #b4ff00;
+  display: block;
+  margin-bottom: 5px;
 }
-.right {
-  padding-left: 10px;
+
+.is-invalid {
+  border: 2px solid red;
 }
-.Innings {
-  padding-left: 9px;
+
+.invalid-feedback {
+  color: red;
+  font-size: 0.9em;
+  min-height: 20px;
 }
-.Liga {
-  padding-left: 20px;
+
+.invalid-feedback-container {
+  min-height: 20px;
+  margin-bottom: 5px;
 }
-.team select {
-  width: 100%;
-  padding-right: 100px;
-  text-align: center;
-  font-size: 25px;
-  color: #9fa89a;
+
+.official {
+  margin-bottom: 15px;
 }
+
+.official-pair {
+  display: flex;
+  justify-content: space-between;
+}
+
+.official-name,
+.official-number {
+  flex: 1;
+}
+
+.official-name {
+  margin-right: 10px;
+}
+
 .umpire-header,
 .plateumpire-header,
 .scorer-header {
@@ -119,7 +154,9 @@ p {
   padding: 5px;
   margin: 5px;
   color: #9fa89a;
+  justify-content: center;
 }
+
 .umpire-header::before,
 .umpire-header::after,
 .plateumpire-header::before,
@@ -132,24 +169,21 @@ p {
   background: #9fa89a;
   margin: 0 10px;
 }
-.official {
-}
-.team select input {
-  background-color: #78cf4c;
-  color: #78cf4c;
-}
-label {
-  font-size: 15px;
-  color: #b4ff00;
-  padding-right: 30px;
-  margin-left: 20px;
-}
 
-.is-invalid {
-  border: 1px solid red;
-}
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
 
-.invalid-feedback {
-  color: red;
-  font-size: 0.9em;
+  .form-group {
+    min-width: 100%;
+  }
+
+  .team-section {
+    flex-direction: column;
+  }
+
+  .vs {
+    display: none;
+  }
 }

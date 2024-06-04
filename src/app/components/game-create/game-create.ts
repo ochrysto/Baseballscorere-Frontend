@@ -9,7 +9,7 @@ import {AssociationService} from "../../services/association.service";
 import {LeagueService} from "../../services/league.service";
 import {GameService} from "../../services/game.service";
 import {GamePost} from "../../models/game-post";
-import {DatePipe, NgClass, NgIf} from "@angular/common";
+import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {ScorerService} from "../../services/scorer.service";
 import {ScorerGet} from "../../models/scorer-get";
 import {UmpireService} from "../../services/umpire.service";
@@ -23,7 +23,8 @@ import {UmpireGet} from "../../models/umpire-get";
   imports: [
     ReactiveFormsModule,
     NgClass,
-    NgIf
+    NgIf,
+    NgForOf
   ],
   providers: [DatePipe]
 })

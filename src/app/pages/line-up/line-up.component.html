@@ -21,15 +21,15 @@
                 <tr *ngFor="let player of homeLineUp.controls; let i = index" [formGroupName]="i">
                   <td>{{ i + 1 }}</td>
                   <td>
-                    <select formControlName="playerId">
+                    <select formControlName="playerId" class="full-width">
                       <option *ngFor="let player of homePlayers" [value]="player.id">{{ player.firstName }}</option>
                     </select>
                   </td>
                   <td>
-                    <input type="number" placeholder="Passnummer" formControlName="passNumber">
+                    <input type="number" placeholder="Passnummer" formControlName="passNumber" class="full-width">
                   </td>
                   <td>
-                    <select formControlName="position">
+                    <select formControlName="position" class="full-width">
                       <option value="" disabled hidden selected>Wählen...</option>
                       <option *ngFor="let position of positions" [value]="position.id">{{ position.description }}</option>
                     </select>
@@ -37,7 +37,7 @@
                 </tr>
               </table>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
         </div>
       </div>
@@ -56,15 +56,15 @@
                 <tr *ngFor="let player of awayLineUp.controls; let i = index" [formGroupName]="i">
                   <td>{{ i + 1 }}</td>
                   <td>
-                    <select formControlName="playerId">
+                    <select formControlName="playerId" class="full-width">
                       <option *ngFor="let player of awayPlayers" [value]="player.id">{{ player.firstName }}</option>
                     </select>
                   </td>
                   <td>
-                    <input type="text" placeholder="Passnummer" formControlName="passNumber">
+                    <input type="text" placeholder="Passnummer" formControlName="passNumber" class="full-width">
                   </td>
                   <td>
-                    <select formControlName="position">
+                    <select formControlName="position" class="full-width">
                       <option value="" disabled hidden selected>Wählen...</option>
                       <option *ngFor="let position of positions" [value]="position.id">{{ position.description }}</option>
                     </select>
@@ -72,7 +72,7 @@
                 </tr>
               </table>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
           </form>
         </div>
       </div>

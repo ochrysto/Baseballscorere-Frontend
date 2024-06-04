@@ -3,84 +3,128 @@
   background-color: #B4FF00;
   background-image: url("Plateconference.png");
   background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .container {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 10px;
-  border: 5px solid black;
+  padding: 20px;
+  border-radius: 10px;
 }
+
 .line-up-container h1 {
-  text-align: center;
   font-family: Kanit, sans-serif;
   font-weight: 800;
   color: var(--actiongreen);
-  padding: 30px;
-  font-size: 70px;
+  margin-bottom: 20px;
+  font-size: 3rem;
 }
+
 .teams-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
 .tabs {
   display: flex;
-  border-bottom: 5px solid black;
+  margin-bottom: 20px;
 }
+
 .tab {
   flex: 1;
-  padding: 10px;
-  font-size: 24px;
+  padding: 15px;
+  font-size: 1.2rem;
   background-color: black;
   color: var(--actiongreen);
-  border: none;
+  border: 2px solid var(--actiongreen);
   cursor: pointer;
-  outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.tab.active {
-  border-bottom: 5px solid black;
+
+.tab:not(.active):hover {
   background-color: var(--actiongreen);
   color: black;
 }
-.team_heim .team p,
-.team_away .team p {
+
+.tab.active {
+  background-color: var(--actiongreen);
   color: black;
 }
+
+.team p {
+  color: var(--actiongreen);
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .line-up-table {
   background-color: black;
   color: white;
   width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
-.team_heim .line-up-table td,
-.team_away .line-up-table td {
+
+.line-up-table th, .line-up-table td {
   padding: 10px;
-  border: 1px solid white;
-}
-.line-up-table input,
-.line-up-table select {
   border: none;
 }
+
+.line-up-table input,
+.line-up-table select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
 .hidden {
   display: none;
 }
+
 .team_heim .line-up-table input,
 .team_heim .line-up-table select,
-.team_heim button {
+.team_heim .submit-btn {
   background-color: #85D4FE;
 }
+
 .team_away .line-up-table input,
 .team_away .line-up-table select,
-.team_away button {
+.team_away .submit-btn {
   background-color: var(--visitoryellow);
 }
+
 .team_heim.active {
   background-color: #85D4FE;
 }
+
 .team_away.active {
   background-color: var(--visitoryellow);
 }
-.team_heim.active p,
-.team_away.active p {
-  color: black;
+
+.submit-btn {
+  padding: 10px 20px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #85D4FE;
+}
+
+.full-width {
+  width: 100%;
 }
