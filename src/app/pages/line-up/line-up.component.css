@@ -16,7 +16,7 @@
   text-align: center;
   font-family: Kanit, sans-serif;
   font-weight: 800;
-  color: #78cf4c;
+  color: var(--actiongreen);
   padding: 30px;
   font-size: 70px;
 }
@@ -33,14 +33,14 @@
   padding: 10px;
   font-size: 24px;
   background-color: black;
-  color: white;
+  color: var(--actiongreen);
   border: none;
   cursor: pointer;
   outline: none;
 }
 .tab.active {
   border-bottom: 5px solid black;
-  background-color: white;
+  background-color: var(--actiongreen);
   color: black;
 }
 .team_heim .team p,
@@ -72,13 +72,13 @@
 .team_away .line-up-table input,
 .team_away .line-up-table select,
 .team_away button {
-  background-color: #F15152;
+  background-color: var(--visitoryellow);
 }
 .team_heim.active {
   background-color: #85D4FE;
 }
 .team_away.active {
-  background-color: #F15152;
+  background-color: var(--visitoryellow);
 }
 .team_heim.active p,
 .team_away.active p {

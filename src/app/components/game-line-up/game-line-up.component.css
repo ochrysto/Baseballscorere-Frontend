@@ -1,0 +1,57 @@
+table {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-collapse: separate;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+.table-head {
+  font-weight: 400;
+  font-size: 0.7em;
+  height: 3vh;
+}
+
+
+
+.material-symbols-outlined {
+  cursor: pointer;
+}
+
+.inning-number {
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.player-visitor {
+  color: var(--visitoryellow);
+}
+
+.player-home {
+  color: var(--homeblue);
+}
+
+.batting-order {
+  color: var(--actiongreen);
+}
+
+.icon {
+  color: var(--lightgray);
+}
+
+.diamond {
+  color: var(--visitoryellow);
+  display: flex;
+  justify-content: center;
+}
+
+table tr:active {
+  background-color: var(--visitoryellow);
+  color: var(--card-darkbrown);
+}
+table tr:hover {
+  background-color: var(--card-lightbrown);
+}
