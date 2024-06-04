@@ -1,14 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {GameLineUpComponent} from "../../components/game-line-up/game-line-up.component";
-import {GameHeaderComponent} from "../../components/game-header/game-header.component";
-import {BallparkComponent} from "../../components/game-ballpark/ballpark.component";
-import {OnBaseComponent} from "../../components/on-base/on-base.component";
-import {GameInputComponent} from "../../components/game-input/game-input.component";
-import {GameScoreboardComponent} from "../../components/game-scoreboard/game-scoreboard.component";
-import {switchMap} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {GameService} from "../../services/game.service";
-import {GamePageService} from "../../services/game-page.service";
+import { Component, OnInit } from '@angular/core';
+import { GameLineUpComponent } from '../../components/game-line-up/game-line-up.component';
+import { GameHeaderComponent } from '../../components/game-header/game-header.component';
+import { BallparkComponent } from '../../components/game-ballpark/ballpark.component';
+import { OnBaseComponent } from '../../components/on-base/on-base.component';
+import { GameInputComponent } from '../../components/game-input/game-input.component';
+import { GameScoreboardComponent } from '../../components/game-scoreboard/game-scoreboard.component';
+import { switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { GameService } from '../../services/game.service';
+import { GamePageService } from '../../services/game-page.service';
+import { GameGet } from '../../models/game-get';
+import { GameStateGet } from '../../models/game-state-get';
+import { OffensiveActionsGet } from '../../models/offensive-actions-get';
+import { ActionsGet } from '../../models/actions-get';
+import { LineUpPlayers } from '../../models/line-up-players';
 
 @Component({
   selector: 'app-game-page',
@@ -25,7 +30,78 @@ import {GamePageService} from "../../services/game-page.service";
   styleUrl: './game-page.component.css'
 })
 export class GamePageComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private gameService: GameService, private gamePageService: GamePageService) {
+  public game!: GameGet;
+  public gameState!: GameStateGet;
+  public gameActions!: ActionsGet;
+  public homePlayers: LineUpPlayers[] = [];
+  public awayPlayers: LineUpPlayers[] = [];
+  public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
+  public homeTeamDiamonds: OffensiveActionsGet[][] = [];
+  public selectedBase: number = 0;
+
+
+  constructor(private route: ActivatedRoute, private gameService: GameService, private service: GamePageService) {
+    this.service.isChanged$.subscribe({
+      next: value => this.refreshAllData(),
+      error: err => console.error("Cannot refresh all data: " + err)
+    });
+
+    this.service.isGameFetched$.subscribe({
+      next: value => {
+        this.refreshAllData();
+        console.log('Successfully refreshed game data');
+      },
+      error: error => console.log('Cannot refresh game data: ' + error)
+    });
+
+    this.service.selectedBase$.subscribe({
+      next: base => {
+        this.selectedBase = base;
+        console.log("Changed selected base to " + base);
+      }
+    })
+  }
+
+  refreshAllData() {
+    // update game state
+    this.service.getGameState(this.game.id).subscribe({
+      next: (state) => this.gameState = state,
+      error: (err) => console.log('cannot get game state', err)
+    });
+
+    // update game actions
+    this.service.getGameActions(this.game!.id).subscribe({
+      next: actions => {
+        this.gameActions = actions;
+        console.log('Successfully fetched new actions from a backend');
+      },
+      error: error => console.log('Cannot refresh game data: ' + error)
+    });
+
+    // update game actions
+    this.service.getGameActions(this.game!.id).subscribe({
+      next: actions => {
+        this.gameActions = actions;
+        console.log('Successfully fetched new actions from a backend');
+      },
+      error: error => console.log('Cannot refresh game data: ' + error)
+    });
+
+    // Refresh diamonds on game change
+    this.service.isChanged$.subscribe({
+      next: value => {
+        this.service.getGameDiamonds(this.game.id, "AWAY").subscribe({
+          next: diamonds => this.visitorTeamDiamonds = diamonds
+        });
+        this.service.getGameDiamonds(this.game.id, "HOME").subscribe({
+          next: diamonds => this.homeTeamDiamonds = diamonds
+        });
+      }
+    });
+
+    // update players
+    this.homePlayers = this.service.getAllHomePlayers();
+    this.awayPlayers = this.service.getAllGuestPlayer();
   }
 
   ngOnInit() {
@@ -35,8 +111,10 @@ export class GamePageComponent implements OnInit {
         return this.gameService.getGame(gameId);
       })
     ).subscribe(game => {
-      this.gamePageService.game = game;
-      this.gamePageService.toggleIsGameFetched();
+      this.game = game;
+      // this.service.triggerChange();
+      // this.service.toggleIsGameFetched();
+      this.refreshAllData();
     });
   }
 }

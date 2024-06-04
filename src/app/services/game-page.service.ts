@@ -21,7 +21,7 @@ export class GamePageService {
   public gameIsOn = false;
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
   inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
-  numberOfInnings: number = 9;
+  // numberOfInnings: number = 9;
   public selectedBase = new BehaviorSubject<number>(0);
   public selectedBase$: Observable<number> = this.selectedBase.asObservable();
   public isChanged = new BehaviorSubject<null>(null);
@@ -191,68 +191,67 @@ export class GamePageService {
     }
   ]
 
-  protected scoreBoardInnings: ScoreboardInningGet[] = [
-    {
-      inningNumber: 1,
-      guestScore: '1',
-      homeScore: '3',
-    },
-    {
-      inningNumber: 2,
-      guestScore: '0',
-      homeScore: '2',
-    },
-    {
-      inningNumber: 3,
-      guestScore: '0',
-      homeScore: '1',
-    },
-    {
-      inningNumber: 4,
-      guestScore: '4',
-      homeScore: '0',
-    },
-    {
-      inningNumber: 5,
-      guestScore: '0',
-      homeScore: '0',
-    },
-    {
-      inningNumber: 6,
-      guestScore: '1',
-      homeScore: '1',
-    },
-    {
-      inningNumber: 7,
-      guestScore: '2',
-      homeScore: '0',
-    },
-    {
-      inningNumber: 8,
-      guestScore: '0',
-      homeScore: '0',
-    },
-    {
-      inningNumber: 9,
-      guestScore: '1',
-      homeScore: '0',
-    },
-  ]
-  protected gameScore: GameScoreGet =
-    {
-      guestTeamRuns: 9,
-      homeTeamRuns: 4,
-      guestTeamHits: 8,
-      homeTeamHits: 7,
-      guestTeamErrors: 0,
-      homeTeamErrors: 3,
-      guestTeamLobs: 10,
-      homeTeamLobs: 12,
-      currentInning: 6,
-      topOrBottom: 'Top',
-      outs: 1,
-    }
-  ;
+  // protected scoreBoardInnings: ScoreboardInningGet[] = [
+  //   {
+  //     inningNumber: 1,
+  //     guestScore: '1',
+  //     homeScore: '3',
+  //   },
+  //   {
+  //     inningNumber: 2,
+  //     guestScore: '0',
+  //     homeScore: '2',
+  //   },
+  //   {
+  //     inningNumber: 3,
+  //     guestScore: '0',
+  //     homeScore: '1',
+  //   },
+  //   {
+  //     inningNumber: 4,
+  //     guestScore: '4',
+  //     homeScore: '0',
+  //   },
+  //   {
+  //     inningNumber: 5,
+  //     guestScore: '0',
+  //     homeScore: '0',
+  //   },
+  //   {
+  //     inningNumber: 6,
+  //     guestScore: '1',
+  //     homeScore: '1',
+  //   },
+  //   {
+  //     inningNumber: 7,
+  //     guestScore: '2',
+  //     homeScore: '0',
+  //   },
+  //   {
+  //     inningNumber: 8,
+  //     guestScore: '0',
+  //     homeScore: '0',
+  //   },
+  //   {
+  //     inningNumber: 9,
+  //     guestScore: '1',
+  //     homeScore: '0',
+  //   },
+  // ]
+  // protected gameScore: GameScoreGet =
+  //   {
+  //     guestTeamRuns: 9,
+  //     homeTeamRuns: 4,
+  //     guestTeamHits: 8,
+  //     homeTeamHits: 7,
+  //     guestTeamErrors: 0,
+  //     homeTeamErrors: 3,
+  //     guestTeamLobs: 10,
+  //     homeTeamLobs: 12,
+  //     currentInning: 6,
+  //     topOrBottom: 'Top',
+  //     outs: 1,
+  //   };
 
   getAllGuestPlayer() {
     return this.visitorTeam;
@@ -262,13 +261,13 @@ export class GamePageService {
     return this.homeTeam;
   }
 
-  getGameScore() {
-    return this.gameScore;
-  }
+  // getGameScore() {
+  //   return this.gameScore;
+  // }
 
-  getScoreBoardInnings() {
-    return this.scoreBoardInnings;
-  }
+  // getScoreBoardInnings() {
+  //   return this.scoreBoardInnings;
+  // }
 
   getGameActions(gid: number) {
     const url = `${this.baseUrl}/game/${gid}/action`;
@@ -298,6 +297,7 @@ export class GamePageService {
   }
 
   public triggerChange() {
+    console.log("Game change triggered")
     this.isChanged.next(null);
   }
 

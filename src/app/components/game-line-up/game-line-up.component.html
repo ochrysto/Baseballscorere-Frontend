@@ -12,7 +12,7 @@
         <span class="material-symbols-outlined arrow" (click)="getPrevInning()">arrow_back_ios</span>
       }
       <span class="inning-number">{{chosenInning}}</span>
-      @if (chosenInning < gamePageService.numberOfInnings) {
+      @if (chosenInning < 9) {  <!-- TODO: get number of innings from the game-->
         <span class="material-symbols-outlined arrow" (click)="getNextInning()">arrow_forward_ios</span>
       }
     </td>
@@ -20,7 +20,7 @@
   </tr>
 
 
-  @if (currentInningStatus === "isTopInning") {
+  @if (gameState.team === "AWAY") {
     @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
       <tbody class="player-visitor">
       <tr>
@@ -41,7 +41,7 @@
       </tbody>
     }
   }
-  @if (currentInningStatus === "isBottomInning") {
+  @if (gameState.team === "HOME") {
     @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
       <tbody class="player-home">
       <tr>

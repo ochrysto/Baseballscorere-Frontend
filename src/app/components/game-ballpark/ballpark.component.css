@@ -285,3 +285,16 @@
   top: 30px;
   left: 304px;
 }
+
+.button-disabled {
+  opacity: 0.5;
+}
+
+.button-disabled:hover {
+
+}
+
+button:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  filter: brightness(60%);
+}

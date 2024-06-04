@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {LineUpPlayers} from "../../models/line-up-players";
 import {GamePageService} from "../../services/game-page.service";
 import {DiamondComponent} from "../diamond/diamond.component";
 import {NgIf} from "@angular/common";
 import {OffensiveActionsGet} from "../../models/offensive-actions-get";
+import { GameStateGet } from '../../models/game-state-get';
 
 @Component({
   selector: 'app-game-line-up',
@@ -17,6 +18,18 @@ import {OffensiveActionsGet} from "../../models/offensive-actions-get";
   styleUrl: './game-line-up.component.css'
 })
 export class GameLineUpComponent implements OnInit {
+  @Input()
+  get gameState(): GameStateGet { return this._gameState }
+  set gameState(gameState: GameStateGet) { this._gameState = gameState }
+
+  @Input()
+  get visitorTeamDiamonds() { return this._visitorTeamDiamonds }
+  set visitorTeamDiamonds( diamonds: OffensiveActionsGet[][] ) { this._visitorTeamDiamonds = diamonds }
+
+  @Input()
+  get homeTeamDiamonds() { return this._homeTeamDiamonds }
+  set homeTeamDiamonds( diamonds: OffensiveActionsGet[][] ) { this._homeTeamDiamonds = diamonds }
+
 
   /**
    * default inning to be shown in line-up
@@ -24,8 +37,10 @@ export class GameLineUpComponent implements OnInit {
    */
   protected chosenInning: number = 1;
 
-  visitorTeamDiamonds: OffensiveActionsGet[][] = [];
-  homeTeamDiamonds: OffensiveActionsGet[][] = [];
+  _visitorTeamDiamonds: OffensiveActionsGet[][] = [];
+  _homeTeamDiamonds: OffensiveActionsGet[][] = [];
+  _gameState!: GameStateGet;
+
   /**
    * turns position numbers into strings for better representation
    */
@@ -46,33 +61,33 @@ export class GameLineUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Refresh diamonds on game fetch
-    this.gamePageService.isGameFetched$.subscribe({
-      next: value => {
-        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
-          next: diamonds => this.visitorTeamDiamonds = diamonds
-        });
-        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
-          next: diamonds => this.homeTeamDiamonds = diamonds
-        });
-      }
-    });
-
-    // Refresh diamonds on game change
-    this.gamePageService.isChanged$.subscribe({
-      next: value => {
-        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
-          next: diamonds => this.visitorTeamDiamonds = diamonds
-        });
-        this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
-          next: diamonds => this.homeTeamDiamonds = diamonds
-        });
-      }
-    });
-
-    this.gamePageService.inningStatus$.subscribe(inningStatus => {
-      this.currentInningStatus = inningStatus;
-    });
+    // // Refresh diamonds on game fetch
+    // this.gamePageService.isGameFetched$.subscribe({
+    //   next: value => {
+    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
+    //       next: diamonds => this._visitorTeamDiamonds = diamonds
+    //     });
+    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
+    //       next: diamonds => this._homeTeamDiamonds = diamonds
+    //     });
+    //   }
+    // });
+    //
+    // // Refresh diamonds on game change
+    // this.gamePageService.isChanged$.subscribe({
+    //   next: value => {
+    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "AWAY").subscribe({
+    //       next: diamonds => this._visitorTeamDiamonds = diamonds
+    //     });
+    //     this.gamePageService.getGameDiamonds(this.gamePageService.game!.id, "HOME").subscribe({
+    //       next: diamonds => this._homeTeamDiamonds = diamonds
+    //     });
+    //   }
+    // });
+    //
+    // this.gamePageService.inningStatus$.subscribe(inningStatus => {
+    //   this.currentInningStatus = inningStatus;
+    // });
   }
 
   /**

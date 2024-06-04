@@ -2,8 +2,8 @@
   <div class="scoreboard-container">
     <div class="teams-container">
       <div class="teams"></div>
-      <button class="teams-btn" (click)="changeInningStatus('isTopInning')">{{ getAwayTeamName() }}</button>
-      <button class="teams-btn" (click)="changeInningStatus('isBottomInning')">{{ getHomeTeamName() }}</button>
+      <button class="teams-btn" (click)="changeInningStatus('isTopInning')">{{ game.guestTeam.name }}</button>
+      <button class="teams-btn" (click)="changeInningStatus('isBottomInning')">{{ game.hostTeam.name }}</button>
     </div>
 
     <div class="inning-container">
@@ -41,28 +41,28 @@
     <div class="result-container">
       <div class="result">
         <div class="result-cell">Runs</div>
-        <div class="result-cell">{{ gameState?.awayRunsTotal }}</div>
-        <div class="result-cell">{{ gameState?.homeRunsTotal }}</div>
+        <div class="result-cell">{{ gameState!.awayRunsTotal }}</div>
+        <div class="result-cell">{{ gameState!.homeRunsTotal }}</div>
       </div>
       <div class="result">
         <div class="result-cell">Hits</div>
-        <div class="result-cell">{{ gameState?.awayHits }}</div>
-        <div class="result-cell">{{ gameState?.homeHits }}</div>
+        <div class="result-cell">{{ gameState!.awayHits }}</div>
+        <div class="result-cell">{{ gameState!.homeHits }}</div>
       </div>
       <div class="result">
         <div class="result-cell">Errors</div>
-        <div class="result-cell">{{ gameState?.awayErrors }}</div>
-        <div class="result-cell">{{ gameState?.homeErrors }}</div>
+        <div class="result-cell">{{ gameState!.awayErrors }}</div>
+        <div class="result-cell">{{ gameState!.homeErrors }}</div>
       </div>
       <div class="result">
         <div class="result-cell">LOB</div>
-        <div class="result-cell">{{ gameState?.awayLob }}</div>
-        <div class="result-cell">{{ gameState?.homeLob }}</div>
+        <div class="result-cell">{{ gameState!.awayLob }}</div>
+        <div class="result-cell">{{ gameState!.homeLob }}</div>
       </div>
     </div>
   </div>
   <div class="footer">
-    <p class="game-info">{{ gameState?.team }} {{ gameState?.inning }} Inning</p>
-    <p class="outs">{{ gameState?.outs }} Aus</p>
+    <p class="game-info">{{ gameState!.team }} {{ gameState!.inning }} Inning</p>
+    <p class="outs">{{ gameState!.outs }} Aus</p>
   </div>
 </div>
