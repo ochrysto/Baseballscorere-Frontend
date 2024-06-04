@@ -25,6 +25,8 @@ export class GamePageService {
   public isChanged$: Observable<null> = this.isChanged.asObservable();
   public isGameFetched = new BehaviorSubject<boolean>(false);
   public isGameFetched$: Observable<boolean> = this.isGameFetched.asObservable();
+  public selectedPlayers = new BehaviorSubject<number[]>([]);
+  public selectedPlayers$: Observable<number[]> = this.selectedPlayers.asObservable();
   public game?: GameGet;
 
 
@@ -231,5 +233,9 @@ export class GamePageService {
 
   public toggleIsGameFetched() {
     this.isGameFetched.next(true);
+  }
+
+  updateSelectedPlayers(players: number[]) {
+    this.selectedPlayers.next(players);
   }
 }

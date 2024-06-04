@@ -38,7 +38,7 @@ export class GamePageComponent implements OnInit {
   public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
   public homeTeamDiamonds: OffensiveActionsGet[][] = [];
   public selectedBase: number = 0;
-
+  public selectedPlayers: number[] = [];
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private service: GamePageService) {
     this.service.isChanged$.subscribe({
@@ -59,7 +59,14 @@ export class GamePageComponent implements OnInit {
         this.selectedBase = base;
         console.log('Changed selected base to ' + base);
       }
-    })
+    });
+
+    this.service.selectedPlayers$.subscribe({
+      next: players => {
+        this.selectedPlayers = players;
+        console.log('Selected players updated: ' + players);
+      }
+    });
   }
 
   refreshAllData() {
@@ -67,15 +74,6 @@ export class GamePageComponent implements OnInit {
     this.service.getGameState(this.game.id).subscribe({
       next: (state) => this.gameState = state,
       error: (err) => console.log('cannot get game state', err)
-    });
-
-    // update game actions
-    this.service.getGameActions(this.game!.id).subscribe({
-      next: actions => {
-        this.gameActions = actions;
-        console.log('Successfully fetched new actions from a backend');
-      },
-      error: error => console.log('Cannot refresh game data: ' + error)
     });
 
     // update game actions

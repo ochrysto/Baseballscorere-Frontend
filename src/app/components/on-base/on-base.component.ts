@@ -15,12 +15,19 @@ import {NgIf} from "@angular/common";
   styleUrl: './on-base.component.css'
 })
 export class OnBaseComponent implements OnInit {
+  @Input()
+  get responsible(): number[] {
+    return this._responsible;
+  }
+  set responsible(responsible: number[]) {
+    this._responsible = responsible;
+  }
+
   onBaseList: LineUpPlayers[] = [];
-  /* isTopInning: boolean = this.gamePageService.isTopInning;
-   isBottomInning: boolean = this.gamePageService.isBottomInning;*/
   GuestOnBaselist: LineUpPlayers[] = [];
   HomeOnBaseList: LineUpPlayers[] = [];
   protected currentInningStatus!: string;
+  private _responsible: number[] = [];
 
   constructor(protected gamePageService: GamePageService) {
   }
