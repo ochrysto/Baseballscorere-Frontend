@@ -12,6 +12,7 @@ import {LineUpPost} from "../../models/line-up-post";
 import {LineUpPlayerPost} from "../../models/line-up-player-post";
 import {PositionService} from "../../services/position.service";
 import {PositionGet} from "../../models/position-get";
+import { LineUpPlayers } from '../../models/line-up-players';
 
 
 @Component({
@@ -154,4 +155,80 @@ export class LineUpComponent implements OnInit {
       })
     });
   }
+
+  //dummy lists before backend connection
+  public visitorTeam: LineUpPlayers[] = [
+    {
+      battingOrder: 1,
+      jerseyNr: '36',
+      firstname: 'Frank',
+      lastname: 'Riermeister',
+      position: 2,
+      passNumber: 666382
+    },
+    {
+      battingOrder: 2,
+      jerseyNr: '9',
+      firstname: 'Andre',
+      lastname: 'Siener',
+      position: 1,
+      passNumber: 554932
+    },
+    {
+      battingOrder: 3,
+      jerseyNr: '3',
+      firstname: 'Matthias',
+      lastname: 'Gilde',
+      position: 5,
+      passNumber: 443926
+    },
+    {
+      battingOrder: 4,
+      jerseyNr: '73',
+      firstname: 'Thorsten',
+      lastname: 'Laack',
+      position: 6,
+      passNumber: 546738
+    },
+    {
+      battingOrder: 5,
+      jerseyNr: '12',
+      firstname: 'Peter',
+      lastname: 'Frank',
+      position: 8,
+      passNumber: 546389
+    },
+    {
+      battingOrder: 6,
+      jerseyNr: '78',
+      firstname: 'Norbert',
+      lastname: 'Schwertner',
+      position: 7,
+      passNumber: 765449
+    },
+    {
+      battingOrder: 7,
+      jerseyNr: '56',
+      firstname: 'Connie',
+      lastname: 'Ritter',
+      position: 4,
+      passNumber: 563722
+    },
+    {
+      battingOrder: 8,
+      jerseyNr: '20',
+      firstname: 'Markus',
+      lastname: 'Kleininger',
+      position: 9,
+      passNumber: 964532
+    },
+    {
+      battingOrder: 9,
+      jerseyNr: '39',
+      firstname: 'Steffen',
+      lastname: 'Sammert',
+      position: 3,
+      passNumber: 657486
+    }
+  ]
 }

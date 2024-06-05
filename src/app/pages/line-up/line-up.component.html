@@ -1,14 +1,19 @@
 <div class="line-up-container">
   <h1>LINE UP</h1>
-  <div class="container border">
-    <div class="teams-header">
+  <div class="container">
+    <div class="teams-header border">
       <div class="tabs">
-        <button class="tab" [ngClass]="{'active': activeTab === 'HEIM'}" (click)="switchTab('HEIM')">HEIM</button>
-        <button class="tab" [ngClass]="{'active': activeTab === 'GAST'}" (click)="switchTab('GAST')">GAST</button>
+        <div class="the_heim" >
+          <button class="team_home" [ngClass]="{'active': activeTab === 'HEIM'}" (click)="switchTab('HEIM')">HEIM</button>
+          <p class="the_gast">Bremen Dockers</p>
+        </div>
+        <div class="the_gast" >
+          <button class="team away" [ngClass]="{'active': activeTab === 'GAST'}" (click)="switchTab('GAST')">GAST</button>
+          <p class="the_heim">Braunschweig 89ers</p>
+        </div>
       </div>
       <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">
         <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM" class="team home">
-          <p>Bremen Dockers</p>
           <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
             <div formArrayName="homeLineUp" class="line-up-table">
               <table>
@@ -18,7 +23,8 @@
                   <th>Passnummer</th>
                   <th>Position</th>
                 </tr>
-                <tr *ngFor="let player of homeLineUp.controls; let i = index" [formGroupName]="i">
+                <tr *ngFor="let player of visitorTeam; let i = index" [formGroupName]="i">
+                <!--<tr *ngFor="let player of homeLineUp.controls; let i = index" [formGroupName]="i">-->
                   <td>{{ i + 1 }}</td>
                   <td>
                     <select formControlName="playerId" class="full-width">
@@ -37,13 +43,14 @@
                 </tr>
               </table>
             </div>
-            <button type="submit" class="submit-btn">Submit</button>
+            <div class="action-button">
+            <button type="submit">Zum Spiel</button>
+            </div>
           </form>
         </div>
       </div>
       <div [ngClass]="{'team_away': true, 'active': activeTab === 'GAST'}">
         <div [class.hidden]="activeTab !== 'GAST'" id="GAST" class="team away">
-          <p>Braunschweig 89ers</p>
           <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
             <div formArrayName="awayLineUp" class="line-up-table">
               <table>
@@ -53,7 +60,8 @@
                   <th>Passnummer</th>
                   <th>Position</th>
                 </tr>
-                <tr *ngFor="let player of awayLineUp.controls; let i = index" [formGroupName]="i">
+                <!--<tr *ngFor="let player of awayLineUp.controls; let i = index" [formGroupName]="i"> -->
+                <tr *ngFor="let player of visitorTeam; let i = index" [formGroupName]="i">
                   <td>{{ i + 1 }}</td>
                   <td>
                     <select formControlName="playerId" class="full-width">
@@ -72,7 +80,9 @@
                 </tr>
               </table>
             </div>
-            <button type="submit" class="submit-btn">Submit</button>
+            <div class="action-button">
+              <button type="submit">Zum Spiel</button>
+            </div>
           </form>
         </div>
       </div>
