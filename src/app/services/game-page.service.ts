@@ -8,6 +8,7 @@ import { ActionPost } from '../models/action-post';
 import { GameStateGet } from '../models/game-state-get';
 import { GameGet } from '../models/game-get';
 import { LineUpPlayerGet } from '../models/line-up-player-get';
+import {Button} from "../models/button";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,16 @@ export class GamePageService {
   public gameIsOn = false;
   private inningStatusSubject = new BehaviorSubject<string>(this.defaultInningStatus);
   inningStatus$: Observable<string> = this.inningStatusSubject.asObservable();
-  public selectedBase = new BehaviorSubject<number>(0);
+  private selectedBase = new BehaviorSubject<number>(0);
   public selectedBase$: Observable<number> = this.selectedBase.asObservable();
-  public isChanged = new BehaviorSubject<null>(null);
+  private isChanged = new BehaviorSubject<null>(null);
   public isChanged$: Observable<null> = this.isChanged.asObservable();
-  public isGameFetched = new BehaviorSubject<boolean>(false);
+  private isGameFetched = new BehaviorSubject<boolean>(false);
   public isGameFetched$: Observable<boolean> = this.isGameFetched.asObservable();
-  public selectedPlayers = new BehaviorSubject<number[]>([]);
+  private selectedPlayers = new BehaviorSubject<number[]>([]);
   public selectedPlayers$: Observable<number[]> = this.selectedPlayers.asObservable();
+  private selectedButton = new BehaviorSubject<Button | null>(null);
+  public selectedButton$: Observable<Button | null> = this.selectedButton.asObservable();
   public game?: GameGet;
 
 
@@ -87,11 +90,23 @@ export class GamePageService {
     this.isGameFetched.next(true);
   }
 
+  updateSelectedBase(base: number) {
+    this.selectedBase.next(base);
+  }
+
   updateSelectedPlayers(players: number[]) {
     this.selectedPlayers.next(players);
   }
 
   clearSelectedPlayers() {
     this.selectedPlayers.next([]);
+  }
+
+  updateSelectedButton(button: Button) {
+    this.selectedButton.next(button);
+  }
+
+  clearSelectedButton() {
+    this.selectedButton.next(null);
   }
 }

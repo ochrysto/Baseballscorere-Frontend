@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { GameStateGet } from '../../models/game-state-get';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
+import {ActionsGet} from "../../models/actions-get";
 
 @Component({
   selector: 'app-on-base',
@@ -36,7 +38,17 @@ export class OnBaseComponent {
     this._base = base;
   }
 
+  @Input()
+  get selectedButton(): Button | null {
+    return this._selectedButton;
+  }
+
+  set selectedButton(button: Button | null) {
+    this._selectedButton = button;
+  }
+
   private _gameState!: GameStateGet;
+  private _selectedButton: Button | null = null;
   private _responsible: number[] = [];
   private _base!: number;
 
@@ -73,6 +85,9 @@ export class OnBaseComponent {
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
   generateCurrentPlayerStatus(): string {
+    if (this.selectedButton != null) {
+      return this.selectedButton.button + " " + this.responsible.join('-');
+    }
     return this.responsible.join('-');
   }
 

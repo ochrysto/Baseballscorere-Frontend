@@ -14,6 +14,7 @@ import { GameStateGet } from '../../models/game-state-get';
 import { OffensiveActionsGet } from '../../models/offensive-actions-get';
 import { ActionsGet } from '../../models/actions-get';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
 
 @Component({
   selector: 'app-game-page',
@@ -30,14 +31,15 @@ import { LineUpPlayerGet } from '../../models/line-up-player-get';
   styleUrl: './game-page.component.css'
 })
 export class GamePageComponent implements OnInit {
-  public game!: GameGet;
-  public gameState!: GameStateGet;
-  public gameActions!: ActionsGet;
+  public game!: GameGet;  // TODO: bad idea!
+  public gameState!: GameStateGet;  // TODO: bad idea!
+  public gameActions!: ActionsGet;  // TODO: bad idea!
   public defencivePlayers: LineUpPlayerGet[] = [];
   public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
   public homeTeamDiamonds: OffensiveActionsGet[][] = [];
   public selectedBase: number = 0;
   public selectedPlayers: number[] = [];
+  public selectedButton: Button | null = null;
 
   constructor(private route: ActivatedRoute, private gameService: GameService, private service: GamePageService) {
     this.service.isChanged$.subscribe({
@@ -64,6 +66,13 @@ export class GamePageComponent implements OnInit {
       next: players => {
         this.selectedPlayers = players;
         console.log('Selected players updated: ' + players);
+      }
+    });
+
+    this.service.selectedButton$.subscribe({
+      next: selectedButton => {
+        this.selectedButton = selectedButton;
+        console.log('Selected button updated: ' + selectedButton?.button);
       }
     });
   }

@@ -1,7 +1,7 @@
 <div class="grid-container">
   <div class="header"><app-game-header></app-game-header></div>
   <div class="scoreboard"><app-game-scoreboard [gameState]="gameState" [game]="game"></app-game-scoreboard></div>
-  <div class="on-base"><app-on-base [responsible]="selectedPlayers" [base]="selectedBase" [gameState]="gameState"></app-on-base></div>
+  <div class="on-base"><app-on-base [responsible]="selectedPlayers" [base]="selectedBase" [gameState]="gameState" [selectedButton]="selectedButton"></app-on-base></div>
   <div class="ballpark"><app-game-ballpark [gameState]="gameState" [defencivePlayers]="defencivePlayers" [actions]="gameActions"></app-game-ballpark></div>
   <div class="input"><app-game-input [actions]="gameActions" [base]="selectedBase" [game]="game" [responsible]="selectedPlayers"></app-game-input></div>
   <div class="line-up"><app-game-line-up [homeTeamDiamonds]="homeTeamDiamonds" [visitorTeamDiamonds]="visitorTeamDiamonds" [gameState]="gameState"></app-game-line-up></div>

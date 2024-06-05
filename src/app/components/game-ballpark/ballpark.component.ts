@@ -4,6 +4,7 @@ import { NgClass } from '@angular/common';
 import { GameStateGet } from '../../models/game-state-get';
 import { ActionsGet } from '../../models/actions-get';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
 
 @Component({
   selector: 'app-game-ballpark',
@@ -58,7 +59,7 @@ export class BallparkComponent implements OnInit {
   }
 
   selectBase(number: number) {
-    this.service.selectedBase.next(number);
+    this.service.updateSelectedBase(number);
   }
 
   /**

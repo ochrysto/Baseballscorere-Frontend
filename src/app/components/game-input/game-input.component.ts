@@ -96,12 +96,11 @@ export class GameInputComponent {
     if (this.isButton(button)) {
       console.log('Button clicked:', button);
 
-      this.selectedButton = button; // Store the selected button
-
       if (!button.responsibleRequired) {
         this.postAction(button);
       } else {
-        this.selectedResponsiblePlayers = []; // Reset the selected players list
+        this.setButton(button)
+        this.clearResponsiblePlayers(); // Reset the selected players list
       }
     } else {
       this.buttonStack.push(this.currentButtons);  // Push the current buttons to the button stack.
@@ -151,6 +150,12 @@ export class GameInputComponent {
   }
 
   undoSelection() {
+    this.clearResponsiblePlayers();
+    this.clearButton();
+    this.refreshButtons();
+  }
+
+  clearResponsiblePlayers() {
     this.selectedResponsiblePlayers = [];
     this.service.clearSelectedPlayers();
   }
@@ -184,7 +189,7 @@ export class GameInputComponent {
     }
 
     let postData: ActionPost = {
-      base: this.service.selectedBase.getValue(),
+      base: this.base,
       distance: 0,
       type: button.actionType,
       responsible: responsibleToPost
@@ -198,11 +203,22 @@ export class GameInputComponent {
     this.service.postGameAction(this.game.id, postData).subscribe({
       next: (msg) => {
         console.log('Server response: ', msg);
-        this.service.clearSelectedPlayers();
+        this.clearResponsiblePlayers();
+        this.clearButton();
       },
       error: (err) => {
         console.log('Error: ', err);
       }
     });
+  }
+
+  setButton(button: Button) {
+    this.selectedButton = button; // Store the selected button
+    this.service.updateSelectedButton(button)
+  }
+
+  clearButton() {
+    this.selectedButton = null; // Remove selected button
+    this.service.clearSelectedButton();
   }
 }
