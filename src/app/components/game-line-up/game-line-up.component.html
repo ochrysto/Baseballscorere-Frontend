@@ -1,6 +1,4 @@
 <table>
-  <!--  @if (gamePageService.gameIsOn && currentInningStatus === 'isTopInning' || currentInningStatus === 'isBottomInning') {-->
-
   <tr class="table-head">
     <td></td>
     <td>Nr.</td>
@@ -9,58 +7,56 @@
     <td></td>
     <td class="th-inning">
       @if (chosenInning > 1) {
-        <span class="material-symbols-outlined arrow" (click)="getPrevInning()">arrow_back_ios</span>
+      <span class="material-symbols-outlined arrow" (click)="getPrevInning()">arrow_back_ios</span>
       }
       <span class="inning-number">{{chosenInning}}</span>
-      @if (chosenInning < 9) {  <!-- TODO: get number of innings from the game-->
-        <span class="material-symbols-outlined arrow" (click)="getNextInning()">arrow_forward_ios</span>
+      @if (chosenInning < 9) {
+      <span class="material-symbols-outlined arrow" (click)="getNextInning()">arrow_forward_ios</span>
       }
     </td>
     <td></td>
   </tr>
 
-
   @if (gameState.team === "AWAY") {
-    @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
-      <tbody class="player-visitor">
-      <tr>
-        <td class="icon">
-          <span class="material-symbols-outlined">sync</span>
-        </td>
-        <td>{{ diamond.jerseyNr }}</td>
-        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
-        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>  <!-- TODO: change -->
-        <td class="batting-order">{{ diamond.jerseyNr }}</td>  <!-- TODO: change -->
-        <td class="diamond">
-          <app-diamond [content]="diamond.diamond"></app-diamond>
-        </td>
-        <td class="icon">
-          <span class="material-symbols-outlined">edit_square</span>
-        </td>
-      </tr>
-      </tbody>
-    }
+  @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {
+  <tbody class="player-visitor">
+  <tr>
+    <td class="icon">
+      <span class="material-symbols-outlined">sync</span>
+    </td>
+    <td>{{ diamond.jerseyNr }}</td>
+    <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+    <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
+    <td class="batting-order">{{ diamond.jerseyNr }}</td>
+    <td class="diamond">
+      <app-diamond [content]="diamond.diamond"></app-diamond>
+    </td>
+    <td class="icon">
+      <span class="material-symbols-outlined">edit_square</span>
+    </td>
+  </tr>
+  </tbody>
+  }
   }
   @if (gameState.team === "HOME") {
-    @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {  <!-- We should to subtract because: Inning starts with 1, array with 0-->
-      <tbody class="player-home">
-      <tr>
-        <td class="icon">
-          <span class="material-symbols-outlined">sync</span>
-        </td>
-        <td>{{ diamond.jerseyNr }}</td>
-        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
-        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>  <!-- TODO: change -->
-        <td class="batting-order">{{ diamond.jerseyNr }}</td>  <!-- TODO: change -->
-        <td class="diamond">
-          <app-diamond [content]="diamond.diamond" ></app-diamond>
-        </td>
-        <td class="icon">
-          <span class="material-symbols-outlined">edit_square</span>
-        </td>
-      </tr>
-      </tbody>
-    }
+  @for (diamond of visitorTeamDiamonds[chosenInning-1]; track diamond) {
+  <tbody class="player-home">
+  <tr>
+    <td class="icon">
+      <span class="material-symbols-outlined">sync</span>
+    </td>
+    <td>{{ diamond.jerseyNr }}</td>
+    <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+    <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
+    <td class="batting-order">{{ diamond.jerseyNr }}</td>
+    <td class="diamond">
+      <app-diamond [content]="diamond.diamond"></app-diamond>
+    </td>
+    <td class="icon">
+      <span class="material-symbols-outlined">edit_square</span>
+    </td>
+  </tr>
+  </tbody>
   }
-  <!--  }-->
+  }
 </table>
