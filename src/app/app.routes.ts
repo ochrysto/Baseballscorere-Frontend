@@ -18,8 +18,8 @@ import {
 export const routes: Routes = [
   { path: 'scorer_anlegen', component: ScorerAnlegenFormComponent },
   { path: 'schiedsrichter_anlegen', component: SchiedsrichterAnlegenFormComponent },
-  { path: 'team_erstellen', component: TeamErstellungsFormComponent },
-  { path: 'TeamBearbeiten/:id', component: TeammitgliederHinzufuegenComponent }, // Assuming :id is a unique identifier for a team
+  { path: 'team_erstellen', component: TeamErstellungsFormComponent, canActivate: [AuthGuard]  },
+  { path: 'TeamBearbeiten/:id', component: TeammitgliederHinzufuegenComponent, canActivate: [AuthGuard] }, // Assuming :id is a unique identifier for a team
     { path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard] },
     { path: 'public', component: PublicRouteExampleComponent },
     { path: '', component: BaseballScorerHomeComponent },

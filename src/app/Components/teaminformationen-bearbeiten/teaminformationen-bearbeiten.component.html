@@ -1,34 +1,36 @@
-<div class="container">
-  <form (ngSubmit)="onSubmit()" class="team-anlegen-form">
-    <div>
-      <label for="Liga_Name">Liga Name</label>
+<div class="team-info-popup">
+  <form (ngSubmit)="onSubmit()" class="team-info-form">
+    <div class="form-group">
+      <label for="Liga_Name"><i class="fas fa-trophy icons"></i> Liga Name</label>
       <select id="Liga_Name" name="Liga_Name" [(ngModel)]="Liga_Name" required>
         <option *ngFor="let liga of ligaOptions" [value]="liga.id">{{ liga.name }}</option>
       </select>
     </div>
-    <div>
-      <label for="Verein_name">Name der Verein</label>
+    <div class="form-group">
+      <label for="Verein_name"><i class="fas fa-shield-alt icons"></i> Name der Verein</label>
       <select id="Verein_name" name="Verein_name" [(ngModel)]="Verein_name" required>
         <option *ngFor="let verein of vereinOptions" [value]="verein.id">{{ verein.name }}</option>
       </select>
     </div>
-
-    <div>
-      <label for="Teams_name">Name des Teams</label>
+    <div class="form-group">
+      <label for="Teams_name"><i class="fas fa-users icons"></i> Name des Teams</label>
       <select id="Teams_name" name="Teams_name" [(ngModel)]="Teams_name" required>
         <option *ngFor="let team of teamOptions" [value]="team.id">{{ team.name }}</option>
       </select>
     </div>
-    <div>
-      <label for="Logo">Logo hochladen</label>
+    <div class="form-group file-upload">
+      <label style="color: black" for="Logo" class="file-upload-label">
+        <i class="fas fa-image icons"></i> Logo hochladen
+      </label>
       <input type="file" id="Logo" name="Logo" (change)="onFileChange($event)" required>
+      <span id="file-name">{{ fileName }}</span>
     </div>
-    <div>
-      <label for="Manager">Manager</label>
+    <div class="form-group">
+      <label for="Manager"><i class="fas fa-user-tie icons"></i> Manager</label>
       <select id="Manager" name="Manager" [(ngModel)]="Manager" required>
         <option *ngFor="let manager of managerOptions" [value]="manager.id">{{ manager.name }}</option>
       </select>
     </div>
-    <button type="submit">speichern</button>
+    <button type="submit" class="save-button"><i class="fas fa-save"></i> speichern</button>
   </form>
 </div>

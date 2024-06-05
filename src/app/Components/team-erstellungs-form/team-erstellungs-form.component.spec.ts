@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamErstellungsFormComponent } from './team-erstellungs-form.component';
+import { TeamErstellungsFormComponent} from "./team-erstellungs-form.component";
 
 describe('TeamErstellungsFormComponent', () => {
   let component: TeamErstellungsFormComponent;
@@ -11,7 +11,7 @@ describe('TeamErstellungsFormComponent', () => {
       imports: [TeamErstellungsFormComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TeamErstellungsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

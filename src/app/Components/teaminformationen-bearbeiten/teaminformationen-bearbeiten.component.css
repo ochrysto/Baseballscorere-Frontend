@@ -1,37 +1,79 @@
-.container {
-  justify-content: center;
-  align-items: center;
+/* Popup Window */
+.team-info-popup {
+  padding: 20px;
+  background-color: #1C1C1C;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 450px; /* Increased width */
+  max-width: 90%; /* Ensure it doesn't exceed the viewport width */
+  margin: 0 auto; /* Center align */
 }
 
-.team-anlegen-form {
-  background-color: #2d2d2d;
-  padding: 30px;
-  border-radius: 5px;
-  color: #73f80d;
-  font-family: Arial, sans-serif;
-  width: 100%;
-  box-sizing: border-box;
+.team-info-form {
+  display: flex;
+  flex-direction: column;
 }
 
-.team-anlegen-form label {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
   display: block;
   margin-bottom: 5px;
+  color: #73F80D;
 }
 
-.team-anlegen-form input[type="text"],
-.team-anlegen-form input[type="file"],
-.team-anlegen-form input[type="email"] {
+.form-group select,
+.form-group input[type="file"] {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  background-color: #333;
+  color: white;
+  border: 1px solid #444;
   border-radius: 5px;
-  border: none;
   font-size: 16px;
 }
 
-.team-anlegen-form button {
+.file-upload {
+  position: relative;
+}
+
+.form-group file-upload {
+  display: flex;
+  align-items: center;
+}
+
+.file-upload-label {
+  display: inline-block;
   padding: 10px 20px;
-  background-color: #73f80d;
+  background-color: #73F80D;
+  color: #111;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.file-upload-label:hover {
+  background-color: #60D309;
+}
+
+.file-upload input[type="file"] {
+  display: none;
+}
+
+#file-name {
+  display: block;
+  margin-top: 10px;
+  color: #aaa;
+}
+
+
+.save-button {
+  padding: 10px 20px;
+  background-color: #73F80D;
   color: #111;
   border: none;
   border-radius: 10px;
@@ -39,27 +81,21 @@
   font-size: 16px;
 }
 
-.team-anlegen-form button:hover {
-  background-color: #60d309;
+.save-button i {
+  margin-right: 5px;
 }
 
-.team-anlegen-form input::placeholder {
-  color: #aaa;
+.save-button:hover {
+  background-color: #60D309;
 }
 
-.team-anlegen-form select {
-  width: 100%;
-  padding: 10px;
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #333;
-  background-color: #1c1c1c;
-  color: #ffffff;
-  font-size: 16px;
 }
 
-@media (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
+.icons {
+  margin-right: 7px;
 }

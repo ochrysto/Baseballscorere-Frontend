@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeaminformationenBearbeitenComponent } from './teaminformationen-bearbeiten.component';
+import { TeaminformationenBearbeitenComponent } from '../teaminformationen-bearbeiten.component';
 
 describe('TeaminformationenBearbeitenComponent', () => {
   let component: TeaminformationenBearbeitenComponent;
@@ -11,7 +11,7 @@ describe('TeaminformationenBearbeitenComponent', () => {
       imports: [TeaminformationenBearbeitenComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(TeaminformationenBearbeitenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

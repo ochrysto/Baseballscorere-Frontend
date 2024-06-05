@@ -2,38 +2,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* This makes sure the container is at least as tall as the viewport */
+  min-height: 100vh;
   background-color: #111;
+  background-image: url('/assets/team.png'); /* Update the path if necessary */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
 .team-anlegen-form {
-  background-color: #2d2d2d;
+  background-color: rgba(45, 45, 45, 0.85); /* Add transparency to see the background image */
   padding: 30px;
   border-radius: 5px;
   color: #73f80d;
   font-family: Arial, sans-serif;
   width: 100%;
-  max-width: 400px; /* Adjust the width as needed to make the form smaller */
+  max-width: 400px;
   box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }
 
 .team-anlegen-form label {
   display: block;
   margin-bottom: 5px;
+  font-size: 14px;
+  width: auto;
 }
 
 .team-anlegen-form input[type="text"],
-.team-anlegen-form input[type="file"],
-.team-anlegen-form input[type="email"] {
+.team-anlegen-form select {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-top: 5px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #333;
+  background-color: #1c1c1c;
+  color: #ffffff;
   font-size: 16px;
+  box-sizing: border-box; /* Ensure padding is included in the element's width and height */
 }
 
-.team-anlegen-form button {
+.submit-button {
   padding: 10px 20px;
   background-color: #73f80d;
   color: #111;
@@ -41,9 +53,10 @@
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
 }
 
-.team-anlegen-form button:hover {
+.submit-button:hover {
   background-color: #60d309;
 }
 
@@ -51,15 +64,47 @@
   color: #aaa;
 }
 
-.team-anlegen-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
+.file-upload-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #73F80D;
+  color: #111;
+  font-weight: bold;
   border-radius: 5px;
-  border: 1px solid #333;
-  background-color: #1c1c1c;
-  color: #ffffff;
-  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Ensure the label spans the entire width */
+  text-align: center; /* Center the text */
+}
+
+.file-upload-label:hover {
+  background-color: #60D309;
+}
+
+.file-upload-label input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#file-name {
+  color: #aaa;
+  font-size: 14px;
+  margin-top: 10px;
+  width: 100%; /* Ensure the file name spans the entire width */
+  text-align: center; /* Center the file name text */
 }
 
 @media (max-width: 600px) {

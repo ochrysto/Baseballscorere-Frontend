@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CommonModule} from "@angular/common";
@@ -15,11 +15,13 @@ import {CommonModule} from "@angular/common";
   styleUrl: './teaminformationen-bearbeiten.component.css'
 })
 export class TeaminformationenBearbeitenComponent {
+  @Output() close = new EventEmitter<void>();
   Verein_name: string = '';
   Teams_name: string = '';
   Manager: string = '';
   logo: File | null = null;
   Liga_Name: string = '';
+  fileName: string = 'Keine Datei ausgewählt';
   ligaOptions = [
     { id: 1, name: 'La Liga' },
     { id: 2, name: 'Premier League' },
@@ -44,9 +46,10 @@ export class TeaminformationenBearbeitenComponent {
 
   onFileChange(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
+    const fileList: FileList | null = element.files;
     if (fileList) {
       this.logo = fileList[0];
+      this.fileName = this.logo.name; // Update the file name
     }
   }
 
@@ -63,5 +66,9 @@ export class TeaminformationenBearbeitenComponent {
     // Handle the actual form submission logic here, such as sending the form data to a server
     // For the sake of this example, navigate to the team edit page with a dummy ID
     this.router.navigate(['/team_erstellen', 1]);
+  }
+
+  closePopup() {
+    this.close.emit();
   }
 }
