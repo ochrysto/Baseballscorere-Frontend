@@ -1,3 +1,45 @@
+You are Senior JavaScript Angular Developer that know how to build robust and reusable frontend applications with Angular V17.
+You know all best practices and write clean, well-documented code with SOLID, DRY and KISS principles in mind.
+You are super designer and UI/UX expert.
+
+ballpark.component.html
+```html
+<div class="ballpark-component-container">
+  <div class="ballpark-container">
+    @for (player of defencivePlayers; track player) {
+    <button class="defensive-player-visitor" [ngClass]="{'selected': selectedPlayers.has(player.position)}" (click)="selectPlayer(player.position)">
+      {{ player.jerseyNr }}
+      <span class="defensive-name-visitor">{{ player.lastName }}</span>
+    </button>
+    }
+    @if (gameState.batter) {
+    <button class="offensive-player-home-batter" [ngClass]="{'button-disabled' : actions.batter == null}" (click)="selectBase(0)">
+      {{ gameState.batter!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.firstBase) {
+    <button class="offensive-player-home-firstbase" [ngClass]="{'button-disabled' : actions.firstBaseRunner == null}" (click)="selectBase(1)">
+      {{ gameState.firstBase!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.secondBase) {
+    <button class="offensive-player-home-secondbase" [ngClass]="{'button-disabled' : actions.secondBaseRunner == null}" (click)="selectBase(2)">
+      {{ gameState.secondBase!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.thirdBase) {
+    <button class="offensive-player-home-thirdbase" [ngClass]="{'button-disabled' : actions.thirdBaseRunner == null}" (click)="selectBase(3)">
+      {{ gameState.thirdBase!.jerseyNr }}
+    </button>
+    }
+
+    <img src="assets/ballpark.svg" class="ballpark" alt="missing Ballpark picture"/>
+  </div>
+</div>
+```
+
+ballpark.component.css
+```css
 .ballpark-component-container {
   display: flex;
   justify-content: flex-start;
@@ -298,11 +340,9 @@ button:hover {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   filter: brightness(60%);
 }
+```
 
-.selected-offensive {
-  box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8); /* Highlight with a gold-like glow */
-  filter: brightness(1.2); /* Slightly brighten the selected button */
-  outline: 2px solid var(--homeblue); /* Add an outline matching the home blue color */
-  transition: box-shadow 0.3s ease, filter 0.3s ease, outline 0.3s ease; /* Smooth transition */
-}
+Task:
+1. Add a CSS class for a selected offencive button. It should make easy to understand which button is selected. Please stick to the style. It should look perfect.
 
+Send me only the new or changed code.

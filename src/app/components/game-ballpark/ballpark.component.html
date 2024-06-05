@@ -7,22 +7,22 @@
       </button>
     }
     @if (gameState.batter) {
-      <button class="offensive-player-home-batter" [ngClass]="{'button-disabled' : actions.batter == null}" (click)="selectBase(0)">
+      <button class="offensive-player-home-batter" [ngClass]="{'button-disabled' : actions.batter == null, 'selected-offensive': base === 0}" (click)="selectBase(0)">
         {{ gameState.batter!.jerseyNr }}
       </button>
     }
     @if (gameState.firstBase) {
-      <button class="offensive-player-home-firstbase" [ngClass]="{'button-disabled' : actions.firstBaseRunner == null}" (click)="selectBase(1)">
+      <button class="offensive-player-home-firstbase" [ngClass]="{'button-disabled' : actions.firstBaseRunner == null, 'selected-offensive': base === 1}" (click)="selectBase(1)">
         {{ gameState.firstBase!.jerseyNr }}
       </button>
     }
     @if (gameState.secondBase) {
-      <button class="offensive-player-home-secondbase" [ngClass]="{'button-disabled' : actions.secondBaseRunner == null}" (click)="selectBase(2)">
+      <button class="offensive-player-home-secondbase" [ngClass]="{'button-disabled' : actions.secondBaseRunner == null, 'selected-offensive': base === 2}" (click)="selectBase(2)">
         {{ gameState.secondBase!.jerseyNr }}
       </button>
     }
     @if (gameState.thirdBase) {
-      <button class="offensive-player-home-thirdbase" [ngClass]="{'button-disabled' : actions.thirdBaseRunner == null}" (click)="selectBase(3)">
+      <button class="offensive-player-home-thirdbase" [ngClass]="{'button-disabled' : actions.thirdBaseRunner == null, 'selected-offensive': base === 3}" (click)="selectBase(3)">
         {{ gameState.thirdBase!.jerseyNr }}
       </button>
     }

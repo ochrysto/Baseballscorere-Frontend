@@ -43,9 +43,19 @@ export class BallparkComponent implements OnInit {
     this._defensivePlayers = [...players].sort((a, b) => a.position - b.position);
   }
 
+  @Input()
+  get base(): number {
+    return this._selectedBase;
+  }
+
+  set base(base: number) {
+    this._selectedBase = base;
+  }
+
   private _defensivePlayers: LineUpPlayerGet[] = [];
   private _gameState!: GameStateGet;
   private _actions!: ActionsGet;
+  private _selectedBase: number = 0;
   public selectedPlayers: Set<number> = new Set<number>(); // Track selected players
 
   constructor(protected service: GamePageService) {

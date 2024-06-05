@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { OffensiveActionsGet } from '../models/offensive-actions-get';
-import { HttpClient } from '@angular/common/http';
-import { ActionsGet } from '../models/actions-get';
-import { MessageGet } from '../models/message-get';
-import { ActionPost } from '../models/action-post';
-import { GameStateGet } from '../models/game-state-get';
-import { GameGet } from '../models/game-get';
-import { LineUpPlayerGet } from '../models/line-up-player-get';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
+import {OffensiveActionsGet} from '../models/offensive-actions-get';
+import {HttpClient} from '@angular/common/http';
+import {ActionsGet} from '../models/actions-get';
+import {MessageGet} from '../models/message-get';
+import {ActionPost} from '../models/action-post';
+import {GameStateGet} from '../models/game-state-get';
+import {GameGet} from '../models/game-get';
+import {LineUpPlayerGet} from '../models/line-up-player-get';
 import {Button} from "../models/button";
 
 @Injectable({
