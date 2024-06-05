@@ -13,7 +13,6 @@ import { GameGet } from '../../models/game-get';
 import { GameStateGet } from '../../models/game-state-get';
 import { OffensiveActionsGet } from '../../models/offensive-actions-get';
 import { ActionsGet } from '../../models/actions-get';
-import { LineUpPlayers } from '../../models/line-up-players';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
 
 @Component({
@@ -34,8 +33,6 @@ export class GamePageComponent implements OnInit {
   public game!: GameGet;
   public gameState!: GameStateGet;
   public gameActions!: ActionsGet;
-  public homePlayers: LineUpPlayers[] = [];
-  public awayPlayers: LineUpPlayers[] = [];
   public defencivePlayers: LineUpPlayerGet[] = [];
   public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
   public homeTeamDiamonds: OffensiveActionsGet[][] = [];
@@ -104,10 +101,6 @@ export class GamePageComponent implements OnInit {
       next: players => this.defencivePlayers = players,
       error: error => console.log('Cannot refresh defencive players: ' + error)
     })
-
-    // update players
-    this.homePlayers = this.service.getAllHomePlayers();
-    this.awayPlayers = this.service.getAllGuestPlayer();
   }
 
   ngOnInit() {

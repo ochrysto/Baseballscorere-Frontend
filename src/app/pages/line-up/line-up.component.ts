@@ -1,18 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClientModule} from '@angular/common/http';
-import {LineUpService} from "../../services/line-up.service";
-import {NgClass} from "@angular/common";
-import {PlayerGet} from "../../models/player-get";
-import {GameGet} from "../../models/game-get";
-import {switchMap} from "rxjs";
-import {GameService} from "../../services/game.service";
-import {LineUpPost} from "../../models/line-up-post";
-import {LineUpPlayerPost} from "../../models/line-up-player-post";
-import {PositionService} from "../../services/position.service";
-import {PositionGet} from "../../models/position-get";
-import { LineUpPlayers } from '../../models/line-up-players';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { LineUpService } from '../../services/line-up.service';
+import { NgClass } from '@angular/common';
+import { PlayerGet } from '../../models/player-get';
+import { GameGet } from '../../models/game-get';
+import { switchMap } from 'rxjs';
+import { GameService } from '../../services/game.service';
+import { LineUpPost } from '../../models/line-up-post';
+import { LineUpPlayerPost } from '../../models/line-up-player-post';
+import { PositionService } from '../../services/position.service';
+import { PositionGet } from '../../models/position-get';
 
 
 // Other imports remain the same
@@ -91,7 +90,7 @@ export class LineUpComponent implements OnInit {
     });
     this.positionService.getPositions().subscribe({
       next: positions => this.positions = positions,
-      error: err => console.error("Cannon get positions: " + err)
+      error: err => console.error('Cannon get positions: ' + err)
     });
   }
 
@@ -151,7 +150,7 @@ export class LineUpComponent implements OnInit {
         next: msg => {
           this.router.navigate(['/game', this.game.id]);
         },
-        error: err => console.error("Cannot create a first turn: " + err)
+        error: err => console.error('Cannot create a first turn: ' + err)
       });
     });
   }

@@ -152,6 +152,7 @@ export class GameInputComponent {
 
   undoSelection() {
     this.selectedResponsiblePlayers = [];
+    this.service.clearSelectedPlayers();
   }
 
   mapNumberToBaseballPosition(num: number): string {
@@ -197,6 +198,7 @@ export class GameInputComponent {
     this.service.postGameAction(this.game.id, postData).subscribe({
       next: (msg) => {
         console.log('Server response: ', msg);
+        this.service.clearSelectedPlayers();
       },
       error: (err) => {
         console.log('Error: ', err);
