@@ -14,6 +14,7 @@ import { GameStateGet } from '../../models/game-state-get';
 import { OffensiveActionsGet } from '../../models/offensive-actions-get';
 import { ActionsGet } from '../../models/actions-get';
 import { LineUpPlayers } from '../../models/line-up-players';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
 
 @Component({
   selector: 'app-game-page',
@@ -35,6 +36,7 @@ export class GamePageComponent implements OnInit {
   public gameActions!: ActionsGet;
   public homePlayers: LineUpPlayers[] = [];
   public awayPlayers: LineUpPlayers[] = [];
+  public defencivePlayers: LineUpPlayerGet[] = [];
   public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
   public homeTeamDiamonds: OffensiveActionsGet[][] = [];
   public selectedBase: number = 0;
@@ -96,6 +98,12 @@ export class GamePageComponent implements OnInit {
         });
       }
     });
+
+    // Refresh defencive lineup
+    this.service.getDefenciveTeamLineup(this.game!.id).subscribe({
+      next: players => this.defencivePlayers = players,
+      error: error => console.log('Cannot refresh defencive players: ' + error)
+    })
 
     // update players
     this.homePlayers = this.service.getAllHomePlayers();

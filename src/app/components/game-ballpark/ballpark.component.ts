@@ -4,6 +4,7 @@ import { GamePageService } from '../../services/game-page.service';
 import { NgClass } from '@angular/common';
 import { GameStateGet } from '../../models/game-state-get';
 import { ActionsGet } from '../../models/actions-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
 
 @Component({
   selector: 'app-game-ballpark',
@@ -33,26 +34,36 @@ export class BallparkComponent implements OnInit {
     this._actions = actions;
   }
 
+  // @Input()
+  // get homePlayers(): LineUpPlayers[] {
+  //   return this._defensiveHomeTeam;
+  // }
+  //
+  // set homePlayers(players: LineUpPlayers[]) {
+  //   this._defensiveHomeTeam = [...players].sort((a, b) => a.position - b.position);
+  // }
+  //
+  // @Input()
+  // get awayPlayers(): LineUpPlayers[] {
+  //   return this._defensiveGuestTeam;
+  // }
+  //
+  // set awayPlayers(players: LineUpPlayers[]) {
+  //   this._defensiveGuestTeam = [...players].sort((a, b) => a.position - b.position);
+  // }
+
   @Input()
-  get homePlayers(): LineUpPlayers[] {
-    return this._defensiveHomeTeam;
+  get defencivePlayers(): LineUpPlayerGet[] {
+    return this._defensivePlayers;
   }
 
-  set homePlayers(players: LineUpPlayers[]) {
-    this._defensiveHomeTeam = [...players].sort((a, b) => a.position - b.position);
+  set defencivePlayers(players: LineUpPlayerGet[]) {
+    this._defensivePlayers = [...players].sort((a, b) => a.position - b.position);
   }
 
-  @Input()
-  get awayPlayers(): LineUpPlayers[] {
-    return this._defensiveGuestTeam;
-  }
-
-  set awayPlayers(players: LineUpPlayers[]) {
-    this._defensiveGuestTeam = [...players].sort((a, b) => a.position - b.position);
-  }
-
-  private _defensiveHomeTeam: LineUpPlayers[] = [];
-  private _defensiveGuestTeam: LineUpPlayers[] = [];
+  // private _defensiveHomeTeam: LineUpPlayers[] = [];
+  // private _defensiveGuestTeam: LineUpPlayers[] = [];
+  private _defensivePlayers: LineUpPlayerGet[] = [];
   private _gameState!: GameStateGet;
   private _actions!: ActionsGet;
   public selectedPlayers: Set<number> = new Set<number>(); // Track selected players

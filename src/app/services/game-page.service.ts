@@ -8,6 +8,7 @@ import { MessageGet } from '../models/message-get';
 import { ActionPost } from '../models/action-post';
 import { GameStateGet } from '../models/game-state-get';
 import { GameGet } from '../models/game-get';
+import { LineUpPlayerGet } from '../models/line-up-player-get';
 
 @Injectable({
   providedIn: 'root'
@@ -224,6 +225,16 @@ export class GamePageService {
   getGameDiamonds(gid: number, team: string) {
     const url = `${this.baseUrl}/game/${gid}/team/${team}/diamonds`;
     return this.httpClient.get<OffensiveActionsGet[][]>(url);
+  }
+
+  /** Returns a lineup of a defencive team
+   *
+   * @param gid game id
+   * @param team enum either AWAY or HOME
+   */
+  getDefenciveTeamLineup(gid: number) {
+    const url = `${this.baseUrl}/game/${gid}/defencive-team-state`;
+    return this.httpClient.get<LineUpPlayerGet[]>(url);
   }
 
   public triggerChange() {
