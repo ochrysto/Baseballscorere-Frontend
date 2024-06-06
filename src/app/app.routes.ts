@@ -13,7 +13,6 @@ import {TeamPlayerAddComponent} from './components/team-player-add/team-player-a
 import {UmpireCreateFormComponent} from './components/umpire-create-form/umpire-create-form.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/create-team', pathMatch: 'full'},
   {path: '', component: BaseballScorerHomeComponent, canActivate: [AuthGuard],},
   {path: 'game', component: GameCreateComponent, canActivate: [AuthGuard]},
   {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard],},
