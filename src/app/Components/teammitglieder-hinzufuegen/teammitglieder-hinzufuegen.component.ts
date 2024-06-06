@@ -1,48 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgFor } from "@angular/common";
-import { PlayerFormComponent } from "../player-form/player-form.component";
-import { FormsModule } from "@angular/forms";
+import { CommonModule, NgFor } from '@angular/common';
+import { PlayerFormComponent } from '../player-form/player-form.component';
+import { FormsModule } from '@angular/forms';
 import {
   TeaminformationenBearbeitenComponent
-} from "../teaminformationen-bearbeiten/teaminformationen-bearbeiten.component";
-import { ActivatedRoute } from '@angular/router';
+} from '../teaminformationen-bearbeiten/teaminformationen-bearbeiten.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TeamService } from '../../services/Team.service';
-import { HttpClientModule } from '@angular/common/http';
+import { TeamGet } from '../../models/team-get';
 
 @Component({
   selector: 'app-teammitglieder-hinzufuegen',
   standalone: true,
-  imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeaminformationenBearbeitenComponent],
+  imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeaminformationenBearbeitenComponent, RouterLink],
   templateUrl: './teammitglieder-hinzufuegen.component.html',
   styleUrls: ['./teammitglieder-hinzufuegen.component.css']
 })
 export class TeammitgliederHinzufuegenComponent implements OnInit {
-  team = {
-    id: 0,
-    logo: 'assets/logo.png',
-    name: 'Bremen Dockers'
-  };
+  logo: string = 'assets/logo.png';
+  team: TeamGet | null = null;
+  teamId: number | null = null;
   players: any[] = [];
-  isPopupVisible = false;
+  isPopupVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private teamService: TeamService) {
-      this.teamService.playerWasAdded$.subscribe({
-          next: _ => this.fetchPlayers(),
-          error: err => alert("Error: " + err)
-      })
+    this.teamService.playerWasAdded$.subscribe({
+      next: _ => this.fetchPlayers(),
+      error: err => alert('Error: ' + err)
+    });
+
+    this.teamService.teamWasUpdated$.subscribe({
+      next: _ => this.updateTeam(),
+      error: err => alert('Error: ' + err)
+    })
   }
 
   ngOnInit() {
     // Get the team ID from the URL
     this.route.params.subscribe(params => {
-      this.team.id = +params['id']; // The '+' converts the string to a number
+      this.teamId = +params['id']; // The '+' converts the string to a number
+      this.updateTeam();
       this.fetchPlayers();
     });
   }
 
+  updateTeam() {
+    if (this.teamId == null) {
+      console.error('Cannot get team because team id is null');
+      return;
+    }
+
+    this.teamService.getTeam(this.teamId).subscribe({
+      next: team => this.team = team,
+      error: err => alert('Cannot get team with id ' + this.teamId + '. Err: ' + err)
+    });
+  }
+
   fetchPlayers() {
-    this.teamService.getAllTeamPlayers(this.team.id).subscribe(
-      players => {
+    if (this.team == null) {
+      console.error('Cannot get team players because team object is null');
+      return;
+    }
+    this.teamService.getAllTeamPlayers(this.team.teamId).subscribe({
+      next: players => {
         this.players = players.map(player => ({
           id: player.id,
           Vorname: player.firstName,
@@ -54,8 +74,8 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
           originalVorname: ''
         }));
       },
-      error => console.error('Error fetching players:', error)
-    );
+      error: error => console.error('Error fetching players:', error)
+    });
   }
 
   openPopup() {
@@ -88,21 +108,23 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
       firstName: player.Vorname,
       lastName: player.Nachname,
       passnumber: player.passnummer
-    };debugger;
+    };
+    debugger;
     this.teamService.updatePlayer(player.id, updatedPlayer).subscribe(() => {
       player.editing = false;
     });
   }
 
-  deletePlayer(index: number) {debugger;
+  deletePlayer(index: number) {
+    debugger;
+    if (this.team == null) {
+      console.error('Cannot delete team player because team object is null')
+      return;
+    }
+
     const player = this.players[index];
-    this.teamService.deletePlayer(this.team.id, player.id).subscribe(() => {
+    this.teamService.deletePlayer(this.team.teamId, player.id).subscribe(() => {
       this.players.splice(index, 1);
     });
-  }
-
-  closeList() {
-    // Logic to close the player list, could be navigating back to the previous view or hiding this section
-    // and return to main page of course
   }
 }

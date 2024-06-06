@@ -1,10 +1,10 @@
 <div class="app-container">
   <div class="team-container">
     <div class="team-header">
-      <img [src]="team.logo" alt="Team Logo" class="team-logo">
+      <img [src]="logo" alt="Team Logo" class="team-logo">
       <div class="team-titles">
         <h1 class="team-edit-title">TEAM BEARBEITEN</h1>
-        <h2 class="team-name">{{ team.name }}</h2>
+        <h2 class="team-name">{{ team?.name }}</h2>
         <!-- Button to open the popup -->
         <button class="open-popup-button" (click)="openPopup()">Teaminformationen bearbeiten</button>
       </div>
@@ -46,7 +46,7 @@
             </form>
           </li>
         </ul>
-        <button class="close-button" (click)="closeList()">schließen</button>
+        <button class="close-button" routerLink="/">schließen</button>
       </div>
     </div>
 
@@ -56,7 +56,7 @@
         <button class="close-popup-button" (click)="closePopup()">
           <i class="fas fa-times"></i>
         </button>
-        <app-teaminformationen-bearbeiten (close)="closePopup()"></app-teaminformationen-bearbeiten>
+        <app-teaminformationen-bearbeiten [team]="team" (close)="closePopup()"></app-teaminformationen-bearbeiten>
       </div>
     </div>
   </div>

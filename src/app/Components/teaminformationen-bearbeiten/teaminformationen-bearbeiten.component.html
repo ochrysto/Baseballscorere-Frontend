@@ -1,22 +1,22 @@
 <div class="team-info-popup">
-  <form (ngSubmit)="onSubmit()" class="team-info-form">
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit()" class="team-info-form">
     <div class="form-group">
       <label for="Liga_Name"><i class="fas fa-trophy icons"></i> Liga Name</label>
-      <select id="Liga_Name" name="Liga_Name" [(ngModel)]="Liga_Name" required>
-        <option *ngFor="let liga of ligaOptions" [value]="liga.id">{{ liga.name }}</option>
+      <select id="Liga_Name" name="Liga_Name" formControlName="leagueId">
+        <option *ngIf="team" [value]="team.league.id">{{ team.league.name }}</option>
+        <option *ngFor="let league of leagues" [value]="league.id">{{ league.name }}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="Verein_name"><i class="fas fa-shield-alt icons"></i> Name der Verein</label>
-      <select id="Verein_name" name="Verein_name" [(ngModel)]="Verein_name" required>
-        <option *ngFor="let verein of vereinOptions" [value]="verein.id">{{ verein.name }}</option>
+      <select id="Verein_name" name="Verein_name" formControlName="clubId">
+        <option *ngIf="team" [value]="team.club.id">{{ team.club.name }}</option>
+        <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="Teams_name"><i class="fas fa-users icons"></i> Name des Teams</label>
-      <select id="Teams_name" name="Teams_name" [(ngModel)]="Teams_name" required>
-        <option *ngFor="let team of teamOptions" [value]="team.id">{{ team.name }}</option>
-      </select>
+      <input id="Teams_name" name="Teams_name" formControlName="name">
     </div>
     <div class="form-group file-upload">
       <label style="color: black" for="Logo" class="file-upload-label">
@@ -27,8 +27,9 @@
     </div>
     <div class="form-group">
       <label for="Manager"><i class="fas fa-user-tie icons"></i> Manager</label>
-      <select id="Manager" name="Manager" [(ngModel)]="Manager" required>
-        <option *ngFor="let manager of managerOptions" [value]="manager.id">{{ manager.name }}</option>
+      <select id="Manager" name="Manager" formControlName="managerId">
+        <option *ngIf="team" [value]="team.manager.id">{{ team.manager.firstName }} {{ team.manager.lastName }}</option>
+        <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.firstName }} {{ manager.lastName }}</option>
       </select>
     </div>
     <button type="submit" class="save-button"><i class="fas fa-save"></i> speichern</button>
