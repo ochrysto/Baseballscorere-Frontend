@@ -36,7 +36,6 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get the team ID from the URL
     this.route.params.subscribe(params => {
       this.teamId = +params['id']; // The '+' converts the string to a number
       this.updateTeam();
@@ -54,6 +53,16 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
       next: team => this.team = team,
       error: err => alert('Cannot get team with id ' + this.teamId + '. Err: ' + err)
     });
+  }
+
+  fetchTeam() {
+    this.teamService.getTeamById(this.team.teamId).subscribe(
+      team => {
+        this.team.name = team.name;
+        this.team.logo = team.logo;
+      },
+      error => console.error('Error fetching team:', error)
+    );
   }
 
   fetchPlayers() {
@@ -89,12 +98,10 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
   toggleEdit(index: number) {
     const player = this.players[index];
     if (!player.editing) {
-      // Store original values before editing
       player.originalNachname = player.Nachname;
       player.originalPassnummer = player.passnummer;
       player.originalVorname = player.Vorname;
     } else {
-      // Revert to original values on cancel
       player.Nachname = player.originalNachname;
       player.passnummer = player.originalPassnummer;
       player.Vorname = player.originalVorname;
@@ -109,14 +116,13 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
       lastName: player.Nachname,
       passnumber: player.passnummer
     };
-    debugger;
+
     this.teamService.updatePlayer(player.id, updatedPlayer).subscribe(() => {
       player.editing = false;
     });
   }
 
   deletePlayer(index: number) {
-    debugger;
     if (this.team == null) {
       console.error('Cannot delete team player because team object is null')
       return;

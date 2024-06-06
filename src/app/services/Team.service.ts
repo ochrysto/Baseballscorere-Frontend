@@ -22,8 +22,9 @@ interface Player {
  * @deprecated
  */
 interface Team {
-  teamId: number;
+  teamId: number; // Ensure this matches the API response
   name: string;
+  logo: string;
 }
 
 @Injectable({
@@ -82,7 +83,9 @@ export class TeamService {
     debugger;
     return this.http.put(`${this.baseUrl}/player/${playerId}`, playerData);
   }
-
+  getTeamById(teamId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/team/${teamId}`);
+  }
   triggerPlayersWasAdded() {
     this.playerWasAdded.next(null);
   }

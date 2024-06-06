@@ -1,14 +1,6 @@
 <div class="player-form">
   <h3>Spieler zur Mannschaft hinzufügen</h3>
 
-  <div class="team-selection">
-    <label for="teamSelect">Wähle eine Mannschaft:</label>
-    <select id="teamSelect" [(ngModel)]="selectedTeamId">
-      <option value="" disabled>Mannschaft auswählen</option>
-      <option *ngFor="let team of teams" [ngValue]="team.teamId">{{ team.name }}</option>
-    </select>
-  </div>
-
   <div class="player-list">
     <table>
       <thead>
