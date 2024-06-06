@@ -1,51 +1,21 @@
 <div class="input-container">
   <div class="button-box-container">
     <div class="button-box">
-      @if (selectButtonsVisible) {
-        <button (click)="showButtons('Hit')" class="selectButton">Hit</button>
-        <button (click)="showButtons('Out')" class="selectButton">Out</button>
-        <button (click)="showButtons('Error')" class="selectButton">Error</button>
-        <button (click)="onSelect('BB')" class="selectButton">BB</button>
-        <button (click)="onSelect('FC')" class="selectButton">FC</button>
-        <button (click)="onSelect('HP')" class="selectButton">HP</button>
-        <button (click)="onSelect('LT')" class="selectButton">LT</button>
+      @if (showBackButton) {
+      <button (click)="handleBack()" class="selectButton">Back</button>
       }
-      @if (hitButtonsVisible) {
-        <button (click)="onSelect('1B')" class="selectButton">1B</button>
-        <button (click)="onSelect('2B')" class="selectButton">2B</button>
-        <button (click)="onSelect('3B')" class="selectButton">3B</button>
-        <button (click)="onSelect('HR')" class="selectButton">HR</button>
-      }
-      @if (outButtonsVisible) {
-        <button (click)="showButtons('GO')" class="selectButton">GO</button>
-        <button (click)="showButtons('F')" class="selectButton">F</button>
-        <button (click)="showButtons('U')" class="selectButton">U</button>
-        <button (click)="showButtons('OBR')" class="selectButton">OBR</button>
-        <button (click)="onSelect('K')" class="selectButton">K</button>
-        <button (click)="onSelect('KPB')" class="selectButton">KPB</button>
-        <button (click)="onSelect('K2-3')" class="selectButton">K2-3</button>
-      }
-      @if (errorButtonsVisible) {
-        <button (click)="showButtons('E')" class="selectButton">E</button>
-        <button (click)="showButtons('A-E')" class="selectButton">A-E</button>
-        <button (click)="onSelect('CIe2')" class="selectButton">CIe2</button>
-      }
-      @if (selectPositionsVisible) {
-        <button (click)="onSecondButtonClick('1')" class="selectButton">1</button>
-        <button (click)="onSecondButtonClick('2')" class="selectButton">2</button>
-        <button (click)="onSecondButtonClick('3')" class="selectButton">3</button>
-        <button (click)="onSecondButtonClick('4')" class="selectButton">4</button>
-        <button (click)="onSecondButtonClick('5')" class="selectButton">5</button>
-        <button (click)="onSecondButtonClick('6')" class="selectButton">6</button>
-        <button (click)="onSecondButtonClick('7')" class="selectButton">7</button>
-        <button (click)="onSecondButtonClick('8')" class="selectButton">8</button>
-        <button (click)="onSecondButtonClick('9')" class="selectButton">9</button>
+      @for (button of parseButtons(currentButtons); track button.button) {
+      <button (click)="handleButtonClick(button)" class="selectButton">
+      {{ button.button }}
+      </button>
+      } @empty {
+      <p>select player</p>
       }
     </div>
   </div>
 
   <div class="confirmation-box">
     <button (click)="undoSelection()" class="undo">UNDO</button>
-    <button (click)="onConfirmation(selection)" class="ok">OK</button>
+    <button (click)="onConfirmation()" class="ok">OK</button>
   </div>
 </div>

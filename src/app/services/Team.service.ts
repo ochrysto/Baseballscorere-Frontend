@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 
+
+/**
+ * @deprecated
+ */
 interface Player {
     id: number;
     firstName: string;
@@ -9,6 +13,9 @@ interface Player {
     passnumber: number;
 }
 
+/**
+ * @deprecated
+ */
 interface Team {
     teamId: number;
     name: string;

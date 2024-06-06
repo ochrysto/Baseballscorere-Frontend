@@ -1,0 +1,355 @@
+You are Senior JavaScript Angular Developer that know how to build robust and reusable frontend applications with Angular V17.
+You know all best practices and write clean, well-documented code with SOLID, DRY and KISS principles in mind.
+You are super designer and UI/UX expert.
+
+ballpark.component.html
+```html
+<div class="ballpark-component-container">
+  <div class="ballpark-container">
+    @for (player of defencivePlayers; track player) {
+    <button class="defensive-player-visitor" [ngClass]="{'selected': selectedPlayers.has(player.position)}" (click)="selectPlayer(player.position)">
+      {{ player.jerseyNr }}
+      <span class="defensive-name-visitor">{{ player.lastName }}</span>
+    </button>
+    }
+    @if (gameState.batter) {
+    <button class="offensive-player-home-batter" [ngClass]="{'button-disabled' : actions.batter == null, 'selected-offensive': base === 0}" (click)="selectBase(0)">
+      {{ gameState.batter!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.firstBase) {
+    <button class="offensive-player-home-firstbase" [ngClass]="{'button-disabled' : actions.firstBaseRunner == null, 'selected-offensive': base === 1}" (click)="selectBase(1)">
+      {{ gameState.firstBase!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.secondBase) {
+    <button class="offensive-player-home-secondbase" [ngClass]="{'button-disabled' : actions.secondBaseRunner == null, 'selected-offensive': base === 2}" (click)="selectBase(2)">
+      {{ gameState.secondBase!.jerseyNr }}
+    </button>
+    }
+    @if (gameState.thirdBase) {
+    <button class="offensive-player-home-thirdbase" [ngClass]="{'button-disabled' : actions.thirdBaseRunner == null, 'selected-offensive': base === 3}" (click)="selectBase(3)">
+      {{ gameState.thirdBase!.jerseyNr }}
+    </button>
+    }
+
+    <img src="assets/ballpark.svg" class="ballpark" alt="missing Ballpark picture"/>
+  </div>
+</div>
+```
+
+ballpark.component.css
+```css
+.ballpark-component-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ballpark {
+  width: 375px;
+  height: 100%;
+}
+
+.ballpark-container {
+  position: relative;
+}
+
+.defensive-player-home {
+  width: 37px;
+  height: 37px;
+  background-color: var(--homeblue);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 75%;
+  font-family: Kanit, sans-serif;
+  font-weight: 500;
+}
+
+.defensive-player-visitor {
+  width: 37px;
+  height: 37px;
+  background-color: var(--visitoryellow);
+  color: var(--card-darkbrown);
+  border: none;
+  border-radius: 50%;
+  font-size: 75%;
+  font-family: Kanit, sans-serif;
+  font-weight: 500;
+}
+.offensive-player-home-batter {
+  width: 37px;
+  height: 37px;
+  background-color: var(--homeblue);
+  font-size: 75%;
+  font-weight: 500;
+  color: white;
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 300px;
+  left: 135px;
+}
+.offensive-player-home-firstbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--homeblue);
+  font-size: 75%;
+  font-weight: 500;
+  color: white;
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 195px;
+  left: 262px;
+}
+.offensive-player-home-secondbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--homeblue);
+  font-size: 75%;
+  font-weight: 500;
+  color: white;
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 112px;
+  left: 172px;
+}
+.offensive-player-home-thirdbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--homeblue);
+  font-size: 75%;
+  font-weight: 500;
+  color: white;
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 195px;
+  left: 82px;
+}
+.offensive-player-visitor-batter {
+  width: 37px;
+  height: 37px;
+  background-color: var(--visitoryellow);
+  font-size: 75%;
+  font-weight: 500;
+  color: var(--card-darkbrown);
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 300px;
+  left: 135px;
+}
+.offensive-player-visitor-firstbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--visitoryellow);
+  font-size: 75%;
+  font-weight: 500;
+  color: var(--card-darkbrown);
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 195px;
+  left: 262px;
+}
+.offensive-player-visitor-secondbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--visitoryellow);
+  font-size: 75%;
+  font-weight: 500;
+  color: var(--card-darkbrown);
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 112px;
+  left: 172px;
+}
+.offensive-player-visitor-thirdbase {
+  width: 37px;
+  height: 37px;
+  background-color: var(--visitoryellow);
+  font-size: 75%;
+  font-weight: 500;
+  color: var(--card-darkbrown);
+  font-family: Kanit, sans-serif;
+  border-radius: 11px;
+  border: none;
+  position: absolute;
+  top: 195px;
+  left: 82px;
+}
+
+.defensive-name-home {
+  color: var(--homeblue);
+  position: absolute;
+  font-size: 90%;
+  letter-spacing: 0.5px;
+  text-align: center;
+  top: 125%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.defensive-name-visitor {
+  color: var(--visitoryellow);
+  position: absolute;
+  font-size: 90%;
+  letter-spacing: 0.5px;
+  text-align: center;
+  top: 125%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.defensive-player-visitor:first-child {
+  position: absolute;
+  top: 195px;
+  left: 172px;
+}
+
+.defensive-player-home:first-child {
+  position: absolute;
+  top: 195px;
+  left: 172px;
+}
+
+.defensive-player-home:first-child p {
+  color: #000;
+}
+
+.defensive-player-visitor:first-child p {
+  color: #000;
+}
+
+.defensive-player-visitor:nth-of-type(2) {
+  position: absolute;
+  top: 330px;
+  left: 172px;
+}
+
+.defensive-player-home:nth-of-type(2) {
+  position: absolute;
+  top: 330px;
+  left: 172px;
+}
+
+.defensive-player-visitor:nth-of-type(3) {
+  position: absolute;
+  top: 139px;
+  left: 277px;
+}
+
+.defensive-player-home:nth-of-type(3) {
+  position: absolute;
+  top: 139px;
+  left: 277px;
+}
+
+.defensive-player-visitor:nth-of-type(4) {
+  position: absolute;
+  top: 82px;
+  left: 229px;
+}
+
+.defensive-player-home:nth-of-type(4) {
+  position: absolute;
+  top: 82px;
+  left: 229px;
+}
+
+.defensive-player-visitor:nth-of-type(5) {
+  position: absolute;
+  top: 139px;
+  left: 67px;
+}
+
+.defensive-player-home:nth-of-type(5) {
+  position: absolute;
+  top: 139px;
+  left: 67px;
+}
+
+.defensive-player-visitor:nth-of-type(6) {
+  position: absolute;
+  top: 75px;
+  left: 120px;
+}
+
+.defensive-player-home:nth-of-type(6) {
+  position: absolute;
+  top: 75px;
+  left: 120px;
+}
+
+.defensive-player-visitor:nth-of-type(7) {
+  position: absolute;
+  top: 30px;
+  left: 34px;
+}
+
+.defensive-player-home:nth-of-type(7) {
+  position: absolute;
+  top: 30px;
+  left: 34px;
+}
+
+.defensive-player-visitor:nth-of-type(8) {
+  position: absolute;
+  top: 11px;
+  left: 169px;
+}
+
+.defensive-player-home:nth-of-type(8) {
+  position: absolute;
+  top: 11px;
+  left: 169px;
+}
+
+.defensive-player-visitor:nth-of-type(9) {
+  position: absolute;
+  top: 30px;
+  left: 304px;
+}
+
+.defensive-player-home:nth-of-type(9) {
+  position: absolute;
+  top: 30px;
+  left: 304px;
+}
+
+.button-disabled {
+  opacity: 0.5;
+}
+
+.button-disabled:hover {
+
+}
+
+button:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  filter: brightness(60%);
+}
+
+.selected-offensive {
+  box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8); /* Highlight with a gold-like glow */
+  filter: brightness(1.2); /* Slightly brighten the selected button */
+  outline: 2px solid var(--homeblue); /* Add an outline matching the home blue color */
+  transition: box-shadow 0.3s ease, filter 0.3s ease, outline 0.3s ease; /* Smooth transition */
+}
+```
+
+Task:
+1. Add a CSS (and HTML logic if needed) for animated (dis)appearance of buttons on content change, button appearance and button disappearance. It should make easy to understand which button is appeared/disappeared/changed his content (text between tags <></>). Please stick to the style. It should look perfect.
+
+Send me only the new or changed code.

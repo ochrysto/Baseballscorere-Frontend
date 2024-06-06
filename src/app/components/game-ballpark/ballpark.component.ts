@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {LineUpPlayers} from "../../models/line-up-players";
-import {GamePageService} from "../../services/game-page.service";
-import {NgClass} from "@angular/common";
+import { Component, Input, OnInit } from '@angular/core';
+import { GamePageService } from '../../services/game-page.service';
+import { NgClass } from '@angular/common';
+import { GameStateGet } from '../../models/game-state-get';
+import { ActionsGet } from '../../models/actions-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
 
 @Component({
   selector: 'app-game-ballpark',
@@ -13,22 +16,72 @@ import {NgClass} from "@angular/common";
   styleUrl: './ballpark.component.css'
 })
 export class BallparkComponent implements OnInit {
+  @Input()
+  get gameState(): GameStateGet {
+    return this._gameState;
+  }
 
-  homeTeam: LineUpPlayers[] = [];
-  visitorTeam: LineUpPlayers[] = [];
-  protected defensiveHomeTeam: LineUpPlayers[] = [];
-  protected defensiveGuestTeam: LineUpPlayers[] = [];
-  protected currentInningStatus!: string;
+  set gameState(gameState: GameStateGet) {
+    this._gameState = gameState;
+  }
 
-  constructor(protected gamePageService: GamePageService) {
+  @Input()
+  get actions(): ActionsGet {
+    return this._actions;
+  }
+
+  set actions(actions: ActionsGet) {
+    this._actions = actions;
+  }
+
+  @Input()
+  get defencivePlayers(): LineUpPlayerGet[] {
+    return this._defensivePlayers;
+  }
+
+  set defencivePlayers(players: LineUpPlayerGet[]) {
+    this._defensivePlayers = [...players].sort((a, b) => a.position - b.position);
+  }
+
+  @Input()
+  get base(): number {
+    return this._selectedBase;
+  }
+
+  set base(base: number) {
+    this._selectedBase = base;
+  }
+
+  private _defensivePlayers: LineUpPlayerGet[] = [];
+  private _gameState!: GameStateGet;
+  private _actions!: ActionsGet;
+  private _selectedBase: number = 0;
+  public selectedPlayers: Set<number> = new Set<number>(); // Track selected players
+
+  constructor(protected service: GamePageService) {
+    service.selectedPlayers$.subscribe({
+      next: value => this.selectedPlayers = new Set(value),
+      error: err => "Cannot get updated `selectedPlayers` list: " + err
+    })
   }
 
   ngOnInit() {
-    this.visitorTeam = this.gamePageService.getAllGuestPlayer();
-    this.homeTeam = this.gamePageService.getAllHomePlayers();
-    this.defensiveHomeTeam = [...this.homeTeam].sort((a, b) => a.position - b.position);
-    this.defensiveGuestTeam = [...this.visitorTeam].sort((a, b) => a.position - b.position);
-    this.gamePageService.inningStatus$.subscribe(inningStatus => {this.currentInningStatus = inningStatus;})
   }
 
+  selectBase(number: number) {
+    this.service.updateSelectedBase(number);
+  }
+
+  /**
+   * Handles selection of defensive players
+   * @param position defensive player position
+   */
+  selectPlayer(position: number) {
+    if (this.selectedPlayers.has(position)) {
+      this.selectedPlayers.delete(position);
+    } else {
+      this.selectedPlayers.add(position);
+    }
+    this.service.updateSelectedPlayers([...this.selectedPlayers]);
+  }
 }

@@ -5,318 +5,97 @@
       <div class="tabs">
         <div class="the_heim" >
           <button class="team_home" [ngClass]="{'active': activeTab === 'HEIM'}" (click)="switchTab('HEIM')">HEIM</button>
+          <p class="the_gast">{{ game.guestTeam.name }}</p>
         </div>
         <div class="the_gast" >
           <button class="team away" [ngClass]="{'active': activeTab === 'GAST'}" (click)="switchTab('GAST')">GAST</button>
+          <p class="the_heim"> {{ game.hostTeam.name }} </p>
         </div>
       </div>
-        <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">
-          <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM" class="team home">
-          <p>Bremen Dockers</p>
-          <div class="line-up-table">
-        <table>
-          <tr>
-            <th>Nr.</th>
-            <th>Name</th>
-            <th>Passnummer</th>
-            <th>Position</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{ option }}
-                </mat-option>
-              </mat-autocomplete>
-              <input type="text" placeholder="Name" aria-label="Number"
-                     matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>
-              <input type="text" placeholder="Name" aria-label="Number"
-                     matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>
-              <input type="text" placeholder="Name" aria-label="Number"
-                     matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td><input type="text" placeholder="Name" aria-label="Number"
-                       matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-            </td>
-            <td><input type="text" placeholder="Passnummer"></td>
-            <td><select>
-              <option value="">Wählen...</option>
-              <option value="pitcher">Pitcher</option>
-              <option value="catcher">Catcher</option>
-            </select></td>
-          </tr>
-        </table>
-          </div>
+      <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">
+        <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM" class="team home">
+          <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="homeLineUp" class="line-up-table">
+              <table>
+                <tr>
+                  <th>Nr.</th>
+                  <th>Name</th>
+                  <th>Passnummer</th>
+                  <th>Position</th>
+                </tr>
+                @for (player of homeLineUp.controls; track player; let i = $index) {
+                  <tr [formGroupName]="i">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <select formControlName="playerId" class="full-width">
+                        @for (player of homePlayers; track player) {
+                          <option [value]="player.id">{{ player.firstName }}</option>
+                        }
+                      </select>
+                    </td>
+                    <td>
+                      <input type="number" placeholder="Passnummer" formControlName="passNumber" class="full-width">
+                    </td>
+                    <td>
+                      <select formControlName="position" class="full-width">
+                        <option value="" disabled hidden selected>Wählen...</option>
+                        @for (position of positions; track position) {
+                          <option [value]="position.id">{{ position.description }}</option>
+                        }
+                      </select>
+                    </td>
+                  </tr>
+                }
+              </table>
+            </div>
+            <div class="action-button">
+            <button type="submit">Zum Spiel</button>
+            </div>
+          </form>
         </div>
-        </div>
+      </div>
       <div [ngClass]="{'team_away': true, 'active': activeTab === 'GAST'}">
         <div [class.hidden]="activeTab !== 'GAST'" id="GAST" class="team away">
-          <p>Braunschweig 89ers</p>
-          <div class="line-up-table">
-        <table>
-          <tr>
-            <th>Nr.</th>
-            <th>Name</th>
-            <th>Passnummer</th>
-            <th>Position</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{ option }}
-                </mat-option>
-              </mat-autocomplete>
-              <input type="text" placeholder="Name" aria-label="Number"
-                     matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>
-        <input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>
-          <input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td><input type="text" placeholder="Name" aria-label="Number"
-                   matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
-        </td>
-        <td><input type="text" placeholder="Passnummer"></td>
-        <td><select>
-          <option value="">Wählen...</option>
-          <option value="pitcher">Pitcher</option>
-          <option value="catcher">Catcher</option>
-        </select></td>
-      </tr>
-    </table>
-  </div>
-  <div class="action-button">
-    <button>Zum Spiel</button>
+          <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="awayLineUp" class="line-up-table">
+              <table>
+                <tr>
+                  <th>Nr.</th>
+                  <th>Name</th>
+                  <th>Passnummer</th>
+                  <th>Position</th>
+                </tr>
+                @for (player of awayLineUp.controls; track player; let i = $index) {
+                  <tr [formGroupName]="i">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <select formControlName="playerId" class="full-width">
+                        @for (player of awayPlayers; track player) {
+                          <option [value]="player.id">{{ player.firstName }}</option>
+                        }
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" placeholder="Passnummer" formControlName="passNumber" class="full-width">
+                    </td>
+                    <td>
+                      <select formControlName="position" class="full-width">
+                        <option value="" disabled hidden selected>Wählen...</option>
+                        @for (position of positions; track position) {
+                          <option [value]="position.id">{{ position.description }}</option>
+                        }
+                      </select>
+                    </td>
+                  </tr>
+                }
+              </table>
+            </div>
+            <div class="action-button">
+              <button type="submit">Zum Spiel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

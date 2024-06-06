@@ -1,12 +1,7 @@
-import {Component, NgModule} from '@angular/core';
-import {RouterModule, RouterOutlet} from '@angular/router';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {LineUpComponent} from "./pages/line-up/line-up.component";
-import {MatFormField} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
-import {AsyncPipe, NgForOf} from "@angular/common";
-import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,23 +10,4 @@ import {MatSlideToggle, MatSlideToggleModule} from '@angular/material/slide-togg
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Baseball-Scoresheet';
 }
-@NgModule ({
-    declarations: [
-
-    ],
-  imports: [
-    MatSlideToggleModule,
-    MatAutocompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    NgForOf,
-    AsyncPipe,
-    LineUpComponent
-  ],
-  providers: [],
-})
-class AppModule {}

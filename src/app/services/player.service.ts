@@ -1,15 +1,22 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
   private callSubject = new BehaviorSubject<string[]>([]);
-  private _call: string[] = [];
-  private _score: string = '';
 
-  constructor() {}
+  constructor() {
+  }
+
+  private _call: string[] = [];
+
+  get call(): Observable<string[]> {
+    return this.callSubject.asObservable();
+  }
+
+  private _score: string = '';
 
   /**
    * checks if value is a combined value
@@ -82,10 +89,7 @@ export class PlayerService {
     }
   }
 
-  onChange() {}
-
-  get call(): Observable<string[]> {
-    return this.callSubject.asObservable();
+  onChange() {
   }
 }
 
