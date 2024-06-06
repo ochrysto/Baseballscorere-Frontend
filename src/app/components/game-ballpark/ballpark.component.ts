@@ -1,21 +1,18 @@
-import {Component, Input} from '@angular/core';
-import {GamePageService} from '../../services/game-page.service';
-import {NgClass, NgOptimizedImage} from '@angular/common';
-import {GameStateGet} from '../../models/game-state-get';
-import {ActionsGet} from '../../models/actions-get';
-import {LineUpPlayerGet} from '../../models/line-up-player-get';
+import { Component, Input } from '@angular/core';
+import { GamePageService } from '../../services/game-page.service';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import { GameStateGet } from '../../models/game-state-get';
+import { ActionsGet } from '../../models/actions-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
 
 @Component({
   selector: 'app-game-ballpark',
   standalone: true,
-  imports: [
-    NgClass,
-    NgOptimizedImage
-  ],
+  imports: [NgClass, NgOptimizedImage],
   templateUrl: './ballpark.component.html',
-  styleUrl: './ballpark.component.css'
+  styleUrl: './ballpark.component.css',
 })
-export class BallparkComponent{
+export class BallparkComponent {
   @Input()
   get gameState(): GameStateGet {
     return this._gameState;
@@ -60,9 +57,9 @@ export class BallparkComponent{
 
   constructor(protected service: GamePageService) {
     service.selectedPlayers$.subscribe({
-      next: value => this.selectedPlayers = new Set(value),
-      error: err => "Cannot get updated `selectedPlayers` list: " + err
-    })
+      next: (value) => (this.selectedPlayers = new Set(value)),
+      error: (err) => 'Cannot get updated `selectedPlayers` list: ' + err,
+    });
   }
 
   selectBase(number: number) {

@@ -1,4 +1,4 @@
-import {DiamondGet} from "./diamond-get";
+import { DiamondGet } from './diamond-get';
 
 export interface OffensiveActionsGet {
   firstName: string;

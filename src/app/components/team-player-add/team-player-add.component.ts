@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule, NgFor, NgOptimizedImage} from '@angular/common';
-import {PlayerFormComponent} from '../player-form/player-form.component';
-import {FormsModule} from '@angular/forms';
-import {TeamEditComponent} from '../team-edit/team-edit.component';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {TeamService} from '../../services/team.service';
-import {TeamGet} from '../../models/team-get';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgFor, NgOptimizedImage } from '@angular/common';
+import { PlayerFormComponent } from '../player-form/player-form.component';
+import { FormsModule } from '@angular/forms';
+import { TeamEditComponent } from '../team-edit/team-edit.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TeamService } from '../../services/team.service';
+import { TeamGet } from '../../models/team-get';
 
 @Component({
   selector: 'app-team-player-add',
   standalone: true,
   imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeamEditComponent, RouterLink, NgOptimizedImage],
   templateUrl: './team-player-add.component.html',
-  styleUrls: ['./team-player-add.component.css']
+  styleUrls: ['./team-player-add.component.css'],
 })
 export class TeamPlayerAddComponent implements OnInit {
   logo: string = 'assets/logo.png';
@@ -20,7 +20,6 @@ export class TeamPlayerAddComponent implements OnInit {
   teamId: number | null = null;
   players: any[] = [];
   isPopupVisible: boolean = false;
-
 
   get team(): TeamGet | null {
     return this._team;
@@ -31,20 +30,23 @@ export class TeamPlayerAddComponent implements OnInit {
     this.fetchPlayers();
   }
 
-  constructor(private route: ActivatedRoute, private teamService: TeamService) {
+  constructor(
+    private route: ActivatedRoute,
+    private teamService: TeamService
+  ) {
     this.teamService.playerWasAdded$.subscribe({
       next: () => this.fetchPlayers(),
-      error: err => alert('Error: ' + err)
+      error: (err) => alert('Error: ' + err),
     });
 
     this.teamService.teamWasUpdated$.subscribe({
       next: () => this.updateTeam(),
-      error: err => alert('Error: ' + err)
-    })
+      error: (err) => alert('Error: ' + err),
+    });
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.teamId = +params['id']; // The '+' converts the string to a number
       this.updateTeam();
     });
@@ -57,8 +59,8 @@ export class TeamPlayerAddComponent implements OnInit {
     }
 
     this.teamService.getTeam(this.teamId).subscribe({
-      next: team => this.team = team,
-      error: err => alert('Cannot get team with id ' + this.teamId + '. Err: ' + err)
+      next: (team) => (this.team = team),
+      error: (err) => alert('Cannot get team with id ' + this.teamId + '. Err: ' + err),
     });
   }
 
@@ -68,19 +70,21 @@ export class TeamPlayerAddComponent implements OnInit {
       return;
     }
     this.teamService.getAllTeamPlayers(this.team.teamId).subscribe({
-      next: players => {
-        this.players = players.sort((a, b) => a.id - b.id).map(player => ({
-          id: player.id,
-          Vorname: player.firstName,
-          Nachname: player.lastName,
-          passnummer: player.passnumber,
-          editing: false,
-          originalNachname: '',
-          originalPassnummer: '',
-          originalVorname: ''
-        }));
+      next: (players) => {
+        this.players = players
+          .sort((a, b) => a.id - b.id)
+          .map((player) => ({
+            id: player.id,
+            Vorname: player.firstName,
+            Nachname: player.lastName,
+            passnummer: player.passnumber,
+            editing: false,
+            originalNachname: '',
+            originalPassnummer: '',
+            originalVorname: '',
+          }));
       },
-      error: error => console.error('Error fetching players:', error)
+      error: (error) => console.error('Error fetching players:', error),
     });
   }
 
@@ -111,7 +115,7 @@ export class TeamPlayerAddComponent implements OnInit {
     const updatedPlayer = {
       firstName: player.Vorname,
       lastName: player.Nachname,
-      passnumber: player.passnummer
+      passnumber: player.passnummer,
     };
 
     this.teamService.updatePlayer(player.id, updatedPlayer).subscribe(() => {
@@ -121,7 +125,7 @@ export class TeamPlayerAddComponent implements OnInit {
 
   deletePlayer(index: number) {
     if (this.team == null) {
-      console.error('Cannot delete team player because team object is null')
+      console.error('Cannot delete team player because team object is null');
       return;
     }
 

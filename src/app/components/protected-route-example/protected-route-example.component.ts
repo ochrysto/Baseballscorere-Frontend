@@ -29,7 +29,7 @@ export class ProtectedRouteExampleComponent {
       next: (response) => {
         //Erfolgreiche Verarbeitung der gespeicherten Daten
         console.log('Offene daten erfolgreich empfangen.');
-        console.log('Empfangener text: ', response.text)
+        console.log('Empfangener text: ', response.text);
       },
       error: (error) => {
         //Fehlerbehandlung bei Speicherfehler
@@ -46,7 +46,7 @@ export class ProtectedRouteExampleComponent {
       next: (response) => {
         //Erfolgreiche Verarbeitung der gespeicherten Daten
         console.log('Gesicherte daten erfolgreich empfangen.');
-        console.log('Empfangener text: ', response.text)
+        console.log('Empfangener text: ', response.text);
       },
       error: (error) => {
         //Fehlerbehandlung bei Speicherfehler

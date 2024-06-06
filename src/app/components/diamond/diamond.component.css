@@ -5,7 +5,7 @@
   fill: var(--visitoryellow);
   width: 49px;
   height: 49px;
-  font-family: "Comic Neue", "Comic Sans MS", cursive;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 .frame-home {
@@ -15,7 +15,7 @@
   fill: var(--homeblue);
   width: 49px;
   height: 49px;
-  font-family: "Comic Neue", "Comic Sans MS", cursive;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
 }
 
 .central {

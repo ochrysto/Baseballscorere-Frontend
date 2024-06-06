@@ -2,14 +2,14 @@
   <div class="button-box-container">
     <div class="button-box">
       @if (showBackButton) {
-      <button (click)="handleBack()" class="selectButton">Back</button>
+        <button (click)="handleBack()" class="selectButton">Back</button>
       }
       @for (button of parseButtons(currentButtons); track button.button) {
-      <button (click)="handleButtonClick(button)" class="selectButton">
-      {{ button.button }}
-      </button>
+        <button (click)="handleButtonClick(button)" class="selectButton">
+          {{ button.button }}
+        </button>
       } @empty {
-      <p>select player</p>
+        <p>select player</p>
       }
     </div>
   </div>

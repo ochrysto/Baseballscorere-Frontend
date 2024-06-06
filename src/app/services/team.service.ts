@@ -1,18 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {TeamPost} from '../models/team-post';
-import {TeamGet} from '../models/team-get';
-import {ClubGet} from '../models/club-get';
-import {ManagerGet} from '../models/manager-get';
-import {LeagueGet} from '../models/league-get';
-import {PlayerGet} from "../models/player-get";
-import {PlayerPost} from "../models/player-post";
-import {TeamWithPlayersGet} from "../models/team-with-players-get";
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TeamPost } from '../models/team-post';
+import { TeamGet } from '../models/team-get';
+import { ClubGet } from '../models/club-get';
+import { ManagerGet } from '../models/manager-get';
+import { LeagueGet } from '../models/league-get';
+import { PlayerGet } from '../models/player-get';
+import { PlayerPost } from '../models/player-post';
+import { TeamWithPlayersGet } from '../models/team-with-players-get';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamService {
   private baseUrl = 'http://localhost:8080';
@@ -21,8 +20,7 @@ export class TeamService {
   private teamWasUpdated: BehaviorSubject<null> = new BehaviorSubject<null>(null);
   public teamWasUpdated$: Observable<null> = this.teamWasUpdated.asObservable();
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getLeagues(): Observable<LeagueGet[]> {
     return this.http.get<LeagueGet[]>(`${this.baseUrl}/league`);

@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
-import {ButtonComponent} from "../button/button.component";
-import {KeycloakService} from "keycloak-angular";
+import { ButtonComponent } from '../button/button.component';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-logout-button',
   standalone: true,
-  imports: [
-    ButtonComponent
-  ],
+  imports: [ButtonComponent],
   templateUrl: './logout-button.component.html',
-  styleUrl: './logout-button.component.css'
+  styleUrl: './logout-button.component.css',
 })
 export class LogoutButtonComponent {
-
-   constructor(private keycloak: KeycloakService) {}
+  constructor(private keycloak: KeycloakService) {}
 
   logOut() {
     this.keycloak.logout().then(
-      () => console.log("Successfully logged out.")  // TODO: connect to KeycloakService
+      () => console.log('Successfully logged out.') // TODO: connect to KeycloakService
     );
   }
 }

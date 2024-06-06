@@ -4,20 +4,22 @@
   <div class="player-list">
     <table>
       <thead>
-      <tr>
-        <th>Auswählen</th>
-        <th>Vorname</th>
-        <th>Nachname</th>
-        <th>Passnummer</th>
-      </tr>
+        <tr>
+          <th>Auswählen</th>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Passnummer</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let player of allPlayers">
-        <td><input type="checkbox" [value]="player" (change)="onPlayerSelect(player, $event)"></td>
-        <td>{{ player.firstName }}</td>
-        <td>{{ player.lastName }}</td>
-        <td>{{ player.passnumber }}</td>
-      </tr>
+        <tr *ngFor="let player of allPlayers">
+          <td>
+            <input type="checkbox" [value]="player" (change)="onPlayerSelect(player, $event)" />
+          </td>
+          <td>{{ player.firstName }}</td>
+          <td>{{ player.lastName }}</td>
+          <td>{{ player.passnumber }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

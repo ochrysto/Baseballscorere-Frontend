@@ -12,13 +12,9 @@ import { TeamGet } from '../../models/team-get';
 @Component({
   selector: 'app-team-edit',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './team-edit.component.html',
-  styleUrls: ['./team-edit.component.css']
+  styleUrls: ['./team-edit.component.css'],
 })
 export class TeamEditComponent implements OnChanges {
   @Output() close = new EventEmitter<void>();
@@ -31,7 +27,7 @@ export class TeamEditComponent implements OnChanges {
         name: team.name,
         managerId: team.manager.id,
         clubId: team.club.id,
-        leagueId: team.league.id
+        leagueId: team.league.id,
       });
     }
   }
@@ -49,12 +45,16 @@ export class TeamEditComponent implements OnChanges {
   protected managers: ManagerGet[] = [];
   protected leagues: LeagueGet[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router, private teamService: TeamService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private teamService: TeamService
+  ) {
     this.teamForm = this.fb.group({
       name: ['', Validators.required],
       managerId: ['', Validators.required],
       clubId: ['', Validators.required],
-      leagueId: ['', Validators.required]
+      leagueId: ['', Validators.required],
     });
   }
 
@@ -64,23 +64,23 @@ export class TeamEditComponent implements OnChanges {
         name: this.team.name,
         managerId: this.team.manager.id,
         clubId: this.team.club.id,
-        leagueId: this.team.league.id
+        leagueId: this.team.league.id,
       });
     }
 
     this.teamService.getClubs().subscribe({
-      next: clubs => this.clubs = clubs,
-      error: err => console.error('Cannot get clubs: ' + err)
+      next: (clubs) => (this.clubs = clubs),
+      error: (err) => console.error('Cannot get clubs: ' + err),
     });
 
     this.teamService.getManagers().subscribe({
-      next: managers => this.managers = managers,
-      error: err => console.error('Cannot get managers: ' + err)
+      next: (managers) => (this.managers = managers),
+      error: (err) => console.error('Cannot get managers: ' + err),
     });
 
     this.teamService.getLeagues().subscribe({
-      next: leagues => this.leagues = leagues,
-      error: err => console.error('Cannot get leagues: ' + err)
+      next: (leagues) => (this.leagues = leagues),
+      error: (err) => console.error('Cannot get leagues: ' + err),
     });
   }
 
@@ -101,7 +101,7 @@ export class TeamEditComponent implements OnChanges {
       managerId: formValues.managerId,
       clubId: formValues.clubId,
       leagueId: formValues.leagueId,
-      teamLogo: null
+      teamLogo: null,
     };
 
     if (this.team == null) {
@@ -118,7 +118,7 @@ export class TeamEditComponent implements OnChanges {
       error: () => {
         console.error('Cannot update team with id ' + this.team?.teamId);
         alert('Cannot update team with id ' + this.team?.teamId);
-      }
+      },
     });
   }
 

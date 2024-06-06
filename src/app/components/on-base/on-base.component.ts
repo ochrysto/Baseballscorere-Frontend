@@ -1,13 +1,13 @@
-import {Component, Input} from '@angular/core';
-import {GameStateGet} from '../../models/game-state-get';
-import {LineUpPlayerGet} from '../../models/line-up-player-get';
-import {Button} from "../../models/button";
+import { Component, Input } from '@angular/core';
+import { GameStateGet } from '../../models/game-state-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import { Button } from '../../models/button';
 
 @Component({
   selector: 'app-on-base',
   standalone: true,
   templateUrl: './on-base.component.html',
-  styleUrl: './on-base.component.css'
+  styleUrl: './on-base.component.css',
 })
 export class OnBaseComponent {
   @Input()
@@ -21,11 +21,11 @@ export class OnBaseComponent {
 
   @Input()
   get gameState(): GameStateGet {
-    return this._gameState
+    return this._gameState;
   }
 
   set gameState(gameState: GameStateGet) {
-    this._gameState = gameState
+    this._gameState = gameState;
   }
 
   @Input()
@@ -61,8 +61,8 @@ export class OnBaseComponent {
     lastName: '-',
     passnumber: 0,
     jerseyNr: 0,
-    position: 0
-  }
+    position: 0,
+  };
 
   getSelectedPlayer(): LineUpPlayerGet {
     switch (this._base) {
@@ -85,7 +85,7 @@ export class OnBaseComponent {
 
   generateCurrentPlayerStatus(): string {
     if (this.selectedButton != null) {
-      return this.selectedButton.button + " " + this.responsible.join('-');
+      return this.selectedButton.button + ' ' + this.responsible.join('-');
     }
     return this.responsible.join('-');
   }

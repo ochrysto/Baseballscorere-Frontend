@@ -1,20 +1,19 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, tap} from 'rxjs';
-import {OffensiveActionsGet} from '../models/offensive-actions-get';
-import {HttpClient} from '@angular/common/http';
-import {ActionsGet} from '../models/actions-get';
-import {MessageGet} from '../models/message-get';
-import {ActionPost} from '../models/action-post';
-import {GameStateGet} from '../models/game-state-get';
-import {GameGet} from '../models/game-get';
-import {LineUpPlayerGet} from '../models/line-up-player-get';
-import {Button} from "../models/button";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { OffensiveActionsGet } from '../models/offensive-actions-get';
+import { HttpClient } from '@angular/common/http';
+import { ActionsGet } from '../models/actions-get';
+import { MessageGet } from '../models/message-get';
+import { ActionPost } from '../models/action-post';
+import { GameStateGet } from '../models/game-state-get';
+import { GameGet } from '../models/game-get';
+import { LineUpPlayerGet } from '../models/line-up-player-get';
+import { Button } from '../models/button';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GamePageService {
-
   private baseUrl = 'http://localhost:8080';
   private defaultInningStatus: string = 'isTopInning';
   public gameIsOn = false;
@@ -32,9 +31,7 @@ export class GamePageService {
   public selectedButton$: Observable<Button | null> = this.selectedButton.asObservable();
   public game?: GameGet;
 
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   /**
    * changes inningstatus from topinning to bottominning and vice versa in scoreboard component
@@ -51,9 +48,11 @@ export class GamePageService {
 
   postGameAction(gid: number, data: ActionPost) {
     const url = `${this.baseUrl}/game/${gid}/action`;
-    return this.httpClient.post<MessageGet>(url, data).pipe(tap({
-      next: () => this.triggerChange()
-    }));
+    return this.httpClient.post<MessageGet>(url, data).pipe(
+      tap({
+        next: () => this.triggerChange(),
+      })
+    );
   }
 
   getGameState(gid: number) {
@@ -82,7 +81,7 @@ export class GamePageService {
   }
 
   public triggerChange() {
-    console.log('Game change triggered')
+    console.log('Game change triggered');
     this.isChanged.next(null);
   }
 

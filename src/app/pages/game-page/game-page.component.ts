@@ -14,7 +14,7 @@ import { GameStateGet } from '../../models/game-state-get';
 import { OffensiveActionsGet } from '../../models/offensive-actions-get';
 import { ActionsGet } from '../../models/actions-get';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
-import {Button} from "../../models/button";
+import { Button } from '../../models/button';
 
 @Component({
   selector: 'app-game-page',
@@ -25,15 +25,15 @@ import {Button} from "../../models/button";
     BallparkComponent,
     OnBaseComponent,
     GameInputComponent,
-    GameScoreboardComponent
+    GameScoreboardComponent,
   ],
   templateUrl: './game-page.component.html',
-  styleUrl: './game-page.component.css'
+  styleUrl: './game-page.component.css',
 })
 export class GamePageComponent implements OnInit {
-  public game!: GameGet;  // TODO: bad idea!
-  public gameState!: GameStateGet;  // TODO: bad idea!
-  public gameActions!: ActionsGet;  // TODO: bad idea!
+  public game!: GameGet; // TODO: bad idea!
+  public gameState!: GameStateGet; // TODO: bad idea!
+  public gameActions!: ActionsGet; // TODO: bad idea!
   public defencivePlayers: LineUpPlayerGet[] = [];
   public visitorTeamDiamonds: OffensiveActionsGet[][] = [];
   public homeTeamDiamonds: OffensiveActionsGet[][] = [];
@@ -41,10 +41,14 @@ export class GamePageComponent implements OnInit {
   public selectedPlayers: number[] = [];
   public selectedButton: Button | null = null;
 
-  constructor(private route: ActivatedRoute, private gameService: GameService, private service: GamePageService) {
+  constructor(
+    private route: ActivatedRoute,
+    private gameService: GameService,
+    private service: GamePageService
+  ) {
     this.service.isChanged$.subscribe({
-      next: value => this.refreshAllData(),
-      error: err => console.error('Cannot refresh all data: ' + err)
+      next: (value) => this.refreshAllData(),
+      error: (err) => console.error('Cannot refresh all data: ' + err),
     });
 
     this.service.isGameFetched$.subscribe({
@@ -52,75 +56,77 @@ export class GamePageComponent implements OnInit {
         this.refreshAllData();
         console.log('Successfully refreshed game data');
       },
-      error: error => console.log('Cannot refresh game data: ' + error)
+      error: (error) => console.log('Cannot refresh game data: ' + error),
     });
 
     this.service.selectedBase$.subscribe({
-      next: base => {
+      next: (base) => {
         this.selectedBase = base;
         console.log('Changed selected base to ' + base);
-      }
+      },
     });
 
     this.service.selectedPlayers$.subscribe({
-      next: players => {
+      next: (players) => {
         this.selectedPlayers = players;
         console.log('Selected players updated: ' + players);
-      }
+      },
     });
 
     this.service.selectedButton$.subscribe({
-      next: selectedButton => {
+      next: (selectedButton) => {
         this.selectedButton = selectedButton;
         console.log('Selected button updated: ' + selectedButton?.button);
-      }
+      },
     });
   }
 
   refreshAllData() {
     // update game state
     this.service.getGameState(this.game.id).subscribe({
-      next: (state) => this.gameState = state,
-      error: (err) => console.log('cannot get game state', err)
+      next: (state) => (this.gameState = state),
+      error: (err) => console.log('cannot get game state', err),
     });
 
     // update game actions
     this.service.getGameActions(this.game!.id).subscribe({
-      next: actions => {
+      next: (actions) => {
         this.gameActions = actions;
         console.log('Successfully fetched new actions from a backend');
       },
-      error: error => console.log('Cannot refresh game data: ' + error)
+      error: (error) => console.log('Cannot refresh game data: ' + error),
     });
 
     // Refresh diamonds on game change
     this.service.isChanged$.subscribe({
       next: () => {
         this.service.getGameDiamonds(this.game.id, 'AWAY').subscribe({
-          next: diamonds => this.visitorTeamDiamonds = diamonds
+          next: (diamonds) => (this.visitorTeamDiamonds = diamonds),
         });
         this.service.getGameDiamonds(this.game.id, 'HOME').subscribe({
-          next: diamonds => this.homeTeamDiamonds = diamonds
+          next: (diamonds) => (this.homeTeamDiamonds = diamonds),
         });
-      }
+      },
     });
 
     // Refresh defencive lineup
     this.service.getDefenciveTeamLineup(this.game!.id).subscribe({
-      next: players => this.defencivePlayers = players,
-      error: error => console.log('Cannot refresh defencive players: ' + error)
-    })
+      next: (players) => (this.defencivePlayers = players),
+      error: (error) => console.log('Cannot refresh defencive players: ' + error),
+    });
   }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const gameId = +params.get('id')!;
-        return this.gameService.getGame(gameId);
-      })
-    ).subscribe(game => {
-      this.game = game;
-      this.refreshAllData();
-    });
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+          const gameId = +params.get('id')!;
+          return this.gameService.getGame(gameId);
+        })
+      )
+      .subscribe((game) => {
+        this.game = game;
+        this.refreshAllData();
+      });
   }
 }

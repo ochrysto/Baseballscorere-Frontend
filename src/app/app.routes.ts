@@ -13,16 +13,17 @@ import {TeamPlayerAddComponent} from './components/team-player-add/team-player-a
 import {UmpireCreateFormComponent} from './components/umpire-create-form/umpire-create-form.component';
 
 export const routes: Routes = [
-  {path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard]},
-  {path: 'public', component: PublicRouteExampleComponent},
-  {path: '', component: BaseballScorerHomeComponent, canActivate: [AuthGuard]},
-  {path: 'game/:id/line-up', component: LineUpComponent, canActivate: [AuthGuard]},
-  {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard]},
+  {path: '', redirectTo: '/create-team', pathMatch: 'full'},
+  {path: '', component: BaseballScorerHomeComponent, canActivate: [AuthGuard],},
   {path: 'game', component: GameCreateComponent, canActivate: [AuthGuard]},
-  {path: 'create-scorer', component: ScorerCreateFormComponent, canActivate: [AuthGuard]},
-  {path: 'create-umpire', component: UmpireCreateFormComponent, canActivate: [AuthGuard]},
-  {path: 'create-team', component: TeamCreateFormComponent, canActivate: [AuthGuard]},
-  {path: 'edit-team', component: TeamSelectPageComponent, canActivate: [AuthGuard]},
-  {path: 'edit-team/:id', component: TeamPlayerAddComponent, canActivate: [AuthGuard]}, // Assuming :id is a unique identifier for a team
-  {path: '', redirectTo: '/create-team', pathMatch: 'full'}
+  {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard],},
+  {path: 'game/:id/line-up', component: LineUpComponent, canActivate: [AuthGuard],},
+  {path: 'create-team', component: TeamCreateFormComponent, canActivate: [AuthGuard],},
+  {path: 'edit-team', component: TeamSelectPageComponent, canActivate: [AuthGuard],},
+  {path: 'edit-team/:id', component: TeamPlayerAddComponent, canActivate: [AuthGuard],},
+  /* Not productive routes */
+  {path: 'public', component: PublicRouteExampleComponent},
+  {path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard],},
+  {path: 'create-scorer', component: ScorerCreateFormComponent, canActivate: [AuthGuard],},
+  {path: 'create-umpire', component: UmpireCreateFormComponent, canActivate: [AuthGuard],},
 ];

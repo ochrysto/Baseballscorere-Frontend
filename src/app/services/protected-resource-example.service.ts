@@ -4,7 +4,7 @@ import { ResourceExample } from '../models/resource-example';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProtectedResourceExampleService {
   private baseUrl = 'http://localhost:8081';

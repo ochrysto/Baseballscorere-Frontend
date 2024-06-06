@@ -3,13 +3,12 @@ import { GamePageService } from '../../services/game-page.service';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-game-header',
   standalone: true,
   imports: [],
   templateUrl: './game-header.component.html',
-  styleUrl: './game-header.component.css'
+  styleUrl: './game-header.component.css',
 })
 export class GameHeaderComponent implements OnInit {
   private currentDate = new Date();
@@ -22,8 +21,7 @@ export class GameHeaderComponent implements OnInit {
   private isStarted = false;
   elapsedTime = 0;
 
-  constructor(protected gamePageService: GamePageService) {
-  }
+  constructor(protected gamePageService: GamePageService) {}
 
   ngOnInit() {
     this.updateTime();
@@ -34,9 +32,8 @@ export class GameHeaderComponent implements OnInit {
    * @private
    */
   private updateTime() {
-    const timeObservable = interval(1000).pipe(
-      map(() => this.getCurrentTimeString()));
-    timeObservable.subscribe((currentTimeString) => this.currentTime = currentTimeString);
+    const timeObservable = interval(1000).pipe(map(() => this.getCurrentTimeString()));
+    timeObservable.subscribe((currentTimeString) => (this.currentTime = currentTimeString));
   }
 
   private getCurrentTimeString() {
@@ -77,5 +74,3 @@ export class GameHeaderComponent implements OnInit {
     }
   }
 }
-
-

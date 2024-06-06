@@ -9,7 +9,7 @@
 .scoreboard-container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  font-size: .6em;
+  font-size: 0.6em;
   padding: 0 10px;
 }
 
@@ -77,7 +77,7 @@
 .footer {
   display: flex;
   align-items: flex-end;
-  font-size: .7em;
+  font-size: 0.7em;
   color: var(--actiongreen);
 }
 
@@ -88,4 +88,3 @@
 .outs {
   margin-left: 30px;
 }
-

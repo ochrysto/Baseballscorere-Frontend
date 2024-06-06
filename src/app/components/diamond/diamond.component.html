@@ -1,69 +1,44 @@
 <div [ngClass]="getDynamicClass()">
   <svg viewBox="0 0 200 200">
     <!-- outer border -->
-    <rect x="0" y="0" width="200" height="200" fill="none"/>
+    <rect x="0" y="0" width="200" height="200" fill="none" />
 
     <!-- &lt;!&ndash;    Textfields   -->
-     <text class="central" x="100" y="120" text-anchor="middle" >
-       {{ content.center }}
-     </text>
-     <text class="corner" x="185" y="185" text-anchor="end" >
-       {{ content.first }}
-     </text>
-     <text class="corner" x="185" y="50" text-anchor="end" >
-       {{ content.second }}
-     </text>
-     <text class="corner" x="10" y="50" >
-       {{ content.third }}
-     </text>
-     <text class="corner" x="10" y="185" >
-       {{ content.home }}
-     </text>
+    <text class="central" x="100" y="120" text-anchor="middle">
+      {{ content.center }}
+    </text>
+    <text class="corner" x="185" y="185" text-anchor="end">
+      {{ content.first }}
+    </text>
+    <text class="corner" x="185" y="50" text-anchor="end">
+      {{ content.second }}
+    </text>
+    <text class="corner" x="10" y="50">
+      {{ content.third }}
+    </text>
+    <text class="corner" x="10" y="185">
+      {{ content.home }}
+    </text>
     <!-- basepaths -->
-     @if (content.base === 1 || content.base === 2 || content.base === 3) {
-       <path
-         d="M100 150 L150 100"
-         fill="none"
-         stroke-width="5"
-         stroke-linecap="round"
-       />
-     }
-     @if (content.base === 2 || content.base === 3) {
-       <path
-         d="M100 150 L150 100 L100 50"
-         fill="none"
-         stroke-width="5"
-         stroke-linecap="round"
-       />
-     }
-     @if (content.base === 3) {
-       <path
-         d="M100 150 L150 100 L100 50 L50 100"
-         fill="none"
-         stroke-width="5"
-         stroke-linecap="round"
-       />
-     }
-     @if (content.base === 4) {
-       <path d="M100 150 L150 100 L100 50 L50 100 Z"  />
-     }
+    @if (content.base === 1 || content.base === 2 || content.base === 3) {
+      <path d="M100 150 L150 100" fill="none" stroke-width="5" stroke-linecap="round" />
+    }
+    @if (content.base === 2 || content.base === 3) {
+      <path d="M100 150 L150 100 L100 50" fill="none" stroke-width="5" stroke-linecap="round" />
+    }
+    @if (content.base === 3) {
+      <path d="M100 150 L150 100 L100 50 L50 100" fill="none" stroke-width="5" stroke-linecap="round" />
+    }
+    @if (content.base === 4) {
+      <path d="M100 150 L150 100 L100 50 L50 100 Z" />
+    }
     @if (content.util === 'X') {
-    <!--    crossed out Innings-->
+      <!--    crossed out Innings-->
 
-    <path d="M0 200 L200 0"
-          fill="none"
-          stroke-width="5"
-          stroke-linecap="round"
-          />
-    <path d="M0 0 L200 200"
-          fill="none"
-          stroke-width="5"
-          stroke-linecap="round"
-    />
+      <path d="M0 200 L200 0" fill="none" stroke-width="5" stroke-linecap="round" />
+      <path d="M0 0 L200 200" fill="none" stroke-width="5" stroke-linecap="round" />
     }
     <!-- middle diamond -->
-    <path d="M50 100 L100 50 L150 100 L100 150 Z" stroke="#fff" fill="none"/>
+    <path d="M50 100 L100 50 L150 100 L100 150 Z" stroke="#fff" fill="none" />
   </svg>
 </div>
-
-

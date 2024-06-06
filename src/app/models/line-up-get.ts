@@ -1,4 +1,4 @@
-import {LineUpPlayerGet} from "./line-up-player-get";
+import { LineUpPlayerGet } from './line-up-player-get';
 
 export interface LineUpGet {
   teamId: number;

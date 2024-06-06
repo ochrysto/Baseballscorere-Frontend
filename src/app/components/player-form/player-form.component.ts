@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {CommonModule} from '@angular/common';
-import {TeamService} from "../../services/team.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { TeamService } from '../../services/team.service';
 
 interface Player {
   id: number;
@@ -20,15 +20,14 @@ interface Team {
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './player-form.component.html',
-  styleUrls: ['./player-form.component.css']
+  styleUrls: ['./player-form.component.css'],
 })
 export class PlayerFormComponent implements OnInit {
   @Input() team: Team | null = null;
   allPlayers: Player[] = [];
   selectedPlayers: Player[] = [];
 
-  constructor(private teamService: TeamService) {
-  }
+  constructor(private teamService: TeamService) {}
 
   ngOnInit() {
     this.fetchAllPlayers();
@@ -36,8 +35,8 @@ export class PlayerFormComponent implements OnInit {
 
   fetchAllPlayers() {
     this.teamService.getAllPlayers().subscribe({
-      next: players => this.allPlayers = players,
-      error: error => console.error('Error fetching players:', error)
+      next: (players) => (this.allPlayers = players),
+      error: (error) => console.error('Error fetching players:', error),
     });
   }
 
@@ -46,23 +45,23 @@ export class PlayerFormComponent implements OnInit {
     if (isChecked) {
       this.selectedPlayers.push(player);
     } else {
-      this.selectedPlayers = this.selectedPlayers.filter(p => p.id !== player.id);
+      this.selectedPlayers = this.selectedPlayers.filter((p) => p.id !== player.id);
     }
   }
 
   addSelectedPlayers() {
     if (this.selectedPlayers.length > 0 && this.team !== null) {
-      const playerIds = this.selectedPlayers.map(player => player.id);
+      const playerIds = this.selectedPlayers.map((player) => player.id);
       console.log(`Adding players to team with ID: ${this.team.teamId}`);
       this.teamService.addPlayersToTeam(this.team.teamId, playerIds).subscribe({
         next: () => {
           console.log('Players added to team');
           this.selectedPlayers = [];
           const checkboxes = document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
-          checkboxes.forEach(cb => cb.checked = false);
+          checkboxes.forEach((cb) => (cb.checked = false));
           this.teamService.triggerPlayersWasAdded();
         },
-        error: error => console.error('Error adding players to team:', error)
+        error: (error) => console.error('Error adding players to team:', error),
       });
     } else {
       console.error('Selected team ID is missing');

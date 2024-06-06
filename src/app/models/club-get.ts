@@ -1,7 +1,7 @@
-import {AssociationGet} from "./association-get";
+import { AssociationGet } from './association-get';
 
 export interface ClubGet {
-  id: number,
+  id: number;
   name: string;
   city: string;
   logo: string;

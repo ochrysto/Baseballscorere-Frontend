@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ResourceExample } from '../models/resource-example';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PublicResourceExampleService {
   private baseUrl = 'http://localhost:8081';

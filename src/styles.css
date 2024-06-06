@@ -6,12 +6,12 @@
   --darkgray: #707070;
   --lightgray: #9fa89a;
   --card-darkgray: #111110;
-  --card-darkbrown: #1C1E1A;
+  --card-darkbrown: #1c1e1a;
   --card-lightbrown: #20251d;
 }
 
-
-html, body {
+html,
+body {
   height: 100%;
 }
 body {
@@ -20,4 +20,3 @@ body {
   background-image: var(--bg-gradient);
   overflow: hidden;
 }
-

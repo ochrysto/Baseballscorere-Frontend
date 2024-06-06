@@ -1,29 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
-import {TeamService} from '../../services/team.service';
-import {Observable, of} from 'rxjs';
-import {LeagueGet} from "../../models/league-get";
-import {ClubGet} from "../../models/club-get";
-import {ManagerGet} from "../../models/manager-get";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { TeamService } from '../../services/team.service';
+import { Observable, of } from 'rxjs';
+import { LeagueGet } from '../../models/league-get';
+import { ClubGet } from '../../models/club-get';
+import { ManagerGet } from '../../models/manager-get';
 
 @Component({
   selector: 'app-team-create-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './team-create-form.component.html',
-  styleUrls: ['./team-create-form.component.css']
+  styleUrls: ['./team-create-form.component.css'],
 })
 export class TeamCreateFormComponent implements OnInit {
   Verein_name: string = '';
-  Team_name: string = '';  // Changed to Team_name for better clarity
+  Team_name: string = ''; // Changed to Team_name for better clarity
   Manager: string = '';
   logo: File | null = null;
   Liga_Name: string = '';
@@ -31,8 +26,10 @@ export class TeamCreateFormComponent implements OnInit {
   ClubOptions$: Observable<ClubGet[]> = of([]);
   ManagerOptions$: Observable<ManagerGet[]> = of([]);
 
-  constructor(private teamService: TeamService, private router: Router) {
-  }
+  constructor(
+    private teamService: TeamService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.fetchLeagues();
@@ -62,20 +59,20 @@ export class TeamCreateFormComponent implements OnInit {
 
   onSubmit() {
     const jsonData: any = {
-      "name": this.Team_name,
-      'managerId': this.Manager,
-      'clubId': this.Verein_name,
-      'leagueId': this.Liga_Name
-    }
+      name: this.Team_name,
+      managerId: this.Manager,
+      clubId: this.Verein_name,
+      leagueId: this.Liga_Name,
+    };
 
     this.teamService.saveTeam(jsonData).subscribe({
-      next: response => {
+      next: (response) => {
         console.log('Team saved successfully:', response);
         this.router.navigate(['/TeamBearbeiten', response.teamId]);
       },
-      error: error => {
+      error: (error) => {
         console.error('Error saving team:', error);
-      }
+      },
     });
   }
 }

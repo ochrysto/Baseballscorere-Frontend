@@ -1,17 +1,17 @@
-import {Component, Input} from '@angular/core';
-import {Button} from '../../models/button';
-import {GamePageService} from '../../services/game-page.service';
-import {ActionPost} from '../../models/action-post';
-import {ActionsGet} from '../../models/actions-get';
-import {GameGet} from '../../models/game-get';
-import {Responsible} from '../../models/responsible';
-import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import { Component, Input } from '@angular/core';
+import { Button } from '../../models/button';
+import { GamePageService } from '../../services/game-page.service';
+import { ActionPost } from '../../models/action-post';
+import { ActionsGet } from '../../models/actions-get';
+import { GameGet } from '../../models/game-get';
+import { Responsible } from '../../models/responsible';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-game-input',
   standalone: true,
   templateUrl: './game-input.component.html',
-  styleUrl: './game-input.component.css'
+  styleUrl: './game-input.component.css',
 })
 export class GameInputComponent {
   @Input()
@@ -61,8 +61,7 @@ export class GameInputComponent {
   private selectedButton: Button | null = null; // Store the currently selected button
   private selectedResponsiblePlayers: number[] = []; // Store the selected defensive player positions
 
-  constructor(private service: GamePageService) {
-  }
+  constructor(private service: GamePageService) {}
 
   isButton(obj: any): obj is Button {
     return (
@@ -75,25 +74,23 @@ export class GameInputComponent {
 
   isDestination(obj: any): boolean {
     return (
-      obj.button == 'firstBase' ||
-      obj.button == 'secondBase' ||
-      obj.button == 'thirdBase' ||
-      obj.button == 'homeBase');
+      obj.button == 'firstBase' || obj.button == 'secondBase' || obj.button == 'thirdBase' || obj.button == 'homeBase'
+    );
   }
 
   calculateDistance(destination: string): number {
     switch (destination) {
       case 'firstBase':
         return 1 - this._base;
-      case  'secondBase':
+      case 'secondBase':
         return 2 - this._base;
-      case  'thirdBase':
+      case 'thirdBase':
         return 3 - this._base;
-      case  'homeBase':
+      case 'homeBase':
         return 4 - this._base;
       default:
-        console.error("Bad destination in `calculateDistance`: " + destination)
-        alert("Coding error: check console")  // TODO: remove in dev
+        console.error('Bad destination in `calculateDistance`: ' + destination);
+        alert('Coding error: check console'); // TODO: remove in dev
         return 0;
     }
   }
@@ -127,16 +124,16 @@ export class GameInputComponent {
       if (!button.responsibleRequired) {
         this.postAction(button);
       } else {
-        this.setButton(button)
+        this.setButton(button);
         this.clearResponsiblePlayers(); // Reset the selected players list
       }
     } else {
       if (this.isDestination(button)) {
         this._distance = this.calculateDistance(button.button);
       }
-      this.buttonStack.push(this.currentButtons);  // Push the current buttons to the button stack.
-      this.currentButtons = this.currentButtons[button.button];  // Set the current buttons to the subbuttons of the clicked button.
-      this.showBackButton = true;  // Show the back button.
+      this.buttonStack.push(this.currentButtons); // Push the current buttons to the button stack.
+      this.currentButtons = this.currentButtons[button.button]; // Set the current buttons to the subbuttons of the clicked button.
+      this.showBackButton = true; // Show the back button.
     }
   }
 
@@ -159,9 +156,9 @@ export class GameInputComponent {
       return buttons;
     } else {
       return Object.entries(buttons)
-        .filter(v => v[1] !== null)
+        .filter((v) => v[1] !== null)
         .map(([key, _]) => {
-          return {'button': key};
+          return { button: key };
         });
     }
   }
@@ -175,20 +172,20 @@ export class GameInputComponent {
       const hasMultipleResponsiblePlayers = this.selectedResponsiblePlayers.length >= 2;
 
       // Define the isValidSelection boolean based on these variables
-      const isValidSelection = isResponsibleRequired && (
-        (isMultipleResponsibleRequired && hasMultipleResponsiblePlayers) ||
-        (!isMultipleResponsibleRequired && hasSingleResponsiblePlayer)
-      );
+      const isValidSelection =
+        isResponsibleRequired &&
+        ((isMultipleResponsibleRequired && hasMultipleResponsiblePlayers) ||
+          (!isMultipleResponsibleRequired && hasSingleResponsiblePlayer));
 
       // Check each condition and show alerts for invalid cases
       if (isResponsibleRequired) {
         if (isMultipleResponsibleRequired && !hasMultipleResponsiblePlayers) {
-          alert("You must select at least two responsible players.");
+          alert('You must select at least two responsible players.');
         } else if (!isMultipleResponsibleRequired && !hasSingleResponsiblePlayer) {
-          alert("You must select exactly one responsible player.");
+          alert('You must select exactly one responsible player.');
         }
       } else {
-        alert("Selection is not valid because responsible selection is not required.");
+        alert('Selection is not valid because responsible selection is not required.');
       }
 
       if (isValidSelection) {
@@ -214,7 +211,7 @@ export class GameInputComponent {
       6: 'SHORTSTOP',
       7: 'LEFT_FIELD',
       8: 'CENTER_FIELD',
-      9: 'RIGHT_FIELD'
+      9: 'RIGHT_FIELD',
     };
 
     if (num >= 1 && num <= 9) {
@@ -229,14 +226,16 @@ export class GameInputComponent {
     const responsibleToPost: Responsible[] = [];
 
     for (const position of this.selectedResponsiblePlayers) {
-      responsibleToPost.push({defencePosition: this.mapNumberToBaseballPosition(position)});
+      responsibleToPost.push({
+        defencePosition: this.mapNumberToBaseballPosition(position),
+      });
     }
 
     const postData: ActionPost = {
       base: this.base,
       distance: this._distance,
       type: button.actionType,
-      responsible: responsibleToPost
+      responsible: responsibleToPost,
     };
 
     if (!this._game.id) {
@@ -251,19 +250,19 @@ export class GameInputComponent {
       },
       error: (err: HttpErrorResponse) => {
         if (err.status == HttpStatusCode.NotImplemented) {
-          alert("Not implemented: " + err.error.message);
-          this.clearAll();  // if command is not implemented we can clean the input
+          alert('Not implemented: ' + err.error.message);
+          this.clearAll(); // if command is not implemented we can clean the input
         } else {
-          alert("Unknown error: " + err.error.message);
+          alert('Unknown error: ' + err.error.message);
           console.log('Unknown error: ', err);
         }
-      }
+      },
     });
   }
 
   setButton(button: Button) {
     this.selectedButton = button; // Store the selected button
-    this.service.updateSelectedButton(button)
+    this.service.updateSelectedButton(button);
   }
 
   clearResponsiblePlayers() {
@@ -282,6 +281,6 @@ export class GameInputComponent {
     // Step 2: clean responsible
     this.clearResponsiblePlayers();
     // Step 3: reset distance
-    this._distance = 0
+    this._distance = 0;
   }
 }

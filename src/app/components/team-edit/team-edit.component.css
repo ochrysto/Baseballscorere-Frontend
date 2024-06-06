@@ -1,7 +1,7 @@
 /* Popup Window */
 .team-info-popup {
   padding: 20px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -22,11 +22,11 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #73F80D;
+  color: #73f80d;
 }
 
 .form-group select,
-.form-group input[type="file"] {
+.form-group input[type='file'] {
   width: 100%;
   padding: 10px;
   background-color: #333;
@@ -48,7 +48,7 @@
 .file-upload-label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #73F80D;
+  background-color: #73f80d;
   color: #111;
   font-weight: bold;
   border-radius: 5px;
@@ -57,10 +57,10 @@
 }
 
 .file-upload-label:hover {
-  background-color: #60D309;
+  background-color: #60d309;
 }
 
-.file-upload input[type="file"] {
+.file-upload input[type='file'] {
   display: none;
 }
 
@@ -70,10 +70,9 @@
   color: #aaa;
 }
 
-
 .save-button {
   padding: 10px 20px;
-  background-color: #73F80D;
+  background-color: #73f80d;
   color: #111;
   border: none;
   border-radius: 10px;
@@ -86,7 +85,7 @@
 }
 
 .save-button:hover {
-  background-color: #60D309;
+  background-color: #60d309;
 }
 
 .popup-header {

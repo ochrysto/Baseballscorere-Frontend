@@ -1,7 +1,7 @@
-import {ClubGet} from "./club-get";
-import {ManagerGet} from "./manager-get";
-import {LeagueGet} from "./league-get";
-import {PlayerGet} from "./player-get";
+import { ClubGet } from './club-get';
+import { ManagerGet } from './manager-get';
+import { LeagueGet } from './league-get';
+import { PlayerGet } from './player-get';
 
 export interface TeamWithPlayersGet {
   teamId: number;

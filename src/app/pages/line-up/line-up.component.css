@@ -1,7 +1,7 @@
 .line-up-container {
   height: 100vh;
-  background-color: #B4FF00;
-  background-image: url("Plateconference.png");
+  background-color: #b4ff00;
+  background-image: url('Plateconference.png');
   background-repeat: no-repeat;
 }
 .container {
@@ -20,33 +20,34 @@
   font-size: 70px;
 }
 .team_heim .team p {
-  color: #85D4FE;
+  color: #85d4fe;
 }
 .team_heim .line-up-table input {
-  background-color: #85D4FE;
+  background-color: #85d4fe;
 }
 .team_heim button {
-  background-color: #85D4FE;
+  background-color: #85d4fe;
 }
 .team_heim button:hover {
-  color: #85D4FE;
+  color: #85d4fe;
 }
 .team_heim .line-up-table input {
-  background-color: #85D4FE;
+  background-color: #85d4fe;
 }
 .team_heim .line-up-table select {
-  background-color: #85D4FE;
+  background-color: #85d4fe;
 }
-.team_heim .line-up-table th, .line-up-table td {
-  color: #85D4FE;
+.team_heim .line-up-table th,
+.line-up-table td {
+  color: #85d4fe;
   border: none;
 }
 .team_heim .line-up-table td {
-  color: #85D4FE;
+  color: #85d4fe;
   border: none;
 }
 .teams-header .the_heim button {
-  color: #85D4FE;
+  color: #85d4fe;
 }
 .teams-header .the_heim button:hover {
   color: #3386b0;
@@ -55,7 +56,7 @@
   text-align: center;
   font-family: Kanit, sans-serif;
   font-weight: 800;
-  color: #FFFF9F;
+  color: #ffff9f;
   cursor: pointer;
   margin-left: 198px;
   margin-right: 214px;
@@ -68,21 +69,21 @@
   box-shadow: #dada37;
 }
 .the_gast p {
-  color: #FFFF9F;
+  color: #ffff9f;
   border-top: none !important;
   border-right: none !important;
   border-left: none !important;
   border-bottom: none !important;
 }
 .the_heim p {
-  color: #85D4FE;
+  color: #85d4fe;
   border-bottom: none !important;
   border-top: none !important;
   border-right: none !important;
   border-left: none !important;
 }
 .line-up-table input {
-  background-color: #FFFF9F;
+  background-color: #ffff9f;
   border: 1px solid #777;
   color: black;
   padding: 5px;
@@ -92,7 +93,7 @@
   padding: 8px;
 }
 .line-up-table select {
-  background-color: #FFFF9F;
+  background-color: #ffff9f;
   border: 1px solid #777;
   color: black;
   padding: 5px;
@@ -103,10 +104,11 @@
   margin-bottom: 20px;
   background-color: black;
 }
-.line-up-table th, .line-up-table td {
+.line-up-table th,
+.line-up-table td {
   text-align: left;
   padding: 5px;
-  color: #FFFF9F;
+  color: #ffff9f;
 }
 .action-button button {
   background-color: #78cf4c;
@@ -147,34 +149,34 @@
   border-bottom: none;
 }
 .team_home.active {
-  border: 3px solid #85D4FE;
+  border: 3px solid #85d4fe;
   border-top: none;
 }
 .border {
-  border: 3px solid #85D4FE;
+  border: 3px solid #85d4fe;
   border-top: none;
   padding: 10px;
   padding-top: 0px !important;
   padding-left: 0px !important;
 }
 .border.active-guest {
-  border: 3px solid #FFFF9F;
+  border: 3px solid #ffff9f;
   border-top: none;
   padding: 10px;
   padding-top: 0px !important;
 }
 .border.active-home .the_heim {
-  border: 3px solid #85D4FE;
+  border: 3px solid #85d4fe;
   border-bottom: none;
   border-left: none;
 }
 .active-home .the_heim {
-  border: 3px solid #85D4FE;
+  border: 3px solid #85d4fe;
   border-bottom: none;
   border-left: none;
 }
 .border.active-guest .the_gast {
-  border: 3px solid #FFFF9F;
+  border: 3px solid #ffff9f;
   border-right: none;
   border-bottom: none;
 }

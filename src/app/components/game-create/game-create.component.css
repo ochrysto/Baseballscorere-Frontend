@@ -1,9 +1,8 @@
 .container {
-  background: #b4ff00 url("stadium.png");
+  background: #b4ff00 url('stadium.png');
   background-size: cover;
   color: #ffffff;
   height: 800px;
-
 }
 
 nav {
@@ -89,9 +88,9 @@ h1 {
   margin-left: 85%;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"],
+input[type='text'],
+input[type='number'],
+input[type='date'],
 select {
   color: black; /* #78cf4c is bad to see :( */
   width: 90%;
@@ -150,7 +149,7 @@ label {
 .plateumpire-header::after,
 .scorer-header::before,
 .scorer-header::after {
-  content: "";
+  content: '';
   flex-grow: 1;
   height: 2px;
   background: #9fa89a;

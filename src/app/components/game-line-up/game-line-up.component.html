@@ -17,45 +17,45 @@
     <td></td>
   </tr>
 
-  @if (gameState.team === "AWAY") {
+  @if (gameState.team === 'AWAY') {
     @for (diamond of visitorTeamDiamonds[chosenInning - 1]; track diamond) {
       <tbody class="player-visitor">
-      <tr>
-        <td class="icon">
-          <span class="material-symbols-outlined">sync</span>
-        </td>
-        <td>{{ diamond.jerseyNr }}</td>
-        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
-        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
-        <td class="batting-order">{{ diamond.jerseyNr }}</td>
-        <td class="diamond">
-          <app-diamond [content]="diamond.diamond"></app-diamond>
-        </td>
-        <td class="icon">
-          <span class="material-symbols-outlined">edit_square</span>
-        </td>
-      </tr>
+        <tr>
+          <td class="icon">
+            <span class="material-symbols-outlined">sync</span>
+          </td>
+          <td>{{ diamond.jerseyNr }}</td>
+          <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+          <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
+          <td class="batting-order">{{ diamond.jerseyNr }}</td>
+          <td class="diamond">
+            <app-diamond [content]="diamond.diamond"></app-diamond>
+          </td>
+          <td class="icon">
+            <span class="material-symbols-outlined">edit_square</span>
+          </td>
+        </tr>
       </tbody>
     }
   }
-  @if (gameState.team === "HOME") {
+  @if (gameState.team === 'HOME') {
     @for (diamond of homeTeamDiamonds[chosenInning - 1]; track diamond) {
       <tbody class="player-home">
-      <tr>
-        <td class="icon">
-          <span class="material-symbols-outlined">sync</span>
-        </td>
-        <td>{{ diamond.jerseyNr }}</td>
-        <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
-        <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
-        <td class="batting-order">{{ diamond.jerseyNr }}</td>
-        <td class="diamond">
-          <app-diamond [content]="diamond.diamond"></app-diamond>
-        </td>
-        <td class="icon">
-          <span class="material-symbols-outlined">edit_square</span>
-        </td>
-      </tr>
+        <tr>
+          <td class="icon">
+            <span class="material-symbols-outlined">sync</span>
+          </td>
+          <td>{{ diamond.jerseyNr }}</td>
+          <td>{{ diamond.firstName }} {{ diamond.lastName }}</td>
+          <td>{{ numberToStringMap[diamond.jerseyNr] }}</td>
+          <td class="batting-order">{{ diamond.jerseyNr }}</td>
+          <td class="diamond">
+            <app-diamond [content]="diamond.diamond"></app-diamond>
+          </td>
+          <td class="icon">
+            <span class="material-symbols-outlined">edit_square</span>
+          </td>
+        </tr>
       </tbody>
     }
   }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {LeagueGet} from "../models/league-get";
+import { HttpClient } from '@angular/common/http';
+import { LeagueGet } from '../models/league-get';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LeagueService {
-  private baseUrl = 'http://localhost:8080/league'  // base URL for the Employee backend API.
+  private baseUrl = 'http://localhost:8080/league'; // base URL for the Employee backend API.
 
   constructor(private http: HttpClient) {}
 

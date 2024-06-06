@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, ApplicationConfig, Provider } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
@@ -14,18 +13,17 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8070/',  // URL of the Keycloak server
+        url: 'http://localhost:8070/', // URL of the Keycloak server
         realm: 'BaseballScoresheet',
-        clientId: 'login-app'
+        clientId: 'login-app',
       },
       initOptions: {
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
+        silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
       },
       enableBearerInterceptor: true,
       bearerPrefix: 'Bearer',
-      bearerExcludedUrls: []  // URLs excluded from Bearer token addition
+      bearerExcludedUrls: [], // URLs excluded from Bearer token addition
     });
 }
 
@@ -36,7 +34,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
 const KeycloakBearerInterceptorProvider: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: KeycloakBearerInterceptor,
-  multi: true
+  multi: true,
 };
 
 /**
@@ -47,8 +45,8 @@ const KeycloakInitializerProvider: Provider = {
   provide: APP_INITIALIZER,
   useFactory: initializeKeycloak,
   multi: true,
-  deps: [KeycloakService]
-}
+  deps: [KeycloakService],
+};
 
 /**
  * Exported configuration for the application
@@ -61,6 +59,6 @@ export const appConfig: ApplicationConfig = {
     KeycloakBearerInterceptorProvider, // Provides Keycloak Bearer Interceptor
     KeycloakService, // Service for Keycloak
     provideRouter(routes), // Provides routing for the application
-    provideAnimationsAsync()
-  ]
+    provideAnimationsAsync(),
+  ],
 };

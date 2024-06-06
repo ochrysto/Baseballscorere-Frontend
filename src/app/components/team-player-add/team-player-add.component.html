@@ -1,7 +1,7 @@
 <div class="app-container">
   <div class="team-container">
     <div class="team-header">
-      <img [src]="logo" alt="Team Logo" class="team-logo">
+      <img [src]="logo" alt="Team Logo" class="team-logo" />
       <div class="team-titles">
         <h1 class="team-edit-title">TEAM BEARBEITEN</h1>
         <h2 class="team-name">{{ team?.name }}</h2>
@@ -38,9 +38,9 @@
               </div>
             </div>
             <form *ngIf="player.editing" class="player-edit-form" (ngSubmit)="submitEdit(i)">
-              <input type="text" [(ngModel)]="player.Vorname" name="Vorname" placeholder="Vorname">
-              <input type="text" [(ngModel)]="player.Nachname" name="Nachname" placeholder="Nachname">
-              <input type="text" [(ngModel)]="player.passnummer" name="passnummer" placeholder="Passnummer">
+              <input type="text" [(ngModel)]="player.Vorname" name="Vorname" placeholder="Vorname" />
+              <input type="text" [(ngModel)]="player.Nachname" name="Nachname" placeholder="Nachname" />
+              <input type="text" [(ngModel)]="player.passnummer" name="passnummer" placeholder="Passnummer" />
               <button type="submit">Save</button>
               <button type="button" (click)="toggleEdit(i)">Cancel</button>
             </form>

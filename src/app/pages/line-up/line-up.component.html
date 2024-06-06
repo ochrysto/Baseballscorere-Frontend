@@ -3,16 +3,25 @@
   <div class="container">
     <div class="teams-header border">
       <div class="tabs">
-        <div class="the_heim" >
-          <button class="team_home" [ngClass]="{'active': activeTab === 'HEIM'}" (click)="switchTab('HEIM')">HEIM</button>
+        <div class="the_heim">
+          <button class="team_home" [ngClass]="{ active: activeTab === 'HEIM' }" (click)="switchTab('HEIM')">
+            HEIM
+          </button>
           <p class="the_gast">{{ game.guestTeam.name }}</p>
         </div>
-        <div class="the_gast" >
-          <button class="team away" [ngClass]="{'active': activeTab === 'GAST'}" (click)="switchTab('GAST')">GAST</button>
-          <p class="the_heim"> {{ game.hostTeam.name }} </p>
+        <div class="the_gast">
+          <button class="team away" [ngClass]="{ active: activeTab === 'GAST' }" (click)="switchTab('GAST')">
+            GAST
+          </button>
+          <p class="the_heim">{{ game.hostTeam.name }}</p>
         </div>
       </div>
-      <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">
+      <div
+        [ngClass]="{
+          team_heim: true,
+          active: activeTab === 'HEIM',
+        }"
+      >
         <div [class.hidden]="activeTab !== 'HEIM'" id="HEIM" class="team home">
           <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
             <div formArrayName="homeLineUp" class="line-up-table">
@@ -29,18 +38,22 @@
                     <td>
                       <select formControlName="playerId" class="full-width">
                         @for (player of homePlayers; track player) {
-                          <option [value]="player.id">{{ player.firstName }}</option>
+                          <option [value]="player.id">
+                            {{ player.firstName }}
+                          </option>
                         }
                       </select>
                     </td>
                     <td>
-                      <input type="number" placeholder="Passnummer" formControlName="passNumber" class="full-width">
+                      <input type="number" placeholder="Passnummer" formControlName="passNumber" class="full-width" />
                     </td>
                     <td>
                       <select formControlName="position" class="full-width">
                         <option value="" disabled hidden selected>Wählen...</option>
                         @for (position of positions; track position) {
-                          <option [value]="position.id">{{ position.description }}</option>
+                          <option [value]="position.id">
+                            {{ position.description }}
+                          </option>
                         }
                       </select>
                     </td>
@@ -49,12 +62,17 @@
               </table>
             </div>
             <div class="action-button">
-            <button type="submit">Zum Spiel</button>
+              <button type="submit">Zum Spiel</button>
             </div>
           </form>
         </div>
       </div>
-      <div [ngClass]="{'team_away': true, 'active': activeTab === 'GAST'}">
+      <div
+        [ngClass]="{
+          team_away: true,
+          active: activeTab === 'GAST',
+        }"
+      >
         <div [class.hidden]="activeTab !== 'GAST'" id="GAST" class="team away">
           <form [formGroup]="lineUpForm" (ngSubmit)="onSubmit()">
             <div formArrayName="awayLineUp" class="line-up-table">
@@ -71,18 +89,22 @@
                     <td>
                       <select formControlName="playerId" class="full-width">
                         @for (player of awayPlayers; track player) {
-                          <option [value]="player.id">{{ player.firstName }}</option>
+                          <option [value]="player.id">
+                            {{ player.firstName }}
+                          </option>
                         }
                       </select>
                     </td>
                     <td>
-                      <input type="text" placeholder="Passnummer" formControlName="passNumber" class="full-width">
+                      <input type="text" placeholder="Passnummer" formControlName="passNumber" class="full-width" />
                     </td>
                     <td>
                       <select formControlName="position" class="full-width">
                         <option value="" disabled hidden selected>Wählen...</option>
                         @for (position of positions; track position) {
-                          <option [value]="position.id">{{ position.description }}</option>
+                          <option [value]="position.id">
+                            {{ position.description }}
+                          </option>
                         }
                       </select>
                     </td>

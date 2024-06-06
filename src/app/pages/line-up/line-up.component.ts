@@ -13,19 +13,14 @@ import { LineUpPlayerPost } from '../../models/line-up-player-post';
 import { PositionService } from '../../services/position.service';
 import { PositionGet } from '../../models/position-get';
 
-
 // Other imports remain the same
 
 @Component({
   selector: 'app-line-up',
   templateUrl: './line-up.component.html',
-  imports: [
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgClass
-  ],
+  imports: [ReactiveFormsModule, HttpClientModule, NgClass],
   standalone: true,
-  styleUrls: ['./line-up.component.css']
+  styleUrls: ['./line-up.component.css'],
 })
 export class LineUpComponent implements OnInit {
   @Input() game!: GameGet;
@@ -46,7 +41,7 @@ export class LineUpComponent implements OnInit {
   ) {
     this.lineUpForm = this.fb.group({
       homeLineUp: this.fb.array([]),
-      awayLineUp: this.fb.array([])
+      awayLineUp: this.fb.array([]),
     });
   }
 
@@ -78,24 +73,26 @@ export class LineUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const gameId = +params.get('id')!;
-        return this.gameService.getGame(gameId);
-      })
-    ).subscribe(game => {
-      this.game = game;
-      this.fetchPlayers(game.hostTeam.teamId, 'home');
-      this.fetchPlayers(game.guestTeam.teamId, 'away');
-    });
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+          const gameId = +params.get('id')!;
+          return this.gameService.getGame(gameId);
+        })
+      )
+      .subscribe((game) => {
+        this.game = game;
+        this.fetchPlayers(game.hostTeam.teamId, 'home');
+        this.fetchPlayers(game.guestTeam.teamId, 'away');
+      });
     this.positionService.getPositions().subscribe({
-      next: positions => this.positions = positions,
-      error: err => console.error('Cannon get positions: ' + err)
+      next: (positions) => (this.positions = positions),
+      error: (err) => console.error('Cannon get positions: ' + err),
     });
   }
 
   fetchPlayers(teamId: number, teamType: 'home' | 'away'): void {
-    this.lineUpService.getPlayersByTeamId(teamId).subscribe(players => {
+    this.lineUpService.getPlayersByTeamId(teamId).subscribe((players) => {
       if (teamType === 'home') {
         this.homePlayers = players;
         this.populateLineUpForm(this.homeLineUp, players);
@@ -107,13 +104,15 @@ export class LineUpComponent implements OnInit {
   }
 
   populateLineUpForm(lineUpFormArray: FormArray, players: PlayerGet[]): void {
-    lineUpFormArray.clear();  // Clear existing form groups to avoid duplication
+    lineUpFormArray.clear(); // Clear existing form groups to avoid duplication
     players.forEach(() => {
-      lineUpFormArray.push(this.fb.group({
-        playerId: [''],
-        passNumber: [''],  // Corrected from passnumber to passNumber
-        position: ['']
-      }));
+      lineUpFormArray.push(
+        this.fb.group({
+          playerId: [''],
+          passNumber: [''], // Corrected from passnumber to passNumber
+          position: [''],
+        })
+      );
     });
   }
 
@@ -124,25 +123,25 @@ export class LineUpComponent implements OnInit {
     const homeLineUpPlayers: LineUpPlayerPost[] = homeLineUp.map((lineUp: any) => ({
       playerId: lineUp.playerId,
       jerseyNr: lineUp.passNumber,
-      positionId: lineUp.position
+      positionId: lineUp.position,
     }));
 
     const homeLineUpPost: LineUpPost = {
       teamId: this.game.hostTeam.teamId,
       gameId: this.game.id,
-      playerList: homeLineUpPlayers
+      playerList: homeLineUpPlayers,
     };
 
     const awayLineUpPlayers: LineUpPlayerPost[] = awayLineUp.map((lineUp: any) => ({
       playerId: lineUp.playerId,
       jerseyNr: lineUp.passNumber,
-      positionId: lineUp.position
+      positionId: lineUp.position,
     }));
 
     const awayLineUpPost: LineUpPost = {
       teamId: this.game.guestTeam.teamId,
       gameId: this.game.id,
-      playerList: awayLineUpPlayers
+      playerList: awayLineUpPlayers,
     };
 
     this.lineUpService.createLineUps([homeLineUpPost, awayLineUpPost]).subscribe(() => {
@@ -150,10 +149,8 @@ export class LineUpComponent implements OnInit {
         next: () => {
           this.router.navigate(['/game', this.game.id]);
         },
-        error: err => console.error('Cannot create a first turn: ' + err)
+        error: (err) => console.error('Cannot create a first turn: ' + err),
       });
     });
   }
 }
-
-

@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   height: 100vh;
-  background-color: #B4FF00;
-  background-image: url("Hitter.png");
+  background-color: #b4ff00;
+  background-image: url('Hitter.png');
   background-size: cover;
 }
 .header {
@@ -11,16 +11,17 @@
   top: 20px;
   right: 20px;
 }
-.team-action, .logout {
+.team-action,
+.logout {
   font-family: Kanit, sans-serif;
   font-weight: 800;
   margin-left: 20px;
-  background-color: #323D2B;
+  background-color: #323d2b;
   color: #78cf4c;
   border-radius: 30px;
   padding: 15px 30px;
 }
-.main-content{
+.main-content {
   padding-left: 300px;
   margin: 30px;
 }
@@ -42,7 +43,7 @@
 }
 .start-game {
   text-align: center;
-  background-color: #1C1E1A;
+  background-color: #1c1e1a;
   color: #78cf4c;
   font-family: Kanit, sans-serif;
   font-weight: 800;
@@ -53,6 +54,8 @@
   font-size: 30px;
   cursor: pointer;
 }
-.start-game:hover, .team-action:hover, .logout:hover {
-  background-color:  #111110;
+.start-game:hover,
+.team-action:hover,
+.logout:hover {
+  background-color: #111110;
 }

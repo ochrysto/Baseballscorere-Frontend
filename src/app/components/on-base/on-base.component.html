@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="info-box">
     <div class="breakline">
       <div class="title">on Deck</div>
@@ -57,7 +56,7 @@
       <div class="title">on Third</div>
       <div class="line"></div>
     </div>
-    @if (gameState != null  && gameState.thirdBase != null) {
+    @if (gameState != null && gameState.thirdBase != null) {
       <div class="textfield-visitor">
         {{ generateText(gameState.thirdBase) }}
       </div>
@@ -69,12 +68,11 @@
   <div class="fieldset-container">
     <div class="fieldset-box">
       <fieldset>
-          <legend class="fieldset-visitor">
-            {{ generateText(getSelectedPlayer()) }}
-          </legend>
-          <p>{{ generateCurrentPlayerStatus() }}</p>
-        </fieldset>
+        <legend class="fieldset-visitor">
+          {{ generateText(getSelectedPlayer()) }}
+        </legend>
+        <p>{{ generateCurrentPlayerStatus() }}</p>
+      </fieldset>
     </div>
   </div>
-
 </div>

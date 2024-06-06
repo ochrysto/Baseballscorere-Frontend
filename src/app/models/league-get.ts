@@ -1,4 +1,4 @@
-import {AssociationGet} from "./association-get";
+import { AssociationGet } from './association-get';
 
 export interface LeagueGet {
   id: number;

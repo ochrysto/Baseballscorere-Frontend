@@ -13,15 +13,14 @@ import { KeycloakService } from 'keycloak-angular';
     </div>
   `,
   imports: [RouterLink],
-  styleUrl: './nav-bar.component.css'
+  styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent {
-  constructor(private keycloak: KeycloakService) {
-  }
+  constructor(private keycloak: KeycloakService) {}
 
   public logout() {
     this.keycloak.logout().then(
-      () => console.log('Successfully logged out.')  // TODO: Add confirmation?
+      () => console.log('Successfully logged out.') // TODO: Add confirmation?
     );
   }
 }
