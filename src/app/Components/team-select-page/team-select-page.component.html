@@ -1,0 +1,19 @@
+<div class="main">
+  <img src="../../../assets/Hitter.png" class="hitter" alt="baseballplayer hitting">
+  <div class="container">
+    <app-nav-bar></app-nav-bar>
+
+    <div class="selection-window">
+      <h1>Wähle ein Team</h1>
+      <select [(ngModel)]="selectedTeamId">
+        <option disabled hidden selected value="">Wähle ein Team aus</option>
+        @for (team of teams; track team) {
+          <option [value]="team.teamId">{{ team.name }}</option>
+        }
+      </select>
+      <button (click)="editTeam()" [disabled]="!selectedTeamId">Team bearbeiten</button>
+    </div>
+  </div>
+</div>
+
+

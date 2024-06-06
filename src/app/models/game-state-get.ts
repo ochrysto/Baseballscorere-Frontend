@@ -1,5 +1,4 @@
 import { LineUpPlayerGet } from './line-up-player-get';
-import {ScoreboardInningGet} from "./scoreboard-inning-get";
 
 export interface GameStateGet {
   game: number;
@@ -13,7 +12,6 @@ export interface GameStateGet {
   homeLob: number;
   awayRuns: number[];
   homeRuns: number[];
-  // scoreBoardInnings: ScoreboardInningGet[]
   inning: number;
   team: string;
   outs: number;

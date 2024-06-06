@@ -14,6 +14,7 @@ import {
   TeammitgliederHinzufuegenComponent
 } from './Components/teammitglieder-hinzufuegen/teammitglieder-hinzufuegen.component';
 import { GameCreate } from './components/game-create/game-create';
+import { TeamSelectPageComponent } from './components/team-select-page/team-select-page.component';
 
 export const routes: Routes = [
   {path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard]},
@@ -25,6 +26,7 @@ export const routes: Routes = [
   {path: 'scorer_anlegen', component: ScorerAnlegenFormComponent, canActivate: [AuthGuard]},
   {path: 'create-umpire', component: SchiedsrichterAnlegenFormComponent, canActivate: [AuthGuard]},
   {path: 'create-team', component: TeamErstellungsFormComponent, canActivate: [AuthGuard]},
+  {path: 'edit-team', component: TeamSelectPageComponent, canActivate: [AuthGuard]},
   {path: 'edit-team/:id', component: TeammitgliederHinzufuegenComponent, canActivate: [AuthGuard]}, // Assuming :id is a unique identifier for a team
   {path: '', redirectTo: '/create-team', pathMatch: 'full'}
 ];
