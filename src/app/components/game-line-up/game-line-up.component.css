@@ -1,18 +1,40 @@
 table {
   padding: 10px;
   width: 100%;
-  height: 100%;
+  height: auto; /* Adjust to auto to fit the content height */
   border: none;
   border-collapse: separate;
   display: flex;
-  justify-content: space-evenly;
-  align-content: space-evenly;
+  flex-direction: column; /* Set flex direction to column */
+  justify-content: flex-start; /* Align items to the start of the column */
+  align-content: stretch; /* Ensure content stretches to fill the column width */
 }
 
 .table-head {
   font-weight: 400;
   font-size: 0.7em;
   height: 3vh;
+  display: flex;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+tbody {
+  display: flex;
+  width: 100%;
+  flex-direction: column; /* Ensure tbody also uses column layout */
+}
+
+tr {
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+}
+
+td {
+  flex: 1; /* Make table cells flexible to fit within the row */
+  text-align: center;
+  align-content: center;
 }
 
 .material-symbols-outlined {
@@ -26,6 +48,17 @@ table {
 
 .player-visitor {
   color: var(--visitoryellow);
+}
+
+.arrow {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.th-inning {
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .player-home {
@@ -50,6 +83,7 @@ table tr:active {
   background-color: var(--visitoryellow);
   color: var(--card-darkbrown);
 }
+
 table tr:hover {
   background-color: var(--card-lightbrown);
 }

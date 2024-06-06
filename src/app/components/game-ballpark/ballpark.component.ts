@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LineUpPlayers } from '../../models/line-up-players';
 import { GamePageService } from '../../services/game-page.service';
 import { NgClass } from '@angular/common';
 import { GameStateGet } from '../../models/game-state-get';
 import { ActionsGet } from '../../models/actions-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
 
 @Component({
   selector: 'app-game-ballpark',
@@ -34,36 +35,41 @@ export class BallparkComponent implements OnInit {
   }
 
   @Input()
-  get homePlayers(): LineUpPlayers[] {
-    return this._defensiveHomeTeam;
+  get defencivePlayers(): LineUpPlayerGet[] {
+    return this._defensivePlayers;
   }
 
-  set homePlayers(players: LineUpPlayers[]) {
-    this._defensiveHomeTeam = [...players].sort((a, b) => a.position - b.position);
+  set defencivePlayers(players: LineUpPlayerGet[]) {
+    this._defensivePlayers = [...players].sort((a, b) => a.position - b.position);
   }
 
   @Input()
-  get awayPlayers(): LineUpPlayers[] {
-    return this._defensiveGuestTeam;
+  get base(): number {
+    return this._selectedBase;
   }
 
-  set awayPlayers(players: LineUpPlayers[]) {
-    this._defensiveGuestTeam = [...players].sort((a, b) => a.position - b.position);
+  set base(base: number) {
+    this._selectedBase = base;
   }
 
-  private _defensiveHomeTeam: LineUpPlayers[] = [];
-  private _defensiveGuestTeam: LineUpPlayers[] = [];
+  private _defensivePlayers: LineUpPlayerGet[] = [];
   private _gameState!: GameStateGet;
   private _actions!: ActionsGet;
+  private _selectedBase: number = 0;
   public selectedPlayers: Set<number> = new Set<number>(); // Track selected players
 
   constructor(protected service: GamePageService) {
+    service.selectedPlayers$.subscribe({
+      next: value => this.selectedPlayers = new Set(value),
+      error: err => "Cannot get updated `selectedPlayers` list: " + err
+    })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   selectBase(number: number) {
-    this.service.selectedBase.next(number);
+    this.service.updateSelectedBase(number);
   }
 
   /**

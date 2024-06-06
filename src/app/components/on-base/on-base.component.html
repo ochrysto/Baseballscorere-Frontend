@@ -5,15 +5,12 @@
       <div class="title">on Deck</div>
       <div class="line"></div>
     </div>
-    @if (currentInningStatus === "isTopInning") {
+    @if (gameState != null && gameState.onDeck != null) {
       <div class="textfield-visitor">
-        {{ getGuestPlayerName(1) }}
+        {{ generateText(gameState.onDeck) }}
       </div>
-    }
-    @if (currentInningStatus === "isBottomInning") {
-      <div class="textfield-home">
-        {{ getHomePlayerName(1) }}
-      </div>
+    } @else {
+      <div class="textfield"></div>
     }
   </div>
   <div class="info-box">
@@ -21,15 +18,12 @@
       <div class="title">at Bat</div>
       <div class="line"></div>
     </div>
-    @if (currentInningStatus === "isTopInning") {
+    @if (gameState != null && gameState.batter != null) {
       <div class="textfield-visitor">
-        {{ getGuestPlayerName(0) }}
+        {{ generateText(gameState.batter) }}
       </div>
-    }
-    @if (currentInningStatus === "isBottomInning") {
-      <div class="textfield-home">
-        {{ getHomePlayerName(0) }}
-      </div>
+    } @else {
+      <div class="textfield"></div>
     }
   </div>
   <div class="info-box">
@@ -37,42 +31,49 @@
       <div class="title">on First</div>
       <div class="line"></div>
     </div>
-    <div class="textfield"></div>
+    @if (gameState != null && gameState.firstBase != null) {
+      <div class="textfield-visitor">
+        {{ generateText(gameState.firstBase) }}
+      </div>
+    } @else {
+      <div class="textfield"></div>
+    }
   </div>
   <div class="info-box">
     <div class="breakline">
       <div class="title">on Second</div>
       <div class="line"></div>
     </div>
-    <div class="textfield"></div>
+    @if (gameState != null && gameState.secondBase != null) {
+      <div class="textfield-visitor">
+        {{ generateText(gameState.secondBase) }}
+      </div>
+    } @else {
+      <div class="textfield"></div>
+    }
   </div>
   <div class="info-box">
     <div class="breakline">
       <div class="title">on Third</div>
       <div class="line"></div>
     </div>
-    <div class="textfield"></div>
+    @if (gameState != null  && gameState.thirdBase != null) {
+      <div class="textfield-visitor">
+        {{ generateText(gameState.thirdBase) }}
+      </div>
+    } @else {
+      <div class="textfield"></div>
+    }
   </div>
 
   <div class="fieldset-container">
     <div class="fieldset-box">
-      @if (currentInningStatus === "isTopInning") {
-        <fieldset>
+      <fieldset>
           <legend class="fieldset-visitor">
-            {{ getGuestPlayerName(0) }}
+            {{ generateText(getSelectedPlayer()) }}
           </legend>
+          <p>{{ generateCurrentPlayerStatus() }}</p>
         </fieldset>
-      }
-      @if (currentInningStatus === "isBottomInning") {
-        <fieldset>
-          <legend class="fieldset-home">
-            {{ getHomePlayerName(0) }}
-          </legend>
-        </fieldset>
-      }
-      @for (position of responsible; track position) {
-        <p>{{ position }}</p>
-      }
     </div>
   </div>
 

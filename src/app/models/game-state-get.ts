@@ -1,4 +1,4 @@
-import { LineupPlayerGet } from './lineup-player-get';
+import { LineUpPlayerGet } from './line-up-player-get';
 import {ScoreboardInningGet} from "./scoreboard-inning-get";
 
 export interface GameStateGet {
@@ -19,9 +19,9 @@ export interface GameStateGet {
   outs: number;
   balls: number;
   strikes: number;
-  onDeck: LineupPlayerGet | null;
-  batter: LineupPlayerGet | null;
-  firstBase: LineupPlayerGet | null;
-  secondBase: LineupPlayerGet | null;
-  thirdBase: LineupPlayerGet | null;
+  onDeck: LineUpPlayerGet | null;
+  batter: LineUpPlayerGet | null;
+  firstBase: LineUpPlayerGet | null;
+  secondBase: LineUpPlayerGet | null;
+  thirdBase: LineUpPlayerGet | null;
 }

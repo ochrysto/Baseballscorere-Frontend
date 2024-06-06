@@ -1,56 +1,97 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {GamePageService} from "../../services/game-page.service";
-import {LineUpPlayers} from "../../models/line-up-players";
-import {Subscription} from "rxjs";
-import {map} from "rxjs/operators";
-import {NgIf} from "@angular/common";
+import { Component, Input } from '@angular/core';
+import { GameStateGet } from '../../models/game-state-get';
+import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Button} from "../../models/button";
+import {ActionsGet} from "../../models/actions-get";
 
 @Component({
   selector: 'app-on-base',
   standalone: true,
-  imports: [
-    NgIf
-  ],
   templateUrl: './on-base.component.html',
   styleUrl: './on-base.component.css'
 })
-export class OnBaseComponent implements OnInit {
+export class OnBaseComponent {
   @Input()
   get responsible(): number[] {
     return this._responsible;
   }
+
   set responsible(responsible: number[]) {
     this._responsible = responsible;
   }
 
-  onBaseList: LineUpPlayers[] = [];
-  GuestOnBaselist: LineUpPlayers[] = [];
-  HomeOnBaseList: LineUpPlayers[] = [];
-  protected currentInningStatus!: string;
+  @Input()
+  get gameState(): GameStateGet {
+    return this._gameState
+  }
+
+  set gameState(gameState: GameStateGet) {
+    this._gameState = gameState
+  }
+
+  @Input()
+  get base(): number {
+    return this._base;
+  }
+
+  set base(base: number) {
+    this._base = base;
+  }
+
+  @Input()
+  get selectedButton(): Button | null {
+    return this._selectedButton;
+  }
+
+  set selectedButton(button: Button | null) {
+    this._selectedButton = button;
+  }
+
+  private _gameState!: GameStateGet;
+  private _selectedButton: Button | null = null;
   private _responsible: number[] = [];
+  private _base!: number;
 
-  constructor(protected gamePageService: GamePageService) {
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+  //   Method for switching of a selected player   //
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  private placeholderPlayer: LineUpPlayerGet = {
+    id: 0,
+    firstName: '-',
+    lastName: '-',
+    passnumber: 0,
+    jerseyNr: 0,
+    position: 0
   }
 
-  ngOnInit(): void {
-    this.GuestOnBaselist = this.gamePageService.getAllGuestPlayer();
-    this.HomeOnBaseList = this.gamePageService.getAllHomePlayers();
-    this.gamePageService.inningStatus$.subscribe(inningStatus => {
-      this.currentInningStatus = inningStatus;
-    });
+  getSelectedPlayer(): LineUpPlayerGet {
+    switch (this._base) {
+      case 0:
+        return this._gameState.batter != null ? this._gameState.batter : this.placeholderPlayer;
+      case 1:
+        return this._gameState.firstBase != null ? this._gameState.firstBase : this.placeholderPlayer;
+      case 2:
+        return this._gameState.secondBase != null ? this._gameState.secondBase : this.placeholderPlayer;
+      case 3:
+        return this._gameState.thirdBase != null ? this._gameState.thirdBase : this.placeholderPlayer;
+      default:
+        return this.placeholderPlayer;
+    }
   }
 
-  getHomePlayerName(index: number): string {
-    return this.HomeOnBaseList?.at(index)?.jerseyNr + ' '
-      + this.HomeOnBaseList?.at(index)?.firstname + ' '
-      + this.HomeOnBaseList?.at(index)?.lastname || '';
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+  //   Helper methods for HTML rendering   //
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+  generateCurrentPlayerStatus(): string {
+    if (this.selectedButton != null) {
+      return this.selectedButton.button + " " + this.responsible.join('-');
+    }
+    return this.responsible.join('-');
   }
 
-  getGuestPlayerName(index: number): string {
-    return this.GuestOnBaselist?.at(index)?.jerseyNr + ' '
-      + this.GuestOnBaselist?.at(index)?.firstname + ' '
-      + this.GuestOnBaselist?.at(index)?.lastname || '';
+  generateText(player: LineUpPlayerGet): string {
+    return `${player.jerseyNr} ${player.firstName} ${player.lastName}`;
   }
-
-
 }
