@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {TeamServesService} from "../../services/team-serves.service";
 import {TeamGet} from "../../models/team-get";
 import {AssociationGet} from "../../models/association-get";
 import {LeagueGet} from "../../models/league-get";
@@ -14,8 +13,8 @@ import {ScorerService} from "../../services/scorer.service";
 import {ScorerGet} from "../../models/scorer-get";
 import {UmpireService} from "../../services/umpire.service";
 import {UmpireGet} from "../../models/umpire-get";
-import { KeycloakService } from 'keycloak-angular';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import {NavBarComponent} from '../nav-bar/nav-bar.component';
+import {TeamService} from "../../services/team.service";
 
 @Component({
   selector: 'app-game-create',
@@ -41,15 +40,14 @@ export class GameCreate {
 
   constructor(
     private fb: FormBuilder,
-    private teamService: TeamServesService,
+    private teamService: TeamService,
     private associationService: AssociationService,
     private leagueService: LeagueService,
     private gameService: GameService,
     private scorerService: ScorerService,
     private umpireService: UmpireService,
     private router: Router,
-    private datePipe: DatePipe,
-    private keycloak: KeycloakService
+    private datePipe: DatePipe
   ) {
     this.gameForm = this.fb.group({
       gameNr: ['', Validators.required],
@@ -72,7 +70,7 @@ export class GameCreate {
 
   private getTeams() {
     this.teamService.getAllTeams().subscribe({
-      next: value => this.teams = value,
+      next: teams => this.teams = teams,
       error: err => console.error("Cannot get teams: " + err)
     });
   }
@@ -140,11 +138,5 @@ export class GameCreate {
   public getFieldError(controlName: string): boolean | null {
     const control = this.gameForm.get(controlName);
     return control && control.invalid && (control.dirty || control.touched);
-  }
-
-  public logout() {
-    this.keycloak.logout().then(
-      () => console.log('Successfully logged out.')  // TODO: Add confirmation?
-    );
   }
 }

@@ -1,20 +1,16 @@
-import { Routes } from '@angular/router';
-import { LineUpComponent } from './pages/line-up/line-up.component';
-import { BaseballScorerHomeComponent } from './pages/baseball-scorer-home/baseball-scorer-home.component';
-import { ProtectedRouteExampleComponent } from './components/protected-route-example/protected-route-example.component';
-import { PublicRouteExampleComponent } from './components/public-route-example/public-route-example.component';
-import { AuthGuard } from '../guard/auth.guard';
-import { GamePageComponent } from './pages/game-page/game-page.component';
-import { ScorerAnlegenFormComponent } from './Components/scorer-anlegen-form/scorer-anlegen-form.component';
-import {
-  SchiedsrichterAnlegenFormComponent
-} from './Components/schiedsrichter-anlegen-form/schiedsrichter-anlegen-form.component';
-import { TeamErstellungsFormComponent } from './Components/team-erstellungs-form/team-erstellungs-form.component';
-import {
-  TeammitgliederHinzufuegenComponent
-} from './Components/teammitglieder-hinzufuegen/teammitglieder-hinzufuegen.component';
-import { GameCreate } from './components/game-create/game-create';
-import { TeamSelectPageComponent } from './components/team-select-page/team-select-page.component';
+import {Routes} from '@angular/router';
+import {AuthGuard} from '../guard/auth.guard';
+import {GameCreate} from './components/game-create/game-create';
+import {LineUpComponent} from './pages/line-up/line-up.component';
+import {GamePageComponent} from './pages/game-page/game-page.component';
+import {BaseballScorerHomeComponent} from './pages/baseball-scorer-home/baseball-scorer-home.component';
+import {TeamSelectPageComponent} from './components/team-select-page/team-select-page.component';
+import {ScorerCreateFormComponent} from './components/scorer-anlegen-form/scorer-create-form.component';
+import {PublicRouteExampleComponent} from './components/public-route-example/public-route-example.component';
+import {TeamCreateFormComponent} from './components/team-create-form/team-create-form.component';
+import {ProtectedRouteExampleComponent} from './components/protected-route-example/protected-route-example.component';
+import {TeamPlayerAddComponent} from './components/team-player-add/team-player-add.component';
+import {UmpireCreateFormComponent} from './components/umpire-create-form/umpire-create-form.component';
 
 export const routes: Routes = [
   {path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard]},
@@ -23,10 +19,10 @@ export const routes: Routes = [
   {path: 'game/:id/line-up', component: LineUpComponent, canActivate: [AuthGuard]},
   {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard]},
   {path: 'game', component: GameCreate, canActivate: [AuthGuard]},
-  {path: 'scorer_anlegen', component: ScorerAnlegenFormComponent, canActivate: [AuthGuard]},
-  {path: 'create-umpire', component: SchiedsrichterAnlegenFormComponent, canActivate: [AuthGuard]},
-  {path: 'create-team', component: TeamErstellungsFormComponent, canActivate: [AuthGuard]},
+  {path: 'create-scorer', component: ScorerCreateFormComponent, canActivate: [AuthGuard]},
+  {path: 'create-umpire', component: UmpireCreateFormComponent, canActivate: [AuthGuard]},
+  {path: 'create-team', component: TeamCreateFormComponent, canActivate: [AuthGuard]},
   {path: 'edit-team', component: TeamSelectPageComponent, canActivate: [AuthGuard]},
-  {path: 'edit-team/:id', component: TeammitgliederHinzufuegenComponent, canActivate: [AuthGuard]}, // Assuming :id is a unique identifier for a team
+  {path: 'edit-team/:id', component: TeamPlayerAddComponent, canActivate: [AuthGuard]}, // Assuming :id is a unique identifier for a team
   {path: '', redirectTo: '/create-team', pathMatch: 'full'}
 ];

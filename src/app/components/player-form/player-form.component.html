@@ -22,7 +22,7 @@
     </table>
   </div>
 
-  <button (click)="addSelectedPlayers()" [disabled]="selectedPlayers.length === 0 || !selectedTeamId">
+  <button (click)="addSelectedPlayers()" [disabled]="selectedPlayers.length === 0 || !team?.teamId">
     Ausgewählte Spieler zur Mannschaft hinzufügen
   </button>
 </div>

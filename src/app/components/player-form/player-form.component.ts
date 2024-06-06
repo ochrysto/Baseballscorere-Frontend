@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormsModule } from "@angular/forms";
-import { CommonModule } from '@angular/common';
-import { TeamService } from "../../services/Team.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {CommonModule} from '@angular/common';
+import {TeamService} from "../../services/team.service";
 
 interface Player {
   id: number;
@@ -23,23 +23,22 @@ interface Team {
   styleUrls: ['./player-form.component.css']
 })
 export class PlayerFormComponent implements OnInit {
-  @Input() team!: Team;
+  @Input() team: Team | null = null;
   allPlayers: Player[] = [];
   selectedPlayers: Player[] = [];
-  selectedTeamId: number | null = null; // Ensure it can handle a null initial state
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService) {
+  }
 
   ngOnInit() {
-    this.selectedTeamId = this.team.teamId; // Set selected team ID from input
     this.fetchAllPlayers();
   }
 
   fetchAllPlayers() {
-    this.teamService.getAllPlayers().subscribe(
-      players => this.allPlayers = players,
-      error => console.error('Error fetching players:', error)
-    );
+    this.teamService.getAllPlayers().subscribe({
+      next: players => this.allPlayers = players,
+      error: error => console.error('Error fetching players:', error)
+    });
   }
 
   onPlayerSelect(player: Player, event: Event) {
@@ -52,10 +51,10 @@ export class PlayerFormComponent implements OnInit {
   }
 
   addSelectedPlayers() {
-    if (this.selectedPlayers.length > 0 && this.selectedTeamId !== null) {
+    if (this.selectedPlayers.length > 0 && this.team !== null) {
       const playerIds = this.selectedPlayers.map(player => player.id);
-      console.log(`Adding players to team with ID: ${this.selectedTeamId}`);
-      this.teamService.addPlayersToTeam(this.selectedTeamId, playerIds).subscribe(
+      console.log(`Adding players to team with ID: ${this.team.teamId}`);
+      this.teamService.addPlayersToTeam(this.team.teamId, playerIds).subscribe(
         response => {
           console.log('Players added to team');
           this.selectedPlayers = [];

@@ -3,24 +3,24 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TeamPost } from '../../models/team-post';
-import { TeamService } from '../../services/Team.service';
+import { TeamService } from '../../services/team.service';
 import { ClubGet } from '../../models/club-get';
 import { ManagerGet } from '../../models/manager-get';
 import { LeagueGet } from '../../models/league-get';
 import { TeamGet } from '../../models/team-get';
 
 @Component({
-  selector: 'app-teaminformationen-bearbeiten',
+  selector: 'app-team-edit',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  templateUrl: './teaminformationen-bearbeiten.component.html',
-  styleUrls: ['./teaminformationen-bearbeiten.component.css']
+  templateUrl: './team-edit.component.html',
+  styleUrls: ['./team-edit.component.css']
 })
-export class TeaminformationenBearbeitenComponent implements OnChanges {
+export class TeamEditComponent implements OnChanges {
   @Output() close = new EventEmitter<void>();
 
   @Input()

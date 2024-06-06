@@ -5,7 +5,7 @@
 ### Step 1: start KeyCloak docker container
 
 1. Clone [**backend repo**](https://github.com/Mittelstufenprojekt/Baseball-Scoresheet-Backend)
-2. Cd into `docker/local/keycloak` folder
+2. Cd into `docker/local/keycloak/dev` folder
 3. Execute the command `docker compose up`
 
 ### Step 2: follow backend README.md doc

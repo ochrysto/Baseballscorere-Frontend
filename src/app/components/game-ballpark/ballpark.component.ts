@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GamePageService } from '../../services/game-page.service';
-import { NgClass } from '@angular/common';
+import {NgClass, NgOptimizedImage} from '@angular/common';
 import { GameStateGet } from '../../models/game-state-get';
 import { ActionsGet } from '../../models/actions-get';
 import { LineUpPlayerGet } from '../../models/line-up-player-get';
@@ -10,7 +10,8 @@ import {Button} from "../../models/button";
   selector: 'app-game-ballpark',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    NgOptimizedImage
   ],
   templateUrl: './ballpark.component.html',
   styleUrl: './ballpark.component.css'

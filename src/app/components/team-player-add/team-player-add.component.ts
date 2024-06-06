@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
-import { PlayerFormComponent } from '../player-form/player-form.component';
-import { FormsModule } from '@angular/forms';
-import {
-  TeaminformationenBearbeitenComponent
-} from '../teaminformationen-bearbeiten/teaminformationen-bearbeiten.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TeamService } from '../../services/Team.service';
-import { TeamGet } from '../../models/team-get';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule, NgFor, NgOptimizedImage} from '@angular/common';
+import {PlayerFormComponent} from '../player-form/player-form.component';
+import {FormsModule} from '@angular/forms';
+import {TeamEditComponent} from '../team-edit/team-edit.component';
+import {ActivatedRoute, RouterLink} from '@angular/router';
+import {TeamService} from '../../services/team.service';
+import {TeamGet} from '../../models/team-get';
 
 @Component({
-  selector: 'app-teammitglieder-hinzufuegen',
+  selector: 'app-team-player-add',
   standalone: true,
-  imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeaminformationenBearbeitenComponent, RouterLink],
-  templateUrl: './teammitglieder-hinzufuegen.component.html',
-  styleUrls: ['./teammitglieder-hinzufuegen.component.css']
+  imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeamEditComponent, RouterLink, NgOptimizedImage],
+  templateUrl: './team-player-add.component.html',
+  styleUrls: ['./team-player-add.component.css']
 })
-export class TeammitgliederHinzufuegenComponent implements OnInit {
+export class TeamPlayerAddComponent implements OnInit {
   logo: string = 'assets/logo.png';
-  team: TeamGet | null = null;
+  _team: TeamGet | null = null;
   teamId: number | null = null;
   players: any[] = [];
   isPopupVisible: boolean = false;
+
+
+  get team(): TeamGet | null {
+    return this._team;
+  }
+
+  set team(team: TeamGet) {
+    this._team = team;
+    this.fetchPlayers();
+  }
 
   constructor(private route: ActivatedRoute, private teamService: TeamService) {
     this.teamService.playerWasAdded$.subscribe({
@@ -39,7 +47,6 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.teamId = +params['id']; // The '+' converts the string to a number
       this.updateTeam();
-      this.fetchPlayers();
     });
   }
 
@@ -55,16 +62,6 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
     });
   }
 
-  fetchTeam() {
-    this.teamService.getTeamById(this.team.teamId).subscribe(
-      team => {
-        this.team.name = team.name;
-        this.team.logo = team.logo;
-      },
-      error => console.error('Error fetching team:', error)
-    );
-  }
-
   fetchPlayers() {
     if (this.team == null) {
       console.error('Cannot get team players because team object is null');
@@ -72,7 +69,7 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
     }
     this.teamService.getAllTeamPlayers(this.team.teamId).subscribe({
       next: players => {
-        this.players = players.map(player => ({
+        this.players = players.sort((a, b) => a.id - b.id).map(player => ({
           id: player.id,
           Vorname: player.firstName,
           Nachname: player.lastName,

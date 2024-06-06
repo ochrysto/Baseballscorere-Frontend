@@ -2,15 +2,15 @@ import { Component } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-scorer-anlegen-form',
+  selector: 'app-scorer-create-form',
   standalone: true,
   imports: [
     FormsModule
   ],
-  templateUrl: './scorer-anlegen-form.component.html',
-  styleUrl: './scorer-anlegen-form.component.css'
+  templateUrl: './scorer-create-form.component.html',
+  styleUrl: './scorer-create-form.component.css'
 })
-export class ScorerAnlegenFormComponent {
+export class ScorerCreateFormComponent {
   vorname: string = '';
   nachname: string = '';
   passnummer: string = '';

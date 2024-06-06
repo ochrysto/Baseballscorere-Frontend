@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-schiedsrichter-anlegen-form',
+  selector: 'app-umpire-create-form',
   standalone: true,
     imports: [
         FormsModule,
         ReactiveFormsModule
     ],
-  templateUrl: './schiedsrichter-anlegen-form.component.html',
-  styleUrl: './schiedsrichter-anlegen-form.component.css'
+  templateUrl: './umpire-create-form.component.html',
+  styleUrl: './umpire-create-form.component.css'
 })
-export class SchiedsrichterAnlegenFormComponent {
+export class UmpireCreateFormComponent {
   vorname: string = '';
   nachname: string = '';
   passnummer: string = '';

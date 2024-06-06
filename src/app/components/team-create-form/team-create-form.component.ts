@@ -3,11 +3,11 @@ import {Router} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {TeamService} from '../../services/Team.service';
+import {TeamService} from '../../services/team.service';
 import {of, Observable} from 'rxjs';
 
 @Component({
-    selector: 'app-team-erstellungs-form',
+    selector: 'app-team-create-form',
     standalone: true,
     imports: [
         CommonModule,
@@ -15,10 +15,10 @@ import {of, Observable} from 'rxjs';
         ReactiveFormsModule,
         HttpClientModule
     ],
-    templateUrl: './team-erstellungs-form.component.html',
-    styleUrls: ['./team-erstellungs-form.component.css']
+    templateUrl: './team-create-form.component.html',
+    styleUrls: ['./team-create-form.component.css']
 })
-export class TeamErstellungsFormComponent implements OnInit {
+export class TeamCreateFormComponent implements OnInit {
     Verein_name: string = '';
     Team_name: string = '';  // Changed to Team_name for better clarity
     Manager: string = '';

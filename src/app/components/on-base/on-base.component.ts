@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { GameStateGet } from '../../models/game-state-get';
-import { LineUpPlayerGet } from '../../models/line-up-player-get';
+import {Component, Input} from '@angular/core';
+import {GameStateGet} from '../../models/game-state-get';
+import {LineUpPlayerGet} from '../../models/line-up-player-get';
 import {Button} from "../../models/button";
-import {ActionsGet} from "../../models/actions-get";
 
 @Component({
   selector: 'app-on-base',

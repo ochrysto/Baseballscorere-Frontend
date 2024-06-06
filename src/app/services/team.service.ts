@@ -1,31 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { TeamPost } from '../models/team-post';
-import { TeamGet } from '../models/team-get';
-import { ClubGet } from '../models/club-get';
-import { ManagerGet } from '../models/manager-get';
-import { LeagueGet } from '../models/league-get';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {TeamPost} from '../models/team-post';
+import {TeamGet} from '../models/team-get';
+import {ClubGet} from '../models/club-get';
+import {ManagerGet} from '../models/manager-get';
+import {LeagueGet} from '../models/league-get';
+import {PlayerGet} from "../models/player-get";
 
-
-/**
- * @deprecated
- */
-interface Player {
-  id: number;
-  firstName: string;
-  lastName: string;
-  passnumber: number;
-}
-
-/**
- * @deprecated
- */
-interface Team {
-  teamId: number; // Ensure this matches the API response
-  name: string;
-  logo: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -48,10 +30,6 @@ export class TeamService {
     return this.http.get<ClubGet[]>(`${this.baseUrl}/club`);
   }
 
-  getTeams(): Observable<Team[]> {
-    return this.http.get<Team[]>(`${this.baseUrl}/team`);
-  }
-
   getManagers(): Observable<ManagerGet[]> {
     return this.http.get<ManagerGet[]>(`${this.baseUrl}/manager`);
   }
@@ -60,32 +38,28 @@ export class TeamService {
     return this.http.post<any>(`${this.baseUrl}/team`, teamData);
   }
 
-  getAllPlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(`${this.baseUrl}/player`);
+  getAllPlayers(): Observable<PlayerGet[]> {
+    return this.http.get<PlayerGet[]>(`${this.baseUrl}/player`);
   }
 
   addPlayersToTeam(teamId: number, playerIds: number[]): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/team/${teamId}/players`, playerIds);
   }
 
-  getAllTeamPlayers(teamId: number): Observable<Player[]> {
-    return this.http.get<Player[]>(`${this.baseUrl}/team/${teamId}/players`);
+  getAllTeamPlayers(teamId: number): Observable<PlayerGet[]> {
+    return this.http.get<PlayerGet[]>(`${this.baseUrl}/team/${teamId}/players`);
   }
 
-  // Add deletePlayer method
   deletePlayer(teamid: number, playerId: number): Observable<any> {
     debugger;
     return this.http.delete(`${this.baseUrl}/team/${teamid}/${playerId}`);
   }
 
-  // Add updatePlayer method
   updatePlayer(playerId: number, playerData: any): Observable<any> {
     debugger;
     return this.http.put(`${this.baseUrl}/player/${playerId}`, playerData);
   }
-  getTeamById(teamId: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/team/${teamId}`);
-  }
+
   triggerPlayersWasAdded() {
     this.playerWasAdded.next(null);
   }
@@ -100,5 +74,9 @@ export class TeamService {
 
   getTeam(id: number) {
     return this.http.get<TeamGet>(`${this.baseUrl}/team/${id}`);
+  }
+
+  public getAllTeams() {
+    return this.http.get<TeamGet[]>(`${this.baseUrl}/team`);
   }
 }
