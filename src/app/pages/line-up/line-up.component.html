@@ -5,11 +5,11 @@
       <div class="tabs">
         <div class="the_heim" >
           <button class="team_home" [ngClass]="{'active': activeTab === 'HEIM'}" (click)="switchTab('HEIM')">HEIM</button>
-          <p class="the_gast">Bremen Dockers</p>
+          <p class="the_gast">{{ game.guestTeam.name }}</p>
         </div>
         <div class="the_gast" >
           <button class="team away" [ngClass]="{'active': activeTab === 'GAST'}" (click)="switchTab('GAST')">GAST</button>
-          <p class="the_heim">Braunschweig 89ers</p>
+          <p class="the_heim"> {{ game.hostTeam.name }} </p>
         </div>
       </div>
       <div [ngClass]="{'team_heim': true, 'active': activeTab === 'HEIM'}">

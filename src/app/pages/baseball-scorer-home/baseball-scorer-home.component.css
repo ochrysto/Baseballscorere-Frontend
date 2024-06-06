@@ -1,8 +1,7 @@
-
-
 .main {
   display: flex;
 }
+
 .container {
   font-family: Kanit, sans-serif;
   width: 60vw;
@@ -10,12 +9,14 @@
   justify-content: flex-end;
   margin-left: auto;
 }
+
 .header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 20px;
 }
+
 .header a {
   font-family: inherit;
   margin-right: 50px;
@@ -24,10 +25,12 @@
   text-decoration: none;
   color: var(--card-darkbrown);
 }
+
 .header a:hover {
   color: var(--lightgray);
   cursor: pointer;
 }
+
 .header button {
   font-family: inherit;
   background-color: var(--card-darkbrown);
@@ -37,14 +40,17 @@
   border-radius: 20px;
   cursor: pointer;
 }
+
 .header button:hover {
   background-color: var(--actiongreen);
   color: var(--card-darkbrown);
 }
+
 .hitter {
   position: absolute;
   height: 120vh;
 }
+
 .content {
   font-family: inherit;
   padding: 9vw 0;
@@ -52,6 +58,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .content h1 {
   font-family: inherit;
   color: var(--darkgray);
@@ -59,6 +66,7 @@
   font-size: 4.9vw;
   letter-spacing: -1px;
 }
+
 .content p {
   color: var(--card-darkbrown);
   font-weight: 400;
@@ -67,6 +75,7 @@
   padding: 40px;
   line-height: 1.5;
 }
+
 .content button {
   font-family: inherit;
   background-color: var(--card-darkbrown);
@@ -77,6 +86,7 @@
   width: 50%;
   cursor: pointer;
 }
+
 .content button:hover {
   background-color: var(--actiongreen);
   color: var(--card-darkbrown);

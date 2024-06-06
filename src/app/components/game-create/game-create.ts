@@ -14,6 +14,8 @@ import {ScorerService} from "../../services/scorer.service";
 import {ScorerGet} from "../../models/scorer-get";
 import {UmpireService} from "../../services/umpire.service";
 import {UmpireGet} from "../../models/umpire-get";
+import { KeycloakService } from 'keycloak-angular';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-game-create',
@@ -24,7 +26,8 @@ import {UmpireGet} from "../../models/umpire-get";
     ReactiveFormsModule,
     NgClass,
     NgIf,
-    NgForOf
+    NgForOf,
+    NavBarComponent
   ],
   providers: [DatePipe]
 })
@@ -45,7 +48,8 @@ export class GameCreate {
     private scorerService: ScorerService,
     private umpireService: UmpireService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private keycloak: KeycloakService
   ) {
     this.gameForm = this.fb.group({
       gameNr: ['', Validators.required],
@@ -136,5 +140,11 @@ export class GameCreate {
   public getFieldError(controlName: string): boolean | null {
     const control = this.gameForm.get(controlName);
     return control && control.invalid && (control.dirty || control.touched);
+  }
+
+  public logout() {
+    this.keycloak.logout().then(
+      () => console.log('Successfully logged out.')  // TODO: Add confirmation?
+    );
   }
 }
