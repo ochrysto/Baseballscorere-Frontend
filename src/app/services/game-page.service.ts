@@ -52,7 +52,7 @@ export class GamePageService {
   postGameAction(gid: number, data: ActionPost) {
     const url = `${this.baseUrl}/game/${gid}/action`;
     return this.httpClient.post<MessageGet>(url, data).pipe(tap({
-      next: value => this.triggerChange()
+      next: () => this.triggerChange()
     }));
   }
 

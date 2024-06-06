@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {AuthGuard} from '../guard/auth.guard';
-import {GameCreate} from './components/game-create/game-create';
+import {GameCreateComponent} from './components/game-create/game-create.component';
 import {LineUpComponent} from './pages/line-up/line-up.component';
 import {GamePageComponent} from './pages/game-page/game-page.component';
 import {BaseballScorerHomeComponent} from './pages/baseball-scorer-home/baseball-scorer-home.component';
@@ -18,7 +18,7 @@ export const routes: Routes = [
   {path: '', component: BaseballScorerHomeComponent, canActivate: [AuthGuard]},
   {path: 'game/:id/line-up', component: LineUpComponent, canActivate: [AuthGuard]},
   {path: 'game/:id', component: GamePageComponent, canActivate: [AuthGuard]},
-  {path: 'game', component: GameCreate, canActivate: [AuthGuard]},
+  {path: 'game', component: GameCreateComponent, canActivate: [AuthGuard]},
   {path: 'create-scorer', component: ScorerCreateFormComponent, canActivate: [AuthGuard]},
   {path: 'create-umpire', component: UmpireCreateFormComponent, canActivate: [AuthGuard]},
   {path: 'create-team', component: TeamCreateFormComponent, canActivate: [AuthGuard]},

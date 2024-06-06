@@ -19,8 +19,8 @@ import {TeamService} from "../../services/team.service";
 @Component({
   selector: 'app-game-create',
   standalone: true,
-  templateUrl: './game-create.html',
-  styleUrls: ['./game-create.css'],
+  templateUrl: './game-create.component.html',
+  styleUrls: ['./game-create.component.css'],
   imports: [
     ReactiveFormsModule,
     NgClass,
@@ -30,7 +30,7 @@ import {TeamService} from "../../services/team.service";
   ],
   providers: [DatePipe]
 })
-export class GameCreate {
+export class GameCreateComponent {
   teams: TeamGet[] = [];
   associations: AssociationGet[] = [];
   leagues: LeagueGet[] = [];
@@ -111,9 +111,9 @@ export class GameCreate {
     }
 
     const formValues = this.gameForm.value;
-    let formattedDate = this.datePipe.transform(formValues.date, 'yyyy-MM-dd');
+    const formattedDate = this.datePipe.transform(formValues.date, 'yyyy-MM-dd');
 
-    let gameData: GamePost = {
+    const gameData: GamePost = {
       associationId: formValues.associationId,
       date: formattedDate!,
       gameNr: formValues.gameNr,

@@ -54,16 +54,16 @@ export class PlayerFormComponent implements OnInit {
     if (this.selectedPlayers.length > 0 && this.team !== null) {
       const playerIds = this.selectedPlayers.map(player => player.id);
       console.log(`Adding players to team with ID: ${this.team.teamId}`);
-      this.teamService.addPlayersToTeam(this.team.teamId, playerIds).subscribe(
-        response => {
+      this.teamService.addPlayersToTeam(this.team.teamId, playerIds).subscribe({
+        next: () => {
           console.log('Players added to team');
           this.selectedPlayers = [];
           const checkboxes = document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
           checkboxes.forEach(cb => cb.checked = false);
           this.teamService.triggerPlayersWasAdded();
         },
-        error => console.error('Error adding players to team:', error)
-      );
+        error: error => console.error('Error adding players to team:', error)
+      });
     } else {
       console.error('Selected team ID is missing');
     }

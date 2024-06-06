@@ -226,13 +226,13 @@ export class GameInputComponent {
 
   private postAction(button: Button) {
     // map responsible to objects
-    let responsibleToPost: Responsible[] = [];
+    const responsibleToPost: Responsible[] = [];
 
-    for (let position of this.selectedResponsiblePlayers) {
+    for (const position of this.selectedResponsiblePlayers) {
       responsibleToPost.push({defencePosition: this.mapNumberToBaseballPosition(position)});
     }
 
-    let postData: ActionPost = {
+    const postData: ActionPost = {
       base: this.base,
       distance: this._distance,
       type: button.actionType,

@@ -48,7 +48,7 @@ export class GamePageComponent implements OnInit {
     });
 
     this.service.isGameFetched$.subscribe({
-      next: value => {
+      next: () => {
         this.refreshAllData();
         console.log('Successfully refreshed game data');
       },
@@ -95,7 +95,7 @@ export class GamePageComponent implements OnInit {
 
     // Refresh diamonds on game change
     this.service.isChanged$.subscribe({
-      next: value => {
+      next: () => {
         this.service.getGameDiamonds(this.game.id, 'AWAY').subscribe({
           next: diamonds => this.visitorTeamDiamonds = diamonds
         });

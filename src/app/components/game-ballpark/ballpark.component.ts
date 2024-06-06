@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GamePageService } from '../../services/game-page.service';
+import {Component, Input} from '@angular/core';
+import {GamePageService} from '../../services/game-page.service';
 import {NgClass, NgOptimizedImage} from '@angular/common';
-import { GameStateGet } from '../../models/game-state-get';
-import { ActionsGet } from '../../models/actions-get';
-import { LineUpPlayerGet } from '../../models/line-up-player-get';
-import {Button} from "../../models/button";
+import {GameStateGet} from '../../models/game-state-get';
+import {ActionsGet} from '../../models/actions-get';
+import {LineUpPlayerGet} from '../../models/line-up-player-get';
 
 @Component({
   selector: 'app-game-ballpark',
@@ -16,7 +15,7 @@ import {Button} from "../../models/button";
   templateUrl: './ballpark.component.html',
   styleUrl: './ballpark.component.css'
 })
-export class BallparkComponent implements OnInit {
+export class BallparkComponent{
   @Input()
   get gameState(): GameStateGet {
     return this._gameState;
@@ -64,9 +63,6 @@ export class BallparkComponent implements OnInit {
       next: value => this.selectedPlayers = new Set(value),
       error: err => "Cannot get updated `selectedPlayers` list: " + err
     })
-  }
-
-  ngOnInit() {
   }
 
   selectBase(number: number) {

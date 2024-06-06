@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GamePageService } from '../../services/game-page.service';
-import { GameStateGet } from '../../models/game-state-get';
-import { GameGet } from '../../models/game-get';
+import {Component, Input} from '@angular/core';
+import {GamePageService} from '../../services/game-page.service';
+import {GameStateGet} from '../../models/game-state-get';
+import {GameGet} from '../../models/game-get';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { GameGet } from '../../models/game-get';
   templateUrl: './game-scoreboard.component.html',
   styleUrl: './game-scoreboard.component.css'
 })
-export class GameScoreboardComponent implements OnInit {
+export class GameScoreboardComponent {
   @Input()
   get gameState() {
     return this._gameState
@@ -38,9 +38,6 @@ export class GameScoreboardComponent implements OnInit {
 
   changeInningStatus(inningStatus: string) {
     this.service.setInningStatus(inningStatus);
-  }
-
-  ngOnInit(): void {
   }
 
 }

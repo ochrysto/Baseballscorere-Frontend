@@ -10,12 +10,12 @@
       @for (i of [].constructor(9); track i; let count = $index) {
         <div class="inning">
           <div class="inning-cell">{{ count + 1 }}</div>
-          @if (gameState!.awayRuns[count] != undefined) {
+          @if (gameState!.awayRuns[count] !== undefined) {
             <div class="inning-cell">{{ gameState!.awayRuns[count] }}</div>
           } @else {
             <div class="inning-cell">-</div>
           }
-          @if (gameState!.homeRuns[count] != undefined) {
+          @if (gameState!.homeRuns[count] !== undefined) {
             <div class="inning-cell">{{ gameState!.homeRuns[count] }}</div>
           } @else {
             <div class="inning-cell">-</div>

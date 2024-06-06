@@ -7,6 +7,8 @@ import {ClubGet} from '../models/club-get';
 import {ManagerGet} from '../models/manager-get';
 import {LeagueGet} from '../models/league-get';
 import {PlayerGet} from "../models/player-get";
+import {PlayerPost} from "../models/player-post";
+import {TeamWithPlayersGet} from "../models/team-with-players-get";
 
 
 @Injectable({
@@ -34,30 +36,28 @@ export class TeamService {
     return this.http.get<ManagerGet[]>(`${this.baseUrl}/manager`);
   }
 
-  saveTeam(teamData: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/team`, teamData);
+  saveTeam(teamData: TeamPost): Observable<TeamGet> {
+    return this.http.post<TeamGet>(`${this.baseUrl}/team`, teamData);
   }
 
   getAllPlayers(): Observable<PlayerGet[]> {
     return this.http.get<PlayerGet[]>(`${this.baseUrl}/player`);
   }
 
-  addPlayersToTeam(teamId: number, playerIds: number[]): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/team/${teamId}/players`, playerIds);
+  addPlayersToTeam(teamId: number, playerIds: number[]): Observable<TeamWithPlayersGet> {
+    return this.http.put<TeamWithPlayersGet>(`${this.baseUrl}/team/${teamId}/players`, playerIds);
   }
 
   getAllTeamPlayers(teamId: number): Observable<PlayerGet[]> {
     return this.http.get<PlayerGet[]>(`${this.baseUrl}/team/${teamId}/players`);
   }
 
-  deletePlayer(teamid: number, playerId: number): Observable<any> {
-    debugger;
-    return this.http.delete(`${this.baseUrl}/team/${teamid}/${playerId}`);
+  deletePlayer(teamid: number, playerId: number): Observable<TeamWithPlayersGet> {
+    return this.http.delete<TeamWithPlayersGet>(`${this.baseUrl}/team/${teamid}/${playerId}`);
   }
 
-  updatePlayer(playerId: number, playerData: any): Observable<any> {
-    debugger;
-    return this.http.put(`${this.baseUrl}/player/${playerId}`, playerData);
+  updatePlayer(playerId: number, playerData: PlayerPost): Observable<PlayerGet> {
+    return this.http.put<PlayerGet>(`${this.baseUrl}/player/${playerId}`, playerData);
   }
 
   triggerPlayersWasAdded() {

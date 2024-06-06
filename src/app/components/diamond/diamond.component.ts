@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GamePageService} from "../../services/game-page.service";
 import {NgClass} from "@angular/common";
+import {DiamondGet} from "../../models/diamond-get";
 
 @Component({
   selector: 'app-diamond',
@@ -13,7 +14,7 @@ import {NgClass} from "@angular/common";
 })
 export class DiamondComponent implements OnInit {
 
-  @Input() content!: any;   // Diamonds could be undefined
+  @Input() content!: DiamondGet;   // Diamonds could be undefined
   base: number =  0;        // draws basepath matching the progress
   center: string =  '';     //text to the centertextfield
   first: string =  '';      //text to the textfield in the bottom right corner

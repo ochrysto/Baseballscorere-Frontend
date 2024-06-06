@@ -33,12 +33,12 @@ export class TeamPlayerAddComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private teamService: TeamService) {
     this.teamService.playerWasAdded$.subscribe({
-      next: _ => this.fetchPlayers(),
+      next: () => this.fetchPlayers(),
       error: err => alert('Error: ' + err)
     });
 
     this.teamService.teamWasUpdated$.subscribe({
-      next: _ => this.updateTeam(),
+      next: () => this.updateTeam(),
       error: err => alert('Error: ' + err)
     })
   }

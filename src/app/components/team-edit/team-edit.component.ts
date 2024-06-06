@@ -96,7 +96,7 @@ export class TeamEditComponent implements OnChanges {
   onSubmit() {
     const formValues = this.teamForm.value;
 
-    let postData: TeamPost = {
+    const postData: TeamPost = {
       name: formValues.name,
       managerId: formValues.managerId,
       clubId: formValues.clubId,
@@ -110,12 +110,12 @@ export class TeamEditComponent implements OnChanges {
     }
 
     this.teamService.updateTeam(this.team.teamId, postData).subscribe({
-      next: value => {
+      next: () => {
         console.log('Successfully updated team with id ' + this.team?.teamId);
         this.teamService.triggerTeamWasUpdated();
         this.closePopup();
       },
-      error: err => {
+      error: () => {
         console.error('Cannot update team with id ' + this.team?.teamId);
         alert('Cannot update team with id ' + this.team?.teamId);
       }

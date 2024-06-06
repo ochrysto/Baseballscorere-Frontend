@@ -1,22 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GamePageService } from '../../services/game-page.service';
-import { DiamondComponent } from '../diamond/diamond.component';
-import { NgIf } from '@angular/common';
-import { OffensiveActionsGet } from '../../models/offensive-actions-get';
-import { GameStateGet } from '../../models/game-state-get';
+import {Component, Input} from '@angular/core';
+import {DiamondComponent} from '../diamond/diamond.component';
+import {NgIf} from '@angular/common';
+import {OffensiveActionsGet} from '../../models/offensive-actions-get';
+import {GameStateGet} from '../../models/game-state-get';
 
 @Component({
   selector: 'app-game-line-up',
   standalone: true,
   imports: [
     DiamondComponent,
-    DiamondComponent,
     NgIf
   ],
   templateUrl: './game-line-up.component.html',
   styleUrl: './game-line-up.component.css'
 })
-export class GameLineUpComponent implements OnInit {
+export class GameLineUpComponent {
   @Input()
   get gameState(): GameStateGet {
     return this._gameState
@@ -68,13 +66,6 @@ export class GameLineUpComponent implements OnInit {
     7: 'LF',
     8: 'CF',
     9: 'RF'
-  }
-  protected currentInningStatus!: string;
-
-  constructor(protected gamePageService: GamePageService) {
-  }
-
-  ngOnInit() {
   }
 
   /**
