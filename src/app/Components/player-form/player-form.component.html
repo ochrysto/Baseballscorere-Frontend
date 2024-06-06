@@ -1,19 +1,36 @@
 <div class="player-form">
-  <div class="form-field">
-    <label for="vorname">Vorname</label>
-    <input type="text" id="vorname" [(ngModel)]="vorname" placeholder="Vorname">
+  <h3>Spieler zur Mannschaft hinzufügen</h3>
+
+  <div class="team-selection">
+    <label for="teamSelect">Wähle eine Mannschaft:</label>
+    <select id="teamSelect" [(ngModel)]="selectedTeamId">
+      <option value="" disabled>Mannschaft auswählen</option>
+      <option *ngFor="let team of teams" [ngValue]="team.teamId">{{ team.name }}</option>
+    </select>
   </div>
-  <div class="form-field">
-    <label for="nachname">Nachname</label>
-    <input type="text" id="nachname" [(ngModel)]="nachname" placeholder="Nachname">
+
+  <div class="player-list">
+    <table>
+      <thead>
+      <tr>
+        <th>Auswählen</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Passnummer</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let player of allPlayers">
+        <td><input type="checkbox" [value]="player" (change)="onPlayerSelect(player, $event)"></td>
+        <td>{{ player.firstName }}</td>
+        <td>{{ player.lastName }}</td>
+        <td>{{ player.passnumber }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="form-field">
-    <label for="passnummer">Passnummer</label>
-    <input type="text" id="passnummer" [(ngModel)]="passnummer" placeholder="Passnummer">
-  </div>
-  <div class="form-field">
-    <label for="trikotnummer">Trikotnummer</label>
-    <input type="text" id="trikotnummer" [(ngModel)]="trikotnummer" placeholder="Trikotnummer">
-  </div>
-  <button (click)="addPlayer()">Spieler/in hochladen</button>
+
+  <button (click)="addSelectedPlayers()" [disabled]="selectedPlayers.length === 0 || !selectedTeamId">
+    Ausgewählte Spieler zur Mannschaft hinzufügen
+  </button>
 </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from "@angular/common";
 import { PlayerFormComponent } from "../player-form/player-form.component";
 import { FormsModule } from "@angular/forms";
-import {TeamErstellungsFormComponent} from "../team-erstellungs-form/team-erstellungs-form.component";
 import {
   TeaminformationenBearbeitenComponent
 } from "../teaminformationen-bearbeiten/teaminformationen-bearbeiten.component";
@@ -10,7 +9,7 @@ import {
 @Component({
   selector: 'app-teammitglieder-hinzufuegen',
   standalone: true,
-  imports: [CommonModule, NgFor, FormsModule, TeaminformationenBearbeitenComponent],
+  imports: [CommonModule, NgFor, FormsModule, PlayerFormComponent, TeaminformationenBearbeitenComponent],
   templateUrl: './teammitglieder-hinzufuegen.component.html',
   styleUrls: ['./teammitglieder-hinzufuegen.component.css']
 })
@@ -21,24 +20,33 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
     name: 'Bremen Dockers'
   };
   players: any[] = [
-    { trikotnummer: '68', name: 'Luiz Koenig', passnummer: '40866', editing: false, originalName: '', originalPassnummer: '', originalTrikotnummer: '' },
-    { trikotnummer: '4', name: 'Stephan Schönebeck', passnummer: '46631', editing: false, originalName: '', originalPassnummer: '', originalTrikotnummer: '' },
-    { trikotnummer: '22', name: 'Melike Günther', passnummer: '87336', editing: false, originalName: '', originalPassnummer: '', originalTrikotnummer: '' },
+    { Vorname: 'Luiz', Nachname: 'Koenig', passnummer: '40866', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
+    { Vorname: 'Stephan', Nachname: 'Schönebeck', passnummer: '46631', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
+    { Vorname: 'Melike', Nachname: 'Günther', passnummer: '87336', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
   ]; // This would be populated with actual player data
 
+  isPopupVisible = false;
+
+  openPopup() {
+    this.isPopupVisible = true;
+  }
+
+  closePopup() {
+    this.isPopupVisible = false;
+  }
   constructor() { }
 
   ngOnInit() { }
 
   addPlayer(newPlayerData: any) {
     const newPlayer = {
-      trikotnummer: newPlayerData.trikotnummer, // or another logic to generate a unique number
-      name: newPlayerData.vorname + ' ' + newPlayerData.nachname,
+      Vorname: newPlayerData.Vorname, // or another logic to generate a unique number
+      Nachname: newPlayerData.vorname + ' ' + newPlayerData.nachname,
       passnummer: newPlayerData.passnummer,
       editing: false,
-      originalName: '',
+      originalNachname: '',
       originalPassnummer: '',
-      originalTrikotnummer: ''
+      originalVorname: ''
     };
     this.players.push(newPlayer);
   }
@@ -47,14 +55,14 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
     const player = this.players[index];
     if (!player.editing) {
       // Store original values before editing
-      player.originalName = player.name;
+      player.originalNachname = player.Nachname;
       player.originalPassnummer = player.passnummer;
-      player.originalTrikotnummer = player.trikotnummer;
+      player.originalVorname = player.Vorname;
     } else {
       // Revert to original values on cancel
-      player.name = player.originalName;
+      player.Nachname = player.originalNachname;
       player.passnummer = player.originalPassnummer;
-      player.trikotnummer = player.originalTrikotnummer;
+      player.Vorname = player.originalVorname;
     }
     player.editing = !player.editing;
   }
@@ -62,9 +70,9 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
   submitEdit(index: number) {
     const player = this.players[index];
     // Clear original values after saving
-    player.originalName = '';
+    player.originalNachname = '';
     player.originalPassnummer = '';
-    player.originalTrikotnummer = '';
+    player.originalVorname = '';
     player.editing = false;
   }
 
