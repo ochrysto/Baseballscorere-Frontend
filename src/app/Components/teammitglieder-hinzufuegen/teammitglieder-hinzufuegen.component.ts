@@ -5,6 +5,9 @@ import { FormsModule } from "@angular/forms";
 import {
   TeaminformationenBearbeitenComponent
 } from "../teaminformationen-bearbeiten/teaminformationen-bearbeiten.component";
+import { ActivatedRoute } from '@angular/router';
+import { TeamService } from '../../services/Team.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-teammitglieder-hinzufuegen',
@@ -15,17 +18,45 @@ import {
 })
 export class TeammitgliederHinzufuegenComponent implements OnInit {
   team = {
-    id: 1,
-    logo: 'assets/logo.png', // replace with the path to your logo
+    id: 0,
+    logo: 'assets/logo.png',
     name: 'Bremen Dockers'
   };
-  players: any[] = [
-    { Vorname: 'Luiz', Nachname: 'Koenig', passnummer: '40866', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
-    { Vorname: 'Stephan', Nachname: 'Schönebeck', passnummer: '46631', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
-    { Vorname: 'Melike', Nachname: 'Günther', passnummer: '87336', editing: false, originalNachname: '', originalPassnummer: '', originalVorname: '' },
-  ]; // This would be populated with actual player data
-
+  players: any[] = [];
   isPopupVisible = false;
+
+  constructor(private route: ActivatedRoute, private teamService: TeamService) {
+      this.teamService.playerWasAdded$.subscribe({
+          next: _ => this.fetchPlayers(),
+          error: err => alert("Error: " + err)
+      })
+  }
+
+  ngOnInit() {
+    // Get the team ID from the URL
+    this.route.params.subscribe(params => {
+      this.team.id = +params['id']; // The '+' converts the string to a number
+      this.fetchPlayers();
+    });
+  }
+
+  fetchPlayers() {
+    this.teamService.getAllTeamPlayers(this.team.id).subscribe(
+      players => {
+        this.players = players.map(player => ({
+          id: player.id,
+          Vorname: player.firstName,
+          Nachname: player.lastName,
+          passnummer: player.passnumber,
+          editing: false,
+          originalNachname: '',
+          originalPassnummer: '',
+          originalVorname: ''
+        }));
+      },
+      error => console.error('Error fetching players:', error)
+    );
+  }
 
   openPopup() {
     this.isPopupVisible = true;
@@ -33,22 +64,6 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
 
   closePopup() {
     this.isPopupVisible = false;
-  }
-  constructor() { }
-
-  ngOnInit() { }
-
-  addPlayer(newPlayerData: any) {
-    const newPlayer = {
-      Vorname: newPlayerData.Vorname, // or another logic to generate a unique number
-      Nachname: newPlayerData.vorname + ' ' + newPlayerData.nachname,
-      passnummer: newPlayerData.passnummer,
-      editing: false,
-      originalNachname: '',
-      originalPassnummer: '',
-      originalVorname: ''
-    };
-    this.players.push(newPlayer);
   }
 
   toggleEdit(index: number) {
@@ -69,15 +84,21 @@ export class TeammitgliederHinzufuegenComponent implements OnInit {
 
   submitEdit(index: number) {
     const player = this.players[index];
-    // Clear original values after saving
-    player.originalNachname = '';
-    player.originalPassnummer = '';
-    player.originalVorname = '';
-    player.editing = false;
+    const updatedPlayer = {
+      firstName: player.Vorname,
+      lastName: player.Nachname,
+      passnumber: player.passnummer
+    };debugger;
+    this.teamService.updatePlayer(player.id, updatedPlayer).subscribe(() => {
+      player.editing = false;
+    });
   }
 
-  deletePlayer(index: number) {
-    this.players.splice(index, 1);
+  deletePlayer(index: number) {debugger;
+    const player = this.players[index];
+    this.teamService.deletePlayer(this.team.id, player.id).subscribe(() => {
+      this.players.splice(index, 1);
+    });
   }
 
   closeList() {

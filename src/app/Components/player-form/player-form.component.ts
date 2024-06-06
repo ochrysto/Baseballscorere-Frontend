@@ -68,6 +68,7 @@ export class PlayerFormComponent implements OnInit {
                     this.selectedPlayers = [];
                     const checkboxes = document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
                     checkboxes.forEach(cb => cb.checked = false);
+                    this.teamService.triggerPlayersWasAdded();
                 },
                 error => console.error('Error adding players to team:', error)
             );
