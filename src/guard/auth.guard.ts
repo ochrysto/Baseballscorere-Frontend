@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
+import { environmentMock } from '../environments/environment.mock';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,11 @@ export class AuthGuard extends KeycloakAuthGuard {
    * @param state
    */
   async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+    // Mock Keycloak to circumvent keycloak in development
+    if (environmentMock.useMockAuth) {
+      return true;
+    }
+
     if (!this.authenticated) {
       await this.keycloak.login({
         redirectUri: window.location.origin + state.url,
