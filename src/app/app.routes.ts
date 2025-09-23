@@ -11,6 +11,7 @@ import {TeamCreateFormComponent} from './components/team-create-form/team-create
 import {ProtectedRouteExampleComponent} from './components/protected-route-example/protected-route-example.component';
 import {TeamPlayerAddComponent} from './components/team-player-add/team-player-add.component';
 import {UmpireCreateFormComponent} from './components/umpire-create-form/umpire-create-form.component';
+import { WrapUpPageComponent } from './pages/wrap-up-page/wrap-up-page.component';
 
 export const routes: Routes = [
   {path: '', component: BaseballScorerHomeComponent, canActivate: [AuthGuard],},
@@ -25,4 +26,5 @@ export const routes: Routes = [
   {path: 'protected', component: ProtectedRouteExampleComponent, canActivate: [AuthGuard],},
   {path: 'create-scorer', component: ScorerCreateFormComponent, canActivate: [AuthGuard],},
   {path: 'create-umpire', component: UmpireCreateFormComponent, canActivate: [AuthGuard],},
+  {path: 'wrap-up', component: WrapUpPageComponent, canActivate: [AuthGuard],},
 ];
