@@ -1,0 +1,20 @@
+legend {
+  font-size: larger;
+  color: var(--lightgray);
+  padding: 5px;
+}
+.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name p {
+  color: var(--lightgray);
+}
+.check {
+  color: var(--lightgray);
+}
+.check input[type="checkbox"] {
+  accent-color: var(--actiongreen);
+  margin: 5px;
+}

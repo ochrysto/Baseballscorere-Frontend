@@ -4,16 +4,36 @@
   </div>
   <div class="protest">
     <p>Protest</p>
-    <input type="checkbox" id="yes" name="protest" value="protest-checked"/>
+    <input type="checkbox" id="yes" name="protest" value="protest-checked" />
     <label for="yes">Ja</label>
-    <input type="checkbox" id="no" name="protest" value="protest-unchecked"/>
+    <input type="checkbox" id="no" name="protest" value="protest-unchecked" />
     <label for="no">Nein</label>
   </div>
   <div class="scorer">
-
+    <app-wrap-up-sign-container signee="Scorer" signeeName="Oliver Chrystossek" signeePassNumber="B-0656876-SCO" />
   </div>
-  <div class="umpire"></div>
-  <div class="home-manager"></div>
-  <div class="away-manager"></div>
-  <div class="send"></div>
+  <div class="umpire">
+    <app-wrap-up-sign-container signee="Plateumpire" signeeName="Horst Ulik" signeePassNumber="C-0786577-UMP-BB" />
+  </div>
+  <div class="home-manager">
+    <app-wrap-up-sign-container signee="Manager Heim" signeeName="Martin Balsam" signeePassNumber="" />
+  </div>
+  <div class="away-manager">
+    <app-wrap-up-sign-container signee="Manager Gast" signeeName="Heinrich Osterhage" signeePassNumber="" />
+  </div>
+  <div class="send">
+    <fieldset>
+      <legend>Abschicken und Spiel beenden</legend>
+      <div class="container">
+        <div class="name">
+          <button class="material-symbols-outlined"> edit </button>
+          <p>verantwortlicher&#64;dbv.de</p>
+        </div>
+        <div class="buttons">
+          <app-button class="button" text="Speichern" className="btn" />
+          <app-button class="button" text="Abschicken" className="action-btn" />
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

@@ -1,0 +1,86 @@
+
+.container-sign {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Kanit, sans-serif;
+  padding: 1vw;
+}
+.header {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header h1 {
+  display: flex;
+  font-family: Kanit, sans-serif;
+  font-size: 6vw;
+  margin: 0;
+  font-weight: 800;
+  color: var(--actiongreen);
+  justify-content: center;
+  align-items: center;
+}
+.protest {
+
+  display: flex;
+  color: var(--lightgray);
+  justify-content: left;
+  align-items: center;
+  padding: 3vw;
+}
+.protest p {
+  margin: 0;
+  padding: 0;
+  align-self: center;
+}
+.protest input {
+  margin-left: 2em;
+}
+.protest input[type="checkbox"] {
+  accent-color: var(--actiongreen);
+}
+.scorer {
+  flex-grow: 2;
+}
+.umpire {
+  flex-grow: 2;
+}
+.home-manager {
+  flex-grow: 2;
+}
+.away-manager {
+  flex-grow: 2;
+}
+.send {
+  flex-grow: 5;
+}
+.send legend {
+  color: var(--lightgray);
+}
+.name {
+  color: var(--lightgray);
+  display: flex;
+  align-items: center;
+  margin: 1vw;
+}
+.name button {
+  margin-right: 1vw;
+  background-color: var(--card-darkbrown);
+  color: var(--lightgray);
+  border: none;
+}
+.name button:hover {
+  color: var(--actiongreen);
+}
+.buttons {
+  display: flex;
+}
+app-button.button {
+  flex-grow: 1;
+  width: 100%;
+  display: block;
+  margin: 0 1vw;
+}
+
