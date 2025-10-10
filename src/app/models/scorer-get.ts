@@ -1,5 +1,5 @@
 export interface ScorerGet {
   scorerId: number;
-  passnumber: number;
+  passNumber: number;
   name: string;
 }

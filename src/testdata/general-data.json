@@ -1,0 +1,33 @@
+{
+  "gameNr": 1,
+  "date": "01.01.1111",
+  "duration": "123 Minutes",
+  "audience": "30",
+  "location": "Bremen",
+  "innings": "7",
+  "association": "NBSV",
+  "league": "Verbandsliga",
+  "homeTeam": "Bremen Dockers",
+  "homeManager": "Martin Balsam",
+  "guestTeam": "Hannover Regents",
+  "guestManager": "Heinrich Osterhage",
+  "umpire": [
+    {
+      "umpireId": 1,
+      "passNumber": "C-0786577-UMP-BB",
+      "name": "Horst Ulik"
+    },
+    {
+      "umpireId": 2,
+      "passNumber": "C-2554887-UMP-BB",
+      "name": "Dennis Klein"
+    }
+  ],
+  "sorer":
+  {
+    "sorerId": 1,
+    "passNumber": "B-0656876-SCO",
+    "name": "Oliver Chrystossek"
+  },
+  "email": "verantwortlicher@nbsv.de"
+}
