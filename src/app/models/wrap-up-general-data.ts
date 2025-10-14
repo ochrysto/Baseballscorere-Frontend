@@ -1,5 +1,4 @@
-import { UmpireGet } from './umpire-get';
-import { ScorerGet } from './scorer-get';
+import { OfficialsGet } from './officials-get';
 
 export interface WrapUpGeneralData {
   gameNr: string;
@@ -14,7 +13,6 @@ export interface WrapUpGeneralData {
   homeManager: string;
   guestTeam: string;
   guestManager: string;
-  umpire: UmpireGet[];
-  scorer: ScorerGet;
+  officials: OfficialsGet[];
   email: string;
 }

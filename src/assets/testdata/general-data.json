@@ -11,23 +11,28 @@
   "homeManager": "Martin Balsam",
   "guestTeam": "Hannover Regents",
   "guestManager": "Heinrich Osterhage",
-  "umpire": [
+  "officials": [
     {
-      "umpireId": 1,
-      "passNumber": "C-0786577-UMP-BB",
-      "name": "Horst Ulik"
+      "role": "Scorer",
+      "passNumber": "B-0656876-SCO",
+      "name": "Oliver Chrystossek"
     },
     {
-      "umpireId": 2,
+      "role": "Umpire",
       "passNumber": "C-2554887-UMP-BB",
       "name": "Dennis Klein"
+    },
+    {
+      "role": "Manager Heim",
+      "passNumber": "",
+      "name": "Dennis Klein"
+    },
+    {
+      "role": "Manager Gast",
+      "passNumber": "",
+      "name": "Heinrich Osterhage"
     }
   ],
-  "sorer":
-  {
-    "sorerId": 1,
-    "passNumber": "B-0656876-SCO",
-    "name": "Oliver Chrystossek"
-  },
+
   "email": "verantwortlicher@nbsv.de"
 }
