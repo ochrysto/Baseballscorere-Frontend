@@ -1,7 +1,9 @@
 {
-  "gameNr": 1,
-  "date": "01.01.1111",
-  "duration": "123 Minutes",
+  "gameNr": "101-1",
+  "date": "25.05.2025",
+  "beginning": "13:00",
+  "end": "16:10",
+  "duration": "190 Minutes",
   "audience": "30",
   "location": "Bremen",
   "innings": "7",

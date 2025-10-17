@@ -1,0 +1,10 @@
+<div class="game-data">
+  <p>Spielnummer: {{ generalData?.gameNr }}</p>
+  <p>am {{ generalData?.date}}</p>
+  <p>in {{ generalData?.location}}</p>
+  <p>Beginn: {{ generalData?.beginning}}</p>
+  <p>Ende: {{ generalData?.end}}</p>
+  <p>Dauer: {{ generalData?.duration}}</p>
+  <p>{{ generalData?.audience}} Zuschauer</p>
+  <div class="time">{{ currentTime | date: 'HH:mm' }} Uhr</div>
+</div>

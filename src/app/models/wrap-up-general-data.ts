@@ -3,7 +3,9 @@ import { OfficialsGet } from './officials-get';
 export interface WrapUpGeneralData {
   gameNr: string;
   date: string;
-  duration: string;
+  beginning: string;
+  end: string;
+  duration: number;
   audience: string;
   location: string;
   innings: string;

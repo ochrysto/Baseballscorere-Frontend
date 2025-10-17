@@ -1,0 +1,14 @@
+.game-data {
+  font-family: Kanit, sans-serif;
+  display: flex;
+  padding: 1vw;
+  flex-wrap: wrap;
+}
+.game-data p {
+  color: var(--lightgray);
+  margin-right: 1vw;
+}
+.time {
+  color: var(--actiongreen);
+  margin-left: auto;
+}
