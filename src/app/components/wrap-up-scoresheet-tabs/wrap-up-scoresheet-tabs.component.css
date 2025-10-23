@@ -1,0 +1,17 @@
+.tab {
+  padding: 20px;
+   display: flex;
+  align-items: center;
+  font-family: Kanit, sans-serif;
+}
+.tab p {
+  font-size: 1vw;
+  margin-left: 15px;
+  transform: translateY(calc(1vw/2));
+  /* puts text a bit on the middle of the baseline */
+}
+.tab img {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+}

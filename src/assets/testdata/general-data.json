@@ -10,8 +10,10 @@
   "association": "NBSV",
   "league": "Verbandsliga",
   "homeTeam": "Bremen Dockers",
+  "homeTeamLogo": "assets/logo_dockers.jpg",
   "homeManager": "Martin Balsam",
-  "guestTeam": "Hannover Regents",
+  "guestTeam": "Braunschweig 89ers",
+  "guestTeamLogo": "assets/logo_braunschweig.png",
   "guestManager": "Heinrich Osterhage",
   "officials": [
     {

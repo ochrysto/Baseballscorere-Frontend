@@ -1,10 +1,24 @@
 <div class="game-data">
   <p>Spielnummer: {{ generalData?.gameNr }}</p>
-  <p>am {{ generalData?.date}}</p>
-  <p>in {{ generalData?.location}}</p>
-  <p>Beginn: {{ generalData?.beginning}}</p>
-  <p>Ende: {{ generalData?.end}}</p>
-  <p>Dauer: {{ generalData?.duration}}</p>
-  <p>{{ generalData?.audience}} Zuschauer</p>
+  <p>am {{ generalData?.date }}</p>
+  <p>in {{ generalData?.location }}</p>
+  <p>Beginn: {{ generalData?.beginning }}</p>
+  <p>Ende: {{ generalData?.end }}</p>
+  <p>Dauer: {{ generalData?.duration }}</p>
+  <p>{{ generalData?.audience }} Zuschauer</p>
   <div class="time">{{ currentTime | date: 'HH:mm' }} Uhr</div>
+</div>
+<div class="tabs" *ngIf="generalData">
+  <div class="homeTab">
+    <app-wrap-up-scoresheet-tabs
+      [img]="generalData.homeTeamLogo"
+      [team] = "generalData.homeTeam"
+    />
+  </div>
+  <div class="guestTab">
+    <app-wrap-up-scoresheet-tabs
+      [img]="generalData.guestTeamLogo"
+      [team]="generalData.guestTeam"
+    />
+  </div>
 </div>

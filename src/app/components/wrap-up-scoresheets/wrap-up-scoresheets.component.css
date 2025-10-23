@@ -12,3 +12,22 @@
   color: var(--actiongreen);
   margin-left: auto;
 }
+.tabs {
+  margin-left: 1vw;
+  display: flex;
+}
+.homeTab {
+  border: 1px solid var(--homeblue);
+  color: var(--homeblue);
+}
+.homeTab:hover {
+  box-shadow: 0 0 10px var(--homeblue);
+}
+.guestTab {
+  border: 1px solid var(--visitoryellow);
+  color: var(--visitoryellow);
+}
+.guestTab:hover {
+  box-shadow: 0 0 10px var(--visitoryellow);
+}
+

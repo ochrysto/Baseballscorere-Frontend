@@ -12,8 +12,10 @@ export interface WrapUpGeneralData {
   association: string;
   league: string;
   homeTeam: string;
+  homeTeamLogo: string;
   homeManager: string;
   guestTeam: string;
+  guestTeamLogo: string;
   guestManager: string;
   officials: OfficialsGet[];
   email: string;
